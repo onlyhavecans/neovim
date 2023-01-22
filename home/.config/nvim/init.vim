@@ -204,7 +204,7 @@ nnoremap <Leader>q gqap
 noremap <Leader>r :source $MYVIMRC<CR>
 
 " <Leader>t = TabNext
-nnoremap <Leader>t :tabNext<CR>
+nnoremap <Leader>t :tabn<CR>
 
 " :w!! = write a file as sudo
 cmap w!! w !sudo tee % >/dev/null
