@@ -152,6 +152,8 @@ Plug 'LokiChaos/vim-tintin'          " tintin is rare to support
 Plug 'sheerun/vim-polyglot'          " Most language support
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " Force go
 Plug 'rust-lang/rust.vim'            " Force rust
+Plug 'mhinz/vim-crates'
+  autocmd BufRead Cargo.toml call crates#toggle()
 
 call plug#end()
 
