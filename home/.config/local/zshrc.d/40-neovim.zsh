@@ -2,6 +2,6 @@
 
 # NeoVim over Vim where available
 if builtin whence nvim &> /dev/null; then
-  alias vim=nvim
+  alias v=nvim
   export EDITOR=nvim
 fi

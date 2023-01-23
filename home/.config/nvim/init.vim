@@ -1,8 +1,8 @@
 let g:loaded_python_provider = 0
 let g:loaded_perl_provider = 0
 let g:loaded_ruby_provider = 0
-let g:python3_host_prog = '/usr/local/bin/python3'
-let g:node_host_prog = '/usr/local/bin/neovim-node-host'
+let g:python3_host_prog = '~/.asdf/shims/python3'
+let g:node_host_prog = '~/.asdf/shims/neovim-node-host'
 
 let mapleader   = ","
 
@@ -102,11 +102,12 @@ Plug 'dense-analysis/ale'
   let g:ale_fix_on_save = 1
 Plug 'neoclide/coc.nvim', {'branch': 'release'} "Lang server
   let g:coc_global_extensions = [
-        \'coc-css',
         \'coc-go',
         \'coc-json',
         \'coc-pyright',
         \'coc-rust-analyzer',
+        \'coc-sh',
+        \'coc-solargraph',
         \'coc-yaml',
         \]
   " c-space to trigger completion
@@ -117,8 +118,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} "Lang server
   " GoTo code navigation.
   nmap <silent> gd <Plug>(coc-definition)
   nmap <silent> gy <Plug>(coc-type-definition)
-  nmap <silent> gi <Plug>(coc-implementation)
   nmap <silent> gr <Plug>(coc-references)
+  nmap <silent> gi <Plug>(coc-implementation)
   " Use K to show documentation in preview window.
   nnoremap <silent> K :call <SID>show_documentation()<CR>
   function! s:show_documentation()
@@ -244,7 +245,7 @@ if executable("rg")
   set grepformat=%f:%l:%c:%m,%f:%l:%m
 endif
 
-set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h15
+set guifont=PragmataPro\ Mono\ Liga:h16
 
 " =====================================
 " AutoCommands
