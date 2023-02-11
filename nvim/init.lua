@@ -33,8 +33,7 @@ require('packer').startup(function(use)
 
   use { -- Cargo.toml experiance
     'saecki/crates.nvim',
-    -- event = { "BufRead Cargo.toml" },
-    requires = { { 'nvim-lua/plenary.nvim' } },
+    requires = { { 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' } },
   }
 
   use { -- Autocompletion
@@ -421,6 +420,7 @@ local servers = {
 
 -- Setup Rust tools
 require('rust-tools').setup()
+
 -- Setup neovim lua configuration
 require('neodev').setup()
 --
@@ -460,6 +460,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 
 -- Turn on lsp status information
 require('fidget').setup()
+
+-- crates lsp
+local null_ls = require('null-ls')
+require('crates').setup {
+    null_ls = {
+        enabled = true,
+        name = "crates.nvim",
+    },
+}
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
@@ -505,6 +514,7 @@ cmp.setup {
   },
 }
 
+null_ls.setup()
 -- Quit all shorthand
 vim.api.nvim_create_user_command("Q", "qall", {bang = true})
 
