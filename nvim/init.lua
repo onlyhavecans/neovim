@@ -54,6 +54,7 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use { 'junegunn/vim-easy-align', opt = true, cmd='<Plug>(EasyAlign)' }
 
   -- Navigation
   use 'christoomey/vim-tmux-navigator'
@@ -125,6 +126,9 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
+-- Always keep my cursor centered
+vim.opt.scrolloff = 5
+
 -- Strict default whitespace settings
 vim.opt.shiftwidth = 2
 vim.opt.smartindent = true
@@ -155,6 +159,11 @@ vim.g.maplocalleader = ' '
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'XX', ':qall!<CR>')
+
+-- EasyAlign settings Enter activation, and ga movement
+vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', {remap = true})
+vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -445,6 +454,9 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
+
+-- Quit all shorthand
+vim.api.nvim_create_user_command("Q", "qall", {bang = true})
 
 -- My personalized Wrap
 local wrap = function()
