@@ -525,11 +525,10 @@ local wrap = function()
   vim.opt.list = false
   vim.opt.showbreak = '…'
 end
-vim.api.nvim_create_user_command(
-  "Wrap",
-  wrap,
-  {bang = true, desc = "Turn on preferred Line Wrap"}
-)
+vim.api.nvim_create_user_command( "Wrap", wrap, {bang = true, desc = "Enable Preferred Line Wrap"})
+
+-- Automatically strip trailing spaces on save
+vim.api.nvim_create_autocmd("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e"})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
