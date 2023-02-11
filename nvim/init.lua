@@ -164,11 +164,15 @@ vim.g.maplocalleader = ' '
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('n', 'XX', ':qall!<CR>')
+vim.keymap.set('n', 's', ':w<CR>')
+
+-- Faster splits
+vim.keymap.set('n', '|', ':vsplit<CR>')
+vim.keymap.set('n', '_', ':split<CR>')
 
 -- EasyAlign settings Enter activation, and ga movement
 vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', {remap = true})
-vim.keymap.set('x', 'ga', '<Plug>(EasyAlign)')
-vim.keymap.set('n', 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set({'x', 'n'}, 'ga', '<Plug>(EasyAlign)')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -350,7 +354,7 @@ local on_attach = function(_, bufnr)
 
   -- See `:help K` for why this keymap
   nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-  nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
+  nmap('<Leader>k', vim.lsp.buf.signature_help, 'Signature Documentation')
 
   -- Lesser used LSP functionality
   nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
