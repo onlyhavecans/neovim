@@ -68,6 +68,8 @@ require('packer').startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-eunuch' -- First class unix commands
+  use { 'tpope/vim-surround', requires = {'tpope/vim-repeat'} }
   use { 'junegunn/vim-easy-align', opt = true, cmd='<Plug>(EasyAlign)' }
 
   -- Navigation
