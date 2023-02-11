@@ -34,11 +34,8 @@ require('packer').startup(function(use)
 
   use { -- Cargo.toml experiance
     'saecki/crates.nvim',
-    event = { "BufRead Cargo.toml" },
+    -- event = { "BufRead Cargo.toml" },
     requires = { { 'nvim-lua/plenary.nvim' } },
-    config = function()
-        require('crates').setup()
-    end,
   }
 
   use { -- Autocompletion
@@ -390,6 +387,8 @@ local servers = {
   bashls = {},
   jsonls = {},
   pyright = {},
+  quick_lint_js = {},
+  solargraph = {},
   yamlls = {},
 
   gopls = {
