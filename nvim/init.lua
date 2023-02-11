@@ -32,6 +32,15 @@ require('packer').startup(function(use)
   use 'simrat39/rust-tools.nvim'
   use 'LokiChaos/vim-tintin'
 
+  use { -- Cargo.toml experiance
+    'saecki/crates.nvim',
+    event = { "BufRead Cargo.toml" },
+    requires = { { 'nvim-lua/plenary.nvim' } },
+    config = function()
+        require('crates').setup()
+    end,
+  }
+
   use { -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
@@ -380,8 +389,18 @@ local servers = {
   gopls = {},
   jsonls = {},
   pyright = {},
-  rust_analyzer = {},
   yamlls = {},
+
+  rust_analyzer = {
+    ["rust-analyzer"] = {
+      lens = {
+        enable = true,
+      },
+      checkOnSave = {
+        command = "clippy",
+      },
+    },
+  },
 
   sumneko_lua = {
     Lua = {
@@ -391,6 +410,8 @@ local servers = {
   },
 }
 
+-- Setup Rust tools
+require('rust-tools').setup()
 -- Setup neovim lua configuration
 require('neodev').setup()
 --
