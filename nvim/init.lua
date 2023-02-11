@@ -67,7 +67,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'tpope/vim-eunuch' -- First class unix commands
   use { 'tpope/vim-surround', requires = {'tpope/vim-repeat'} }
-  use { 'junegunn/vim-easy-align', opt = true, cmd='<Plug>(EasyAlign)' }
+  use { 'junegunn/vim-easy-align', on={'<Plug>(EasyAlign)'} }
 
   -- Navigation
   use 'christoomey/vim-tmux-navigator'
