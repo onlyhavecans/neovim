@@ -23,6 +23,10 @@ require('packer').startup(function(use)
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
+
+      -- Null-ls into mason
+      'jose-elias-alvarez/null-ls.nvim',
+      "jay-babu/mason-null-ls.nvim",
     },
   }
 
@@ -418,9 +422,6 @@ local servers = {
   },
 }
 
--- Setup Rust tools
-require('rust-tools').setup()
-
 -- Setup neovim lua configuration
 require('neodev').setup()
 --
@@ -430,6 +431,9 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
+require("mason-null-ls").setup({
+  automatic_setup = true,
+})
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -448,6 +452,9 @@ mason_lspconfig.setup_handlers {
   end,
 }
 
+-- Turn on lsp status information
+require('fidget').setup()
+
 -- Auto-format rust and go on save
 local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
 vim.api.nvim_create_autocmd("BufWritePre", {
@@ -458,11 +465,10 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = format_sync_grp,
 })
 
--- Turn on lsp status information
-require('fidget').setup()
+-- Setup Rust tools
+require('rust-tools').setup()
 
 -- crates lsp
-local null_ls = require('null-ls')
 require('crates').setup {
     null_ls = {
         enabled = true,
@@ -514,7 +520,6 @@ cmp.setup {
   },
 }
 
-null_ls.setup()
 -- Quit all shorthand
 vim.api.nvim_create_user_command("Q", "qall", {bang = true})
 
