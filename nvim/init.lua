@@ -420,7 +420,11 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup()
---
+
+-- Setup Rust tools
+require('rust-tools').setup()
+require('crates').setup()
+
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -457,11 +461,6 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   end,
   group = format_sync_grp,
 })
-
--- Setup Rust tools
-require('rust-tools').setup()
-
-require('crates').setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
