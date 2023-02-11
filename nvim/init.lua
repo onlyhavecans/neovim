@@ -388,10 +388,16 @@ end
 --  the `settings` field of the server config. You must look up that documentation yourself.
 local servers = {
   bashls = {},
-  gopls = {},
   jsonls = {},
   pyright = {},
   yamlls = {},
+
+  gopls = {
+    gopls = {
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
 
   rust_analyzer = {
     ["rust-analyzer"] = {
@@ -440,6 +446,16 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Auto-format rust and go on save
+local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = { "*.rs", "*.go" },
+  callback = function()
+    vim.lsp.buf.format({ timeout_ms = 200 })
+  end,
+  group = format_sync_grp,
+})
 
 -- Turn on lsp status information
 require('fidget').setup()
