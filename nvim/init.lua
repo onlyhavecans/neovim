@@ -23,10 +23,6 @@ require('packer').startup(function(use)
 
       -- Additional lua configuration, makes nvim stuff amazing
       'folke/neodev.nvim',
-
-      -- Null-ls into mason
-      'jose-elias-alvarez/null-ls.nvim',
-      "jay-babu/mason-null-ls.nvim",
     },
   }
 
@@ -37,7 +33,7 @@ require('packer').startup(function(use)
 
   use { -- Cargo.toml experiance
     'saecki/crates.nvim',
-    requires = { { 'nvim-lua/plenary.nvim', 'jose-elias-alvarez/null-ls.nvim' } },
+    requires = { { 'nvim-lua/plenary.nvim'} },
   }
 
   use { -- Autocompletion
@@ -69,7 +65,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'tpope/vim-eunuch' -- First class unix commands
   use { 'tpope/vim-surround', requires = {'tpope/vim-repeat'} }
-  use { 'junegunn/vim-easy-align', on={'<Plug>(EasyAlign)'} }
+  use { 'junegunn/vim-easy-align', on = {'<Plug>(EasyAlign)'} }
 
   -- Navigation
   use 'christoomey/vim-tmux-navigator'
@@ -431,9 +427,6 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
-require("mason-null-ls").setup({
-  automatic_setup = true,
-})
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -468,13 +461,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
 -- Setup Rust tools
 require('rust-tools').setup()
 
--- crates lsp
-require('crates').setup {
-    null_ls = {
-        enabled = true,
-        name = "crates.nvim",
-    },
-}
+require('crates').setup()
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
