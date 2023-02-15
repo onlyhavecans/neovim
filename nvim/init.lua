@@ -19,8 +19,8 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  -- LSP Configuration & Plugins
   use {
-    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
@@ -48,29 +48,32 @@ require('packer').startup(function(use)
   use 'danihodovic/vim-ansible-vault'
   use 'simrat39/rust-tools.nvim'
   use 'LokiChaos/vim-tintin'
+  use 'dougireton/vim-chef'
+  use 'direnv/direnv.vim'
+  use 'rizzatti/dash.vim'
 
+  -- Cargo.toml experiance
   use {
-    -- Cargo.toml experiance
     'saecki/crates.nvim',
     requires = { { 'nvim-lua/plenary.nvim' } },
   }
 
+  -- Autocompletion
   use {
-    -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
+  -- Highlight, edit, and navigate code
   use {
-    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
 
+  -- Additional text objects via treesitter
   use {
-    -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
@@ -214,6 +217,14 @@ vim.keymap.set('n', '<F6>', '<Plug>(coc-refactor)')
 -- EasyAlign settings Enter activation, and ga movement
 vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', { remap = true })
 vim.keymap.set({ 'x', 'n' }, 'ga', '<Plug>(EasyAlign)')
+
+vim.keymap.set('n', '<Leader>d', '<Plug>DashSearch', {silent = true})
+
+-- Tab Navigation Navigation
+vim.keymap.set('n', '<Leader>]', ':tabnext<CR>')
+vim.keymap.set('n', '<Leader>[', ':-tabnext<CR>')
+vim.keymap.set('n', '<Leader>t', ':tabnew<CR>')
+vim.keymap.set('n', '<Leader>w', ':tabclose<CR>')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -524,7 +535,7 @@ local ufmt = {
   filetypes = { 'python' },
   generator = null_ls.formatter {
     command = 'ufmt',
-    args = {  'format', '-' },
+    args = { 'format', '-' },
     to_stdin = true,
   },
 }
@@ -611,7 +622,7 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
+    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
@@ -630,8 +641,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable( -1) then
-        luasnip.jump( -1)
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end
@@ -669,8 +680,7 @@ vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Pre
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = '%s/\\s\\+$//e' })
 
 -- Update everything command
-local update_all = function()
-end
+local update_all = function() end
 vim.api.nvim_create_user_command('Update', update_all, { desc = 'Update all plugins and lsps' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
