@@ -422,16 +422,6 @@ local servers = {
       gofumpt = true,
     },
   },
-  rust_analyzer = {
-    ['rust-analyzer'] = {
-      lens = {
-        enable = true,
-      },
-      checkOnSave = {
-        command = 'clippy',
-      },
-    },
-  },
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -471,6 +461,11 @@ mason_lspconfig.setup_handlers {
 
 -- Automatically keep LSP tools up to date
 require('mason-tool-installer').setup {
+  ensure_installed = {
+    'gopls',
+    'pyright',
+    'rust-analyzer',
+  },
   auto_update = true,
   run_on_start = true,
   start_delay = 3000, -- 3 second delay
@@ -595,7 +590,7 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+    ['<C-d>'] = cmp.mapping.scroll_docs( -4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
     ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
@@ -614,8 +609,8 @@ cmp.setup {
     ['<S-Tab>'] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
+      elseif luasnip.jumpable( -1) then
+        luasnip.jump( -1)
       else
         fallback()
       end
@@ -651,6 +646,11 @@ vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Pre
 
 -- Automatically strip trailing spaces on save
 vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = '%s/\\s\\+$//e' })
+
+-- Update everything command
+local update_all = function()
+end
+vim.api.nvim_create_user_command('Update', update_all, { desc = 'Update all plugins and lsps' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
