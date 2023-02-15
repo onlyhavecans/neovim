@@ -401,11 +401,6 @@ local on_attach = function(_, bufnr)
   nmap('<leader>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
   end, '[W]orkspace [L]ist Folders')
-
-  -- Create a command `:Format` local to the LSP buffer
-  vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
-    vim.lsp.buf.format()
-  end, { desc = 'Format current buffer with LSP' })
 end
 
 -- Enable the following language servers
@@ -446,10 +441,6 @@ local servers = {
 
 -- Setup neovim lua configuration
 require('neodev').setup()
-
--- Setup Rust tools
-require('rust-tools').setup()
-require('crates').setup()
 
 -- nvim-cmp supports additional completion capabilities, so broadcast that to servers
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -534,19 +525,53 @@ null_ls.setup {
     null_ls.builtins.formatting.usort,
     null_ls.builtins.formatting.yamlfmt,
   },
-  -- you can reuse a shared lspconfig on_attach callback here
-  on_attach = function(client, bufnr)
-    if client.supports_method 'textDocument/formatting' then
-      vim.api.nvim_clear_autocmds { group = format_sync_grp, buffer = bufnr }
-      vim.api.nvim_create_autocmd('BufWritePre', {
-        group = format_sync_grp,
-        buffer = bufnr,
+}
+
+-- Create a command `:Format` local to the LSP buffer
+vim.api.nvim_create_user_command('Format', function(_)
+  vim.lsp.buf.format()
+end, { desc = 'Format current buffer with LSP' })
+
+-- Setup Rust tools
+local rt = require 'rust-tools'
+rt.setup {
+  tools = {
+    on_initialized = function()
+      vim.api.nvim_create_autocmd({ 'BufWritePost', 'BufEnter', 'CursorHold', 'InsertLeave' }, {
+        pattern = { '*.rs' },
         callback = function()
-          vim.lsp.buf.format { bufnr = bufnr }
+          vim.lsp.codelens.refresh()
         end,
       })
-    end
-  end,
+    end,
+    hover_actions = {
+      auto_focus = true,
+    },
+  },
+  server = {
+    standalone = false,
+    -- Use Mason's on attach for all my keymaps
+    on_attach = on_attach,
+    -- I really want to port this custom hover action
+    --   function(_, bufnr)
+    --   vim.keymap.set('n', 'K', rt.hover_actions.hover_actions, { buffer = bufnr })
+    -- end,
+    ['rust-analyzer'] = {
+      lens = {
+        enable = true,
+      },
+      checkOnSave = {
+        command = 'clippy',
+      },
+    },
+  },
+}
+
+require('crates').setup {
+  null_ls = {
+    enabled = true,
+    name = 'crates.nvim',
+  },
 }
 
 -- Auto-format rust and go on save
