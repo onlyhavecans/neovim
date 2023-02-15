@@ -494,9 +494,6 @@ vim.api.nvim_create_autocmd('User', {
 require('fidget').setup()
 
 -- [[ Null-ls ]]
--- Set up this so it can be shared between all the lsps
-local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
-
 local null_ls = require 'null-ls'
 null_ls.setup {
   sources = {
@@ -523,10 +520,34 @@ null_ls.setup {
   },
 }
 
+-- Set up this so it can be shared between all the lsps
+local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
+local do_format = function(_)
+  vim.lsp.buf.format { timeout_ms = 200 }
+  vim.lsp.codelens.refresh()
+end
+
+-- Auto-format rust and go on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.rs', '*.go' },
+  callback = do_format,
+  group = format_sync_grp,
+})
+
+local auto_format = function(_)
+  local bufnr = vim.nvim_get_current_buf
+  vim.api.nvim_clear_autocmds { group = format_sync_grp, buffer = bufnr }
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = format_sync_grp,
+    buffer = bufnr,
+    callback = do_format,
+  })
+end
+
 -- Create a command `:Format` local to the LSP buffer
-vim.api.nvim_create_user_command('Format', function(_)
-  vim.lsp.buf.format()
-end, { desc = 'Format current buffer with LSP' })
+vim.api.nvim_create_user_command('Format', do_format, { desc = 'Format current buffer with LSP' })
+-- Create a command `:AFormat` local to the LSP buffer
+vim.api.nvim_create_user_command('AFormat', auto_format, { desc = 'Enable Format on Save for current buffer with LSP' })
 
 -- Setup Rust tools
 local rt = require 'rust-tools'
@@ -569,15 +590,6 @@ require('crates').setup {
     name = 'crates.nvim',
   },
 }
-
--- Auto-format rust and go on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.rs', '*.go' },
-  callback = function()
-    vim.lsp.buf.format { timeout_ms = 200 }
-  end,
-  group = format_sync_grp,
-})
 
 -- nvim-cmp setup
 local cmp = require 'cmp'
