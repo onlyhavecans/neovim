@@ -505,26 +505,32 @@ null_ls.setup {
     null_ls.builtins.diagnostics.rubocop,
     null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.shellcheck,
     null_ls.builtins.diagnostics.sqlfluff,
     null_ls.builtins.diagnostics.tidy,
     null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.diagnostics.zsh,
-    null_ls.builtins.formatting.black,
     null_ls.builtins.formatting.prettier,
     null_ls.builtins.formatting.ruff,
     null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.usort,
     null_ls.builtins.formatting.yamlfmt,
   },
 }
 
+local ufmt = {
+  method = null_ls.methods.FORMATTING,
+  filetypes = { 'python' },
+  generator = null_ls.formatter {
+    command = 'ufmt',
+    args = {  'format', '-' },
+    to_stdin = true,
+  },
+}
+null_ls.register(ufmt)
+
 -- Set up this so it can be shared between all the lsps
 local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
-local do_format = function(_)
-  vim.lsp.buf.format { timeout_ms = 200 }
-  vim.lsp.codelens.refresh()
+local do_format = function()
+  vim.lsp.buf.format { timeout_ms = 3000 }
 end
 
 -- Auto-format rust and go on save
