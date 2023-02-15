@@ -4,6 +4,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
+vim.g.python3_host_prog = '~/.asdf/shims/python3'
 
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -161,8 +162,9 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 
--- Always keep my cursor centered
+-- Always keep my cursor centered and highlighted
 vim.opt.scrolloff = 5
+vim.opt.cursorline = true
 
 -- Strict default whitespace settings
 vim.opt.shiftwidth = 2
@@ -259,7 +261,7 @@ require('gitsigns').setup {
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    inital_mode = "normal",
+    inital_mode = 'normal',
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -495,6 +497,7 @@ require('fidget').setup()
 
 -- [[ Null-ls ]]
 local null_ls = require 'null-ls'
+
 null_ls.setup {
   sources = {
     null_ls.builtins.code_actions.shellcheck,
