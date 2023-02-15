@@ -38,6 +38,12 @@ require('packer').startup(function(use)
   -- linters and formatters by ls
   use 'jose-elias-alvarez/null-ls.nvim'
 
+  -- Managing Mason
+  use {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    requires = { 'williamboman/mason.nvim' },
+  }
+
   -- Additional Language tools
   use 'danihodovic/vim-ansible-vault'
   use 'simrat39/rust-tools.nvim'
@@ -451,7 +457,9 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Setup mason so it can manage external tooling
-require('mason').setup()
+require('mason').setup {
+  pip = { upgrade_pip = true },
+}
 
 -- Ensure the servers above are installed
 local mason_lspconfig = require 'mason-lspconfig'
@@ -469,6 +477,32 @@ mason_lspconfig.setup_handlers {
     }
   end,
 }
+
+-- Automatically keep LSP tools up to date
+require('mason-tool-installer').setup {
+  auto_update = true,
+  run_on_start = true,
+  start_delay = 3000, -- 3 second delay
+  debounce_hours = 24, -- at least 24 hours between attempts to install/update
+}
+
+-- Notify when tools are being updated
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MasonToolsStartingInstall',
+  callback = function()
+    vim.schedule(function()
+      print 'mason-tool-installer is starting'
+    end)
+  end,
+})
+vim.api.nvim_create_autocmd('User', {
+  pattern = 'MasonToolsUpdateCompleted',
+  callback = function()
+    vim.schedule(function()
+      print 'mason-tool-installer has finished'
+    end)
+  end,
+})
 
 -- Turn on lsp status information
 require('fidget').setup()
