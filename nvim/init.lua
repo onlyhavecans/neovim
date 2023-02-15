@@ -1,3 +1,7 @@
+-- disable netrw at the very start of your init.lua (strongly advised)
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 -- Install packer
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
@@ -11,7 +15,8 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  use { -- LSP Configuration & Plugins
+  use {
+    -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
     requires = {
       -- Automatically install LSPs to stdpath for neovim
@@ -26,29 +31,36 @@ require('packer').startup(function(use)
     },
   }
 
+  -- linters and formatters by ls
+  use 'jose-elias-alvarez/null-ls.nvim'
+
   -- Additional Language tools
   use 'danihodovic/vim-ansible-vault'
   use 'simrat39/rust-tools.nvim'
   use 'LokiChaos/vim-tintin'
 
-  use { -- Cargo.toml experiance
+  use {
+    -- Cargo.toml experiance
     'saecki/crates.nvim',
-    requires = { { 'nvim-lua/plenary.nvim'} },
+    requires = { { 'nvim-lua/plenary.nvim' } },
   }
 
-  use { -- Autocompletion
+  use {
+    -- Autocompletion
     'hrsh7th/nvim-cmp',
     requires = { 'hrsh7th/cmp-nvim-lsp', 'hrsh7th/cmp-path', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   }
 
-  use { -- Highlight, edit, and navigate code
+  use {
+    -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
     run = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   }
 
-  use { -- Additional text objects via treesitter
+  use {
+    -- Additional text objects via treesitter
     'nvim-treesitter/nvim-treesitter-textobjects',
     after = 'nvim-treesitter',
   }
@@ -60,16 +72,19 @@ require('packer').startup(function(use)
 
   use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'lukas-reineke/indent-blankline.nvim' -- Add indentation guides even on blank lines
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'tpope/vim-eunuch' -- First class unix commands
-  use { 'tpope/vim-surround', requires = {'tpope/vim-repeat'} }
-  use { 'junegunn/vim-easy-align', on = {'<Plug>(EasyAlign)'} }
+  use { 'tpope/vim-surround', requires = { 'tpope/vim-repeat' } }
+  use { 'junegunn/vim-easy-align', on = { '<Plug>(EasyAlign)' } }
 
   -- Navigation
   use 'christoomey/vim-tmux-navigator'
   use 'jremmen/vim-ripgrep'
+  use {
+    'nvim-tree/nvim-tree.lua',
+    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+  }
 
   -- Fuzzy Finder (files, lsp, etc)
   use { 'nvim-telescope/telescope.nvim', branch = '0.1.x', requires = { 'nvim-lua/plenary.nvim' } }
@@ -113,7 +128,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 -- macOS clipboard
-vim.opt.clipboard:append('unnamedplus')
+vim.opt.clipboard:append 'unnamedplus'
 
 -- No wrapping by default
 vim.opt.wrap = false
@@ -176,9 +191,18 @@ vim.keymap.set('n', 's', ':w<CR>')
 vim.keymap.set('n', '|', ':vsplit<CR>')
 vim.keymap.set('n', '_', ':split<CR>')
 
+-- The F-Keys
+-- <F1> Help
+vim.keymap.set('n', '<F2>', ':set number!<CR>')
+vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>')
+vim.keymap.set('n', '<F4>', ':cd %:p:h<CR>:pwd<CR>')
+-- <F5> = None
+vim.keymap.set('n', '<F6>', '<Plug>(coc-refactor)')
+-- <F8> = Next buffer
+
 -- EasyAlign settings Enter activation, and ga movement
-vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', {remap = true})
-vim.keymap.set({'x', 'n'}, 'ga', '<Plug>(EasyAlign)')
+vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', { remap = true })
+vim.keymap.set({ 'x', 'n' }, 'ga', '<Plug>(EasyAlign)')
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
@@ -189,7 +213,7 @@ vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = tr
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
-    vim.highlight.on_yank({timeout=3000})
+    vim.highlight.on_yank { timeout = 3000 }
   end,
   group = highlight_group,
   pattern = '*',
@@ -208,13 +232,6 @@ require('lualine').setup {
 
 -- Enable Comment.nvim
 require('Comment').setup()
-
--- Enable `lukas-reineke/indent-blankline.nvim`
--- See `:help indent_blankline.txt`
-require('indent_blankline').setup {
-  char = '┊',
-  show_trailing_blankline_indent = false,
-}
 
 -- Gitsigns
 -- See `:help gitsigns.txt`
@@ -256,8 +273,12 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer]' })
 
+vim.keymap.set('n', '<leader>p', function()
+  require('telescope.builtin').find_files { follow = true, hidden = true }
+end, { desc = '[S]earch [F]iles' })
+
 vim.keymap.set('n', '<leader>sf', function()
-  require('telescope.builtin').find_files({ follow = true, hidden = true })
+  require('telescope.builtin').find_files { follow = true, hidden = true }
 end, { desc = '[S]earch [F]iles' })
 
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
@@ -270,7 +291,6 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'ruby', 'rust', 'typescript', 'help', 'vim' },
-
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
@@ -391,25 +411,22 @@ local servers = {
   quick_lint_js = {},
   solargraph = {},
   yamlls = {},
-
   gopls = {
     gopls = {
       staticcheck = true,
       gofumpt = true,
     },
   },
-
   rust_analyzer = {
-    ["rust-analyzer"] = {
+    ['rust-analyzer'] = {
       lens = {
         enable = true,
       },
       checkOnSave = {
-        command = "clippy",
+        command = 'clippy',
       },
     },
   },
-
   lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
@@ -452,12 +469,54 @@ mason_lspconfig.setup_handlers {
 -- Turn on lsp status information
 require('fidget').setup()
 
+-- [[ Null-ls ]]
+-- Set up this so it can be shared between all the lsps
+local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
+
+local null_ls = require 'null-ls'
+null_ls.setup {
+  sources = {
+    null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.diagnostics.ansiblelint,
+    null_ls.builtins.diagnostics.dotenv_linter,
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.diagnostics.markdownlint,
+    null_ls.builtins.diagnostics.rubocop,
+    null_ls.builtins.diagnostics.ruff,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.sqlfluff,
+    null_ls.builtins.diagnostics.tidy,
+    null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.zsh,
+    null_ls.builtins.formatting.black,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.ruff,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.usort,
+    null_ls.builtins.formatting.yamlfmt,
+  },
+  -- you can reuse a shared lspconfig on_attach callback here
+  on_attach = function(client, bufnr)
+    if client.supports_method 'textDocument/formatting' then
+      vim.api.nvim_clear_autocmds { group = format_sync_grp, buffer = bufnr }
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        group = format_sync_grp,
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format { bufnr = bufnr }
+        end,
+      })
+    end
+  end,
+}
+
 -- Auto-format rust and go on save
-local format_sync_grp = vim.api.nvim_create_augroup("Format", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.rs", "*.go" },
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.rs', '*.go' },
   callback = function()
-    vim.lsp.buf.format({ timeout_ms = 200 })
+    vim.lsp.buf.format { timeout_ms = 200 }
   end,
   group = format_sync_grp,
 })
@@ -475,7 +534,7 @@ cmp.setup {
   mapping = cmp.mapping.preset.insert {
     ['<C-d>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete({}),
+    ['<C-Space>'] = cmp.mapping.complete {},
     ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
@@ -506,8 +565,17 @@ cmp.setup {
   },
 }
 
+-- A new tree
+require('nvim-tree').setup {
+  actions = {
+    open_file = {
+      quit_on_open = true,
+    },
+  },
+}
+
 -- Quit all shorthand
-vim.api.nvim_create_user_command("Q", "qall", {bang = true})
+vim.api.nvim_create_user_command('Q', 'qall', { bang = true })
 
 -- My personalized Wrap
 local wrap = function()
@@ -516,10 +584,10 @@ local wrap = function()
   vim.opt.list = false
   vim.opt.showbreak = '…'
 end
-vim.api.nvim_create_user_command( "Wrap", wrap, {bang = true, desc = "Enable Preferred Line Wrap"})
+vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
 -- Automatically strip trailing spaces on save
-vim.api.nvim_create_autocmd("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e"})
+vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = '%s/\\s\\+$//e' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
