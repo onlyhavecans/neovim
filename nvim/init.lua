@@ -518,7 +518,7 @@ mason_lspconfig.setup_handlers {
 require('mason-tool-installer').setup {
   ensure_installed = {
     'bash-language-server',
-    'json-language-server',
+    'json-lsp',
     'yaml-language-server',
     'gopls',
     'pyright',
