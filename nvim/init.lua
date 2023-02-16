@@ -1,3 +1,4 @@
+-- [[ Preamble Disable things ]]
 -- disable netrw at the very start of your init.lua (strongly advised)
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -6,7 +7,7 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.python3_host_prog = '~/.asdf/shims/python3'
 
--- Install packer
+-- [[ Packer ]]
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
 local is_bootstrap = false
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
@@ -116,6 +117,7 @@ require('packer').startup(function(use)
   end
 end)
 
+-- [[ Bootstrapping ]]
 -- When we are bootstrapping a configuration, it doesn't
 -- make sense to execute the rest of the init.lua.
 --
@@ -198,7 +200,11 @@ vim.g.maplocalleader = ' '
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+
+-- quick close
 vim.keymap.set('n', 'XX', ':qall!<CR>')
+
+-- a shortcut to make saving less annoying
 vim.keymap.set('n', 's', ':w<CR>')
 
 -- Faster splits
@@ -206,19 +212,21 @@ vim.keymap.set('n', '|', ':vsplit<CR>')
 vim.keymap.set('n', '_', ':split<CR>')
 
 -- The F-Keys
--- <F1> Help
+-- Toggle line numbers
 vim.keymap.set('n', '<F2>', ':set number!<CR>')
+-- Toggle Tree
 vim.keymap.set('n', '<F3>', ':NvimTreeToggle<CR>')
+-- cd to the current file
 vim.keymap.set('n', '<F4>', ':cd %:p:h<CR>:pwd<CR>')
--- <F5> = None
-vim.keymap.set('n', '<F6>', '<Plug>(coc-refactor)')
--- <F8> = Next buffer
+-- rename
+vim.keymap.set('n', '<F6>', vim.lsp.buf.rename)
 
 -- EasyAlign settings Enter activation, and ga movement
 vim.keymap.set('v', '<Enter>', '<Plug>(EasyAlign)', { remap = true })
 vim.keymap.set({ 'x', 'n' }, 'ga', '<Plug>(EasyAlign)')
 
-vim.keymap.set('n', '<Leader>d', '<Plug>DashSearch', {silent = true})
+-- Dash for lookups
+vim.keymap.set('n', '<Leader>d', '<Plug>DashSearch', { silent = true })
 
 -- Tab Navigation Navigation
 vim.keymap.set('n', '<Leader>]', ':tabnext<CR>')
@@ -229,6 +237,33 @@ vim.keymap.set('n', '<Leader>w', ':tabclose<CR>')
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set('n', 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
+
+-- Open settings
+vim.keymap.set('n', '<leader>,', ':tabnew $MYVIMRC<CR>')
+
+-- [[ Commands ]]
+-- Automatically strip trailing spaces on save
+vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = '%s/\\s\\+$//e' })
+
+-- Quit all shorthand
+vim.api.nvim_create_user_command('QUIT', 'qall', { bang = true })
+
+-- My personalized Wrap
+local wrap = function()
+  vim.opt.wrap = true
+  vim.opt.linebreak = true
+  vim.opt.list = false
+  vim.opt.showbreak = '…'
+end
+vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
+
+vim.api.nvim_create_user_command('SMerge', '!smerge .', { desc = 'Open cwd in sublime merge' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -241,6 +276,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   pattern = '*',
 })
 
+-- [[ Statusline ]]
 -- Set lualine as statusline
 -- See `:help lualine.txt`
 require('lualine').setup {
@@ -252,10 +288,11 @@ require('lualine').setup {
   },
 }
 
+-- [[ Comment.vim ]]
 -- Enable Comment.nvim
 require('Comment').setup()
 
--- Gitsigns
+-- [[ Gitsigns ]]
 -- See `:help gitsigns.txt`
 require('gitsigns').setup {
   signs = {
@@ -268,11 +305,11 @@ require('gitsigns').setup {
   attach_to_untracked = false,
 }
 
--- [[ Configure Telescope ]]
+-- [[ Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    inital_mode = 'normal',
+    initial_mode = 'normal',
     mappings = {
       i = {
         ['<C-u>'] = false,
@@ -309,7 +346,7 @@ vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { de
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
 
--- [[ Configure Treesitter ]]
+-- [[ Treesitter ]]
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
@@ -371,13 +408,7 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float)
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist)
-
--- LSP settings.
+-- [[ LSP settings ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -506,69 +537,7 @@ vim.api.nvim_create_autocmd('User', {
 -- Turn on lsp status information
 require('fidget').setup()
 
--- [[ Null-ls ]]
-local null_ls = require 'null-ls'
-
-null_ls.setup {
-  sources = {
-    null_ls.builtins.code_actions.shellcheck,
-    null_ls.builtins.diagnostics.ansiblelint,
-    null_ls.builtins.diagnostics.dotenv_linter,
-    null_ls.builtins.diagnostics.golangci_lint,
-    null_ls.builtins.diagnostics.markdownlint,
-    null_ls.builtins.diagnostics.rubocop,
-    null_ls.builtins.diagnostics.ruff,
-    null_ls.builtins.diagnostics.shellcheck,
-    null_ls.builtins.diagnostics.sqlfluff,
-    null_ls.builtins.diagnostics.tidy,
-    null_ls.builtins.diagnostics.yamllint,
-    null_ls.builtins.diagnostics.zsh,
-    null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.ruff,
-    null_ls.builtins.formatting.stylua,
-    null_ls.builtins.formatting.yamlfmt,
-  },
-}
-
-local ufmt = {
-  method = null_ls.methods.FORMATTING,
-  filetypes = { 'python' },
-  generator = null_ls.formatter {
-    command = 'ufmt',
-    args = { 'format', '-' },
-    to_stdin = true,
-  },
-}
-null_ls.register(ufmt)
-
--- Set up this so it can be shared between all the lsps
-local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
-local do_format = function()
-  vim.lsp.buf.format { timeout_ms = 3000 }
-end
-
--- Auto-format rust and go on save
-vim.api.nvim_create_autocmd('BufWritePre', {
-  pattern = { '*.rs', '*.go' },
-  callback = do_format,
-  group = format_sync_grp,
-})
-
-local auto_format = function(_)
-  local bufnr = vim.nvim_get_current_buf
-  vim.api.nvim_clear_autocmds { group = format_sync_grp, buffer = bufnr }
-  vim.api.nvim_create_autocmd('BufWritePre', {
-    group = format_sync_grp,
-    buffer = bufnr,
-    callback = do_format,
-  })
-end
-
--- Create a command `:Format` local to the LSP buffer
-vim.api.nvim_create_user_command('Format', do_format, { desc = 'Format current buffer with LSP' })
--- Create a command `:AFormat` local to the LSP buffer
-vim.api.nvim_create_user_command('AFormat', auto_format, { desc = 'Enable Format on Save for current buffer with LSP' })
-
+-- [[ Rust-LSP w/ tools ]]
 -- Setup Rust tools
 local rt = require 'rust-tools'
 rt.setup {
@@ -611,7 +580,71 @@ require('crates').setup {
   },
 }
 
--- nvim-cmp setup
+-- [[ Null-ls ]]
+local null_ls = require 'null-ls'
+
+null_ls.setup {
+  sources = {
+    null_ls.builtins.code_actions.shellcheck,
+    null_ls.builtins.diagnostics.ansiblelint,
+    null_ls.builtins.diagnostics.dotenv_linter,
+    null_ls.builtins.diagnostics.golangci_lint,
+    null_ls.builtins.diagnostics.markdownlint,
+    null_ls.builtins.diagnostics.rubocop,
+    null_ls.builtins.diagnostics.ruff,
+    null_ls.builtins.diagnostics.shellcheck,
+    null_ls.builtins.diagnostics.sqlfluff,
+    null_ls.builtins.diagnostics.tidy,
+    null_ls.builtins.diagnostics.yamllint,
+    null_ls.builtins.diagnostics.zsh,
+    null_ls.builtins.formatting.prettier,
+    null_ls.builtins.formatting.ruff,
+    null_ls.builtins.formatting.stylua,
+    null_ls.builtins.formatting.yamlfmt,
+  },
+}
+
+local ufmt = {
+  method = null_ls.methods.FORMATTING,
+  filetypes = { 'python' },
+  generator = null_ls.formatter {
+    command = 'ufmt',
+    args = { 'format', '-' },
+    to_stdin = true,
+  },
+}
+null_ls.register(ufmt)
+
+-- [[ LSP formatting ]]
+-- Set up this so it can be shared between all the lsps
+local format_sync_grp = vim.api.nvim_create_augroup('LspFormat', {})
+local do_format = function()
+  vim.lsp.buf.format { timeout_ms = 3000 }
+end
+
+-- Auto-format rust and go on save
+vim.api.nvim_create_autocmd('BufWritePre', {
+  pattern = { '*.rs', '*.go' },
+  callback = do_format,
+  group = format_sync_grp,
+})
+
+local auto_format = function(_)
+  local bufnr = vim.nvim_get_current_buf
+  vim.api.nvim_clear_autocmds { group = format_sync_grp, buffer = bufnr }
+  vim.api.nvim_create_autocmd('BufWritePre', {
+    group = format_sync_grp,
+    buffer = bufnr,
+    callback = do_format,
+  })
+end
+
+-- Create a command `:Format` local to the LSP buffer
+vim.api.nvim_create_user_command('Format', do_format, { desc = 'Format current buffer with LSP' })
+-- Create a command `:AFormat` local to the LSP buffer
+vim.api.nvim_create_user_command('AFormat', auto_format, { desc = 'Enable Format on Save for current buffer with LSP' })
+
+-- [[ nvim-cmp setup ]]
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
 
@@ -655,7 +688,7 @@ cmp.setup {
   },
 }
 
--- A new tree
+-- [[ nvim-tree ]]
 require('nvim-tree').setup {
   actions = {
     open_file = {
@@ -663,25 +696,6 @@ require('nvim-tree').setup {
     },
   },
 }
-
--- Quit all shorthand
-vim.api.nvim_create_user_command('Q', 'qall', { bang = true })
-
--- My personalized Wrap
-local wrap = function()
-  vim.opt.wrap = true
-  vim.opt.linebreak = true
-  vim.opt.list = false
-  vim.opt.showbreak = '…'
-end
-vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
-
--- Automatically strip trailing spaces on save
-vim.api.nvim_create_autocmd('BufWritePre', { pattern = '*', command = '%s/\\s\\+$//e' })
-
--- Update everything command
-local update_all = function() end
-vim.api.nvim_create_user_command('Update', update_all, { desc = 'Update all plugins and lsps' })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
