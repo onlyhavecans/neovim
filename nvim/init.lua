@@ -20,6 +20,12 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
+  -- Managing Mason
+  use {
+    'WhoIsSethDaniel/mason-tool-installer.nvim',
+    requires = { 'williamboman/mason.nvim' },
+  }
+
   -- LSP Configuration & Plugins
   use {
     'neovim/nvim-lspconfig',
@@ -38,12 +44,6 @@ require('packer').startup(function(use)
 
   -- linters and formatters by ls
   use 'jose-elias-alvarez/null-ls.nvim'
-
-  -- Managing Mason
-  use {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    requires = { 'williamboman/mason.nvim' },
-  }
 
   -- Additional Language tools
   use 'danihodovic/vim-ansible-vault'
@@ -89,7 +89,9 @@ require('packer').startup(function(use)
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
   use 'tpope/vim-eunuch' -- First class unix commands
-  use { 'tpope/vim-surround', requires = { 'tpope/vim-repeat' } }
+  use 'tpope/vim-obsession' -- Session management
+
+  use({ "kylechui/nvim-surround", tag = "*", })
   use { 'junegunn/vim-easy-align', on = { '<Plug>(EasyAlign)' } }
 
   -- Navigation
@@ -276,7 +278,7 @@ local wrap = function()
 end
 vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
-vim.api.nvim_create_user_command('SMerge', '!smerge %:p:h', { desc = 'Open cwd in sublime merge' })
+vim.api.nvim_create_user_command('SMerge', '!smerge %:p:h', { desc = 'Open current file dir in sublime merge' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
@@ -709,6 +711,11 @@ require('nvim-tree').setup {
     },
   },
 }
+
+-- [[ Surround ]]
+require("nvim-surround").setup({
+  -- Configuration here, or leave empty to use defaults
+})
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
