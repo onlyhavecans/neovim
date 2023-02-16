@@ -149,23 +149,23 @@ vim.opt.clipboard:append 'unnamedplus'
 vim.opt.wrap = false
 
 -- Set highlight on search
-vim.o.hlsearch = false
+vim.opt.hlsearch = false
 
 -- Make line numbers default
 vim.wo.number = true
 
 -- Enable mouse mode
-vim.o.mouse = 'a'
+vim.opt.mouse = 'a'
 
 -- Enable break indent
-vim.o.breakindent = true
+vim.opt.breakindent = true
 
 -- Save undo history
-vim.o.undofile = true
+vim.opt.undofile = true
 
 -- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
 
 -- Always keep my cursor centered and highlighted
 vim.opt.scrolloff = 5
@@ -180,22 +180,25 @@ vim.opt.tabstop = 2
 vim.opt.expandtab = true
 
 -- Decrease update time
-vim.o.updatetime = 250
+vim.opt.updatetime = 250
 vim.wo.signcolumn = 'yes'
 
 -- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
+vim.opt.completeopt = 'menuone,noselect'
+
+-- Terminal settings
+vim.opt.shell = 'zsh --login'
+vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal nonumber norelativenumber' })
 
 -- Set colorscheme
-vim.o.termguicolors = true
+vim.opt.termguicolors = true
 require('onedark').setup {
-    style = 'warmer'
+  style = 'warmer',
 }
 require('onedark').load()
 
 -- [[ GUI settings ]]
-vim.opt.guifont = { "PragmataPro_Mono_Liga_Regular:h16" }
-
+vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
@@ -234,6 +237,9 @@ vim.keymap.set({ 'x', 'n' }, 'ga', '<Plug>(EasyAlign)')
 
 -- Dash for lookups
 vim.keymap.set('n', '<Leader>d', '<Plug>DashSearch', { silent = true })
+
+-- Quick open a bottom terminal for commands
+vim.keymap.set('n', '<Leader>o', ':botright 20split +term<CR>i')
 
 -- Tab Navigation Navigation
 vim.keymap.set('n', '<Leader>]', ':tabnext<CR>')
