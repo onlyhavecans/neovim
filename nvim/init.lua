@@ -276,7 +276,7 @@ local wrap = function()
 end
 vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
-vim.api.nvim_create_user_command('SMerge', '!smerge .', { desc = 'Open cwd in sublime merge' })
+vim.api.nvim_create_user_command('SMerge', '!smerge %:p:h', { desc = 'Open cwd in sublime merge' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
