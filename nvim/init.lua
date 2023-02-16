@@ -596,7 +596,6 @@ local null_ls = require 'null-ls'
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.code_actions.shellcheck,
     null_ls.builtins.diagnostics.ansiblelint,
     null_ls.builtins.diagnostics.dotenv_linter,
     null_ls.builtins.diagnostics.golangci_lint,
@@ -609,7 +608,6 @@ null_ls.setup {
     null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.diagnostics.zsh,
     null_ls.builtins.formatting.prettier,
-    null_ls.builtins.formatting.ruff,
     null_ls.builtins.formatting.stylua,
   },
 }
