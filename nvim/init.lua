@@ -409,7 +409,7 @@ require('nvim-treesitter.configs').setup {
   },
 }
 
--- [[ LSP settings ]]
+-- [[ LSP Shared ]]
 --  This function gets run when an LSP connects to a particular buffer.
 local on_attach = function(_, bufnr)
   -- NOTE: Remember that lua is a real programming language, and as such it is possible
@@ -449,6 +449,10 @@ local on_attach = function(_, bufnr)
   end, '[W]orkspace [L]ist Folders')
 end
 
+-- Turn on lsp status information
+require('fidget').setup()
+
+-- [[ LSP Mason ]]
 -- Enable the following language servers
 --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 --
@@ -507,6 +511,9 @@ mason_lspconfig.setup_handlers {
 -- Automatically keep LSP tools up to date
 require('mason-tool-installer').setup {
   ensure_installed = {
+    'bash-language-server',
+    'json-language-server',
+    'yaml-language-server',
     'gopls',
     'pyright',
     'rust-analyzer',
@@ -535,10 +542,7 @@ vim.api.nvim_create_autocmd('User', {
   end,
 })
 
--- Turn on lsp status information
-require('fidget').setup()
-
--- [[ Rust-LSP w/ tools ]]
+-- [[ LSP Rust-tools ]]
 -- Setup Rust tools
 local rt = require 'rust-tools'
 rt.setup {
@@ -581,7 +585,7 @@ require('crates').setup {
   },
 }
 
--- [[ Null-ls ]]
+-- [[ LSP Null-ls ]]
 local null_ls = require 'null-ls'
 
 null_ls.setup {
