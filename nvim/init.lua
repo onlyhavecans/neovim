@@ -5,7 +5,6 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
-vim.g.python3_host_prog = '~/.asdf/shims/python3'
 
 -- [[ Packer ]]
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'
@@ -91,7 +90,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-eunuch' -- First class unix commands
   use 'tpope/vim-obsession' -- Session management
 
-  use({ "kylechui/nvim-surround", tag = "*", })
+  use { 'kylechui/nvim-surround', tag = '*' }
   use { 'junegunn/vim-easy-align', on = { '<Plug>(EasyAlign)' } }
 
   -- Navigation
@@ -713,9 +712,9 @@ require('nvim-tree').setup {
 }
 
 -- [[ Surround ]]
-require("nvim-surround").setup({
+require('nvim-surround').setup {
   -- Configuration here, or leave empty to use defaults
-})
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
