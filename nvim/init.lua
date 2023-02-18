@@ -5,6 +5,7 @@ vim.g.loaded_netrwPlugin = 1
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
+vim.g.python3_host_prog = '~/.local/nvim/venv/bin/python3'
 
 -- [[ Packer ]]
 local install_path = vim.fn.stdpath 'data' .. '/site/pack/packer/start/packer.nvim'

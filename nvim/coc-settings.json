@@ -1,9 +1,0 @@
-{
-  "hover.target": "preview",
-  "diagnostic.displayByAle": true,
-  "coc.preferences.extensionUpdateCheck": "weekly",
-  "go.goplsOptions": {
-    "gofumpt": true
-  },
-  "rust-analyzer.check.command": "clippy"
-}
