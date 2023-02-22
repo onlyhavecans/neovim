@@ -50,6 +50,7 @@ require('packer').startup(function(use)
   use 'simrat39/rust-tools.nvim'
   use 'LokiChaos/vim-tintin'
   use 'dougireton/vim-chef'
+  use 'fladson/vim-kitty'
   use 'direnv/direnv.vim'
   use 'rizzatti/dash.vim'
 
@@ -364,7 +365,28 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
   -- Add languages to be installed here that you want installed for treesitter
-  ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'ruby', 'rust', 'typescript', 'help', 'vim' },
+  ensure_installed = {
+    'bash',
+    'css',
+    'diff',
+    'dockerfile',
+    'gitattributes',
+    'gitcommit',
+    'go',
+    'gosum',
+    'help',
+    'javascript',
+    'json',
+    'lua',
+    'make',
+    'markdown',
+    'python',
+    'ruby',
+    'rust',
+    'toml',
+    'vim',
+    'yaml',
+  },
   highlight = { enable = true },
   indent = { enable = true, disable = { 'python' } },
   incremental_selection = {
@@ -712,9 +734,7 @@ require('nvim-tree').setup {
 }
 
 -- [[ Surround ]]
-require('nvim-surround').setup {
-  -- Configuration here, or leave empty to use defaults
-}
+require('nvim-surround').setup()
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
