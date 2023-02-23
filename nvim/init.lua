@@ -196,7 +196,7 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal non
 -- Set colorscheme
 vim.opt.termguicolors = true
 require("catppuccin").setup({
-  mode = "frappe",
+  mode = "mocha",
   transparent_background = false,
   show_end_of_buffer = true,
   integrations = {
@@ -223,7 +223,7 @@ require("catppuccin").setup({
     },
   },
 })
-vim.cmd.colorscheme "catppuccin-frappe"
+vim.cmd.colorscheme "catppuccin-mocha"
 
 -- [[ GUI settings ]]
 vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
