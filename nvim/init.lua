@@ -85,7 +85,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use { "catppuccin/nvim", as = "catppuccin" }
+  use 'tanvirtin/monokai.nvim'
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -195,40 +195,12 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal non
 
 -- Set colorscheme
 vim.opt.termguicolors = true
-require("catppuccin").setup({
-  mode = "mocha",
-  transparent_background = false,
-  show_end_of_buffer = true,
-  integrations = {
-    cmp = true,
-    fidget = true,
-    gitsigns = true,
-    nvimtree = true,
-    telescope = true,
-    treesitter = true,
-    native_lsp = {
-      enabled = true,
-      virtual_text = {
-        errors = { "italic" },
-        hints = { "italic" },
-        warnings = { "italic" },
-        information = { "italic" },
-      },
-      underlines = {
-        errors = { "underline" },
-        hints = { "underline" },
-        warnings = { "underline" },
-        information = { "underline" },
-      },
-    },
-  },
-})
-vim.cmd.colorscheme "catppuccin-mocha"
+require('monokai').setup( { palette = require('monokai').pro } )
 
 -- [[ GUI settings ]]
 vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
 if vim.g.neovide then
-  vim.opt.guifont = {"PragmataPro_Mono_Liga:h16"}
+  vim.opt.guifont = { "PragmataPro_Mono_Liga:h16" }
   vim.g.neovide_hide_mouse_when_typing = true
 end
 
@@ -327,7 +299,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'catppuccin',
+    theme = 'auto',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
   },
