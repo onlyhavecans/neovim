@@ -85,7 +85,7 @@ require('packer').startup(function(use)
   use 'tpope/vim-rhubarb'
   use 'lewis6991/gitsigns.nvim'
 
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use { "catppuccin/nvim", as = "catppuccin" }
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -195,13 +195,42 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal non
 
 -- Set colorscheme
 vim.opt.termguicolors = true
-require('onedark').setup {
-  style = 'warmer',
-}
-require('onedark').load()
+require("catppuccin").setup({
+  mode = "frappe",
+  transparent_background = false,
+  show_end_of_buffer = true,
+  integrations = {
+    cmp = true,
+    fidget = true,
+    gitsigns = true,
+    nvimtree = true,
+    telescope = true,
+    treesitter = true,
+    native_lsp = {
+      enabled = true,
+      virtual_text = {
+        errors = { "italic" },
+        hints = { "italic" },
+        warnings = { "italic" },
+        information = { "italic" },
+      },
+      underlines = {
+        errors = { "underline" },
+        hints = { "underline" },
+        warnings = { "underline" },
+        information = { "underline" },
+      },
+    },
+  },
+})
+vim.cmd.colorscheme "catppuccin-frappe"
 
 -- [[ GUI settings ]]
 vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
+if vim.g.neovide then
+  vim.opt.guifont = {"PragmataPro_Mono_Liga:h16"}
+  vim.g.neovide_hide_mouse_when_typing = true
+end
 
 -- [[ Basic Keymaps ]]
 -- Set <space> as the leader key
@@ -298,7 +327,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 require('lualine').setup {
   options = {
     icons_enabled = false,
-    theme = 'onedark',
+    theme = 'catppuccin',
     component_separators = { left = '', right = '' },
     section_separators = { left = '', right = '' },
   },
@@ -370,8 +399,6 @@ require('nvim-treesitter.configs').setup {
     'css',
     'diff',
     'dockerfile',
-    'gitattributes',
-    'gitcommit',
     'go',
     'gosum',
     'help',
