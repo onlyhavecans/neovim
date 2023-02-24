@@ -196,12 +196,12 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal non
 
 -- Set colorscheme
 vim.opt.termguicolors = true
-require('monokai').setup({ palette = require('monokai').pro })
+require('monokai').setup { palette = require('monokai').pro }
 
 -- [[ GUI settings ]]
 vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
 if vim.g.neovide then
-  vim.opt.guifont = { "PragmataPro_Mono_Liga:h16" }
+  vim.opt.guifont = { 'PragmataPro_Mono_Liga:h16' }
   vim.g.neovide_hide_mouse_when_typing = true
 end
 
