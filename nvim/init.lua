@@ -86,6 +86,7 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'tanvirtin/monokai.nvim'
+  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
   use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
   use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
@@ -146,7 +147,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 -- macOS clipboard
-vim.opt.clipboard:append 'unnamedplus'
+vim.opt.clipboard = 'unnamedplus'
 
 -- No wrapping by default
 vim.opt.wrap = false
@@ -195,7 +196,7 @@ vim.api.nvim_create_autocmd('TermOpen', { pattern = '*', command = 'setlocal non
 
 -- Set colorscheme
 vim.opt.termguicolors = true
-require('monokai').setup( { palette = require('monokai').pro } )
+require('monokai').setup({ palette = require('monokai').pro })
 
 -- [[ GUI settings ]]
 vim.opt.guifont = { 'PragmataPro_Mono_Liga_Regular:h16' }
