@@ -281,7 +281,7 @@ local wrap = function()
 end
 vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
-vim.api.nvim_create_user_command('SMerge', '!smerge %:p:h', { desc = 'Open current file dir in sublime merge' })
+vim.api.nvim_create_user_command('LG', '!tmux new-window -a -c %:p:h lazygit', { desc = 'Open current file dir in lazygit' })
 
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
