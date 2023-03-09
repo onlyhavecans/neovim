@@ -726,13 +726,7 @@ cmp.setup {
 }
 
 -- [[ nvim-tree ]]
-require('nvim-tree').setup {
-  actions = {
-    open_file = {
-      quit_on_open = true,
-    },
-  },
-}
+require('nvim-tree').setup {}
 
 -- [[ Surround ]]
 require('nvim-surround').setup()
