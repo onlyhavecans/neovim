@@ -147,7 +147,7 @@ vim.api.nvim_create_autocmd('BufWritePost', {
 -- See `:help vim.o`
 
 -- macOS clipboard
-vim.opt.clipboard = 'unnamedplus'
+vim.opt.clipboard:append 'unnamedplus'
 
 -- No wrapping by default
 vim.opt.wrap = false
@@ -634,6 +634,7 @@ null_ls.setup {
     null_ls.builtins.diagnostics.ruff,
     null_ls.builtins.diagnostics.sqlfluff,
     null_ls.builtins.diagnostics.tidy,
+    null_ls.builtins.diagnostics.todo_comments,
     null_ls.builtins.diagnostics.yamllint,
     null_ls.builtins.diagnostics.zsh,
     null_ls.builtins.formatting.prettier,
