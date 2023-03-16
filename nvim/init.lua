@@ -20,12 +20,6 @@ require('packer').startup(function(use)
   -- Package manager
   use 'wbthomason/packer.nvim'
 
-  -- Managing Mason
-  use {
-    'WhoIsSethDaniel/mason-tool-installer.nvim',
-    requires = { 'williamboman/mason.nvim' },
-  }
-
   -- LSP Configuration & Plugins
   use {
     'neovim/nvim-lspconfig',
@@ -542,22 +536,6 @@ mason_lspconfig.setup_handlers {
       settings = servers[server_name],
     }
   end,
-}
-
--- Automatically keep LSP tools up to date
-require('mason-tool-installer').setup {
-  ensure_installed = {
-    'bash-language-server',
-    'json-lsp',
-    'yaml-language-server',
-    'gopls',
-    'pyright',
-    'rust-analyzer',
-  },
-  auto_update = true,
-  run_on_start = true,
-  start_delay = 3000, -- 3 second delay
-  debounce_hours = 24, -- at least 24 hours between attempts to install/update
 }
 
 -- Notify when tools are being updated
