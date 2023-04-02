@@ -95,11 +95,8 @@ require('packer').startup(function(use)
   use 'jremmen/vim-ripgrep'
   use {
     'nvim-tree/nvim-tree.lua',
-    version = '*',
     requires = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
-      'MunifTanjim/nui.nvim',
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
     }
   }
 
@@ -281,7 +278,7 @@ end
 vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
 vim.api.nvim_create_user_command('LG', ':silent !tmux new-window -a -c %:p:h lazygit',
-  { desc = 'Open current file dir in lazygit' })
+{ desc = 'Open current file dir in lazygit' })
 vim.api.nvim_create_user_command('SMERGE', ':silent !smerge %:p:h', { desc = 'Open current file dir in sublime merge' })
 
 -- [[ Highlight on yank ]]
