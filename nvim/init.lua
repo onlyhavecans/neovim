@@ -51,7 +51,7 @@ require('packer').startup(function(use)
   -- Cargo.toml experiance
   use {
     'saecki/crates.nvim',
-    requires = { { 'nvim-lua/plenary.nvim' } },
+    requires = { 'nvim-lua/plenary.nvim' },
   }
 
   -- Autocompletion
@@ -80,12 +80,12 @@ require('packer').startup(function(use)
   use 'lewis6991/gitsigns.nvim'
 
   use 'tanvirtin/monokai.nvim'
-  use 'navarasu/onedark.nvim' -- Theme inspired by Atom
+  use 'navarasu/onedark.nvim'     -- Theme inspired by Atom
   use 'nvim-lualine/lualine.nvim' -- Fancier statusline
-  use 'numToStr/Comment.nvim' -- "gc" to comment visual regions/lines
-  use 'tpope/vim-sleuth' -- Detect tabstop and shiftwidth automatically
-  use 'tpope/vim-eunuch' -- First class unix commands
-  use 'tpope/vim-obsession' -- Session management
+  use 'numToStr/Comment.nvim'     -- "gc" to comment visual regions/lines
+  use 'tpope/vim-sleuth'          -- Detect tabstop and shiftwidth automatically
+  use 'tpope/vim-eunuch'          -- First class unix commands
+  use 'tpope/vim-obsession'       -- Session management
 
   use { 'kylechui/nvim-surround', tag = '*' }
   use { 'junegunn/vim-easy-align', on = { '<Plug>(EasyAlign)' } }
@@ -95,7 +95,12 @@ require('packer').startup(function(use)
   use 'jremmen/vim-ripgrep'
   use {
     'nvim-tree/nvim-tree.lua',
-    tag = 'nightly', -- optional, updated every week. (see issue #1193)
+    version = '*',
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+    }
   }
 
   -- Fuzzy Finder (files, lsp, etc)
@@ -275,7 +280,8 @@ local wrap = function()
 end
 vim.api.nvim_create_user_command('Wrap', wrap, { bang = true, desc = 'Enable Preferred Line Wrap' })
 
-vim.api.nvim_create_user_command('LG', ':silent !tmux new-window -a -c %:p:h lazygit', { desc = 'Open current file dir in lazygit' })
+vim.api.nvim_create_user_command('LG', ':silent !tmux new-window -a -c %:p:h lazygit',
+  { desc = 'Open current file dir in lazygit' })
 vim.api.nvim_create_user_command('SMERGE', ':silent !smerge %:p:h', { desc = 'Open current file dir in sublime merge' })
 
 -- [[ Highlight on yank ]]
