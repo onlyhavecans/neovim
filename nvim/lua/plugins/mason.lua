@@ -10,7 +10,6 @@ return {
         jsonls = {},
         pyright = {},
         quick_lint_js = {},
-        solargraph = {},
         gopls = {
           gopls = {
             staticcheck = true,
