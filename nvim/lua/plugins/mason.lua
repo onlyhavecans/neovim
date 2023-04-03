@@ -23,10 +23,12 @@ return {
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
-    ensure_installed = {
-      "stylua",
-      "shellcheck",
-      "shfmt",
+    opts = {
+      ensure_installed = {
+        "stylua",
+        "shellcheck",
+        "shfmt",
+      },
     },
   },
 

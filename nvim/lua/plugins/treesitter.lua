@@ -3,6 +3,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = {
+      sync_install = true,
       ensure_installed = {
         "bash",
         "css",
@@ -21,6 +22,7 @@ return {
         "rust",
         "toml",
         "vim",
+        "vimdoc",
         "yaml",
       },
     },
