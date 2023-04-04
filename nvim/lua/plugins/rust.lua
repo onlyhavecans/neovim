@@ -28,9 +28,6 @@ return {
           lens = {
             enable = true,
           },
-          checkOnSave = {
-            command = "clippy",
-          },
           check = {
             command = "clippy",
           },
@@ -39,9 +36,14 @@ return {
     },
   },
 
+  -- Awesome crates.toml
   {
     "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
+    init = function()
+      require("crates").show()
+    end,
   },
 }
