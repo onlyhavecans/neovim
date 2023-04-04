@@ -19,11 +19,13 @@ return {
       },
     },
   },
+
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "rust-analyzer",
         "stylua",
         "shellcheck",
         "shfmt",
@@ -65,6 +67,30 @@ return {
           nls.builtins.formatting.stylua,
         },
       }
+    end,
+  },
+
+  -- Special rust tools
+  {
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      -- Debugging
+      "nvim-lua/plenary.nvim",
+      "mfussenegger/nvim-dap",
+    },
+    opts = {},
+  },
+
+  -- Awesome crates.toml
+  {
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    init = function()
+      require("crates").show()
     end,
   },
 }
