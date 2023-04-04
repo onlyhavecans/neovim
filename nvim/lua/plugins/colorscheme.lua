@@ -1,13 +1,12 @@
 return {
-  {
-    "tanvirtin/monokai.nvim",
-    lazy = true,
-  },
+  -- add gruvbox
+  { "ellisonleao/gruvbox.nvim" },
 
+  -- Configure LazyVim to load gruvbox
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "monokai_pro",
+      colorscheme = "gruvbox",
     },
   },
 }
