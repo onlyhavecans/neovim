@@ -13,11 +13,13 @@ return {
         "gosum",
         "javascript",
         "json",
+        "jsonc", -- Used by neoconf
         "lua",
         "make",
         "markdown",
         "markdown_inline",
         "python",
+        "regex", -- used by noice
         "ruby",
         "rust",
         "toml",
