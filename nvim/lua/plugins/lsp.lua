@@ -67,7 +67,9 @@ return {
           nls.builtins.diagnostics.sqlfluff,
           nls.builtins.diagnostics.yamllint,
           nls.builtins.diagnostics.zsh,
-          nls.builtins.formatting.prettier,
+          nls.builtins.formatting.prettier.with({
+            filetypes = { "json", "markdown" },
+          }),
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.stylua,
         },
