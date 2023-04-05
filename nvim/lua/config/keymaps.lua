@@ -4,11 +4,11 @@
 
 -- The F-Keys
 -- Toggle line numbers
-vim.keymap.set("n", "<F2>", ":set number!<CR>")
+vim.keymap.set("n", "<F2>", ":set number!<CR>", { desc = "Toggle Line Numbers" })
 -- Toggle Tree
 vim.keymap.set("n", "<F3>", ":Neotree<CR>")
 -- cd to the current file
-vim.keymap.set("n", "<F4>", ":cd %:p:h<CR>:pwd<CR>")
+vim.keymap.set("n", "<F4>", ":cd %:p:h<CR>:pwd<CR>", { desc = "cd to curret file dir" })
 -- rename
 vim.keymap.set("n", "<F6>", vim.lsp.buf.rename)
 
@@ -18,7 +18,10 @@ vim.keymap.set({ "x", "n" }, "ga", "<Plug>(EasyAlign)")
 
 -- Dash for lookups
 -- TODO make it fit under Lazy shortcuts more
-vim.keymap.set("n", "<Leader>d", "<Plug>DashSearch", { silent = true })
+vim.keymap.set("n", "<Leader>d", "<Plug>DashSearch", { silent = true, desc = "Search in Dash" })
 
 -- Quick open a bottom terminal for commands
-vim.keymap.set("n", "<Leader>o", ":botright 20split +term<CR>i")
+vim.keymap.set("n", "<Leader>o", ":botright 20split +term<CR>i", { desc = "Quick Terminal" })
+
+-- Using merge
+vim.keymap.set("n", "<Leader>gS", ":silent !smerge %:p:h", { desc = "Sublime Merge" })
