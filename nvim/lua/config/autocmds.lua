@@ -16,11 +16,11 @@ local do_format = function()
 end
 
 -- Auto-format rust and go on save
-vim.api.nvim_create_autocmd("BufWritePre", {
-  pattern = { "*.rs", "*.go" },
-  callback = do_format,
-  group = format_sync_grp,
-})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--   pattern = { "*.rs", "*.go" },
+--   callback = do_format,
+--   group = format_sync_grp,
+-- })
 
 local auto_format = function(_)
   local bufnr = vim.nvim_get_current_buf

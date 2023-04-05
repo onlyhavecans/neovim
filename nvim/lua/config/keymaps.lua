@@ -17,6 +17,7 @@ vim.keymap.set("v", "<Enter>", "<Plug>(EasyAlign)", { remap = true })
 vim.keymap.set({ "x", "n" }, "ga", "<Plug>(EasyAlign)")
 
 -- Dash for lookups
+-- TODO make it fit under Lazy shortcuts more
 vim.keymap.set("n", "<Leader>d", "<Plug>DashSearch", { silent = true })
 
 -- Quick open a bottom terminal for commands

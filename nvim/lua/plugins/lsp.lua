@@ -1,5 +1,7 @@
 return {
-  -- add pyright to lspconfig
+  -- add all my LSPs in one go.
+  -- I try to stick to defaults
+  -- rust-analyzer is added by rust tools, not configured here
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -20,7 +22,11 @@ return {
     },
   },
 
+  -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
+  { import = "lazyvim.plugins.extras.lang.json" },
+
   -- add any tools you want to have installed below
+  -- I install most of my tools with brew at the moment so this is short
   {
     "williamboman/mason.nvim",
     opts = {
@@ -36,8 +42,7 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
-    event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "mason.nvim" },
+    -- Add my ufmt for python
     opts = function()
       local nls = require("null-ls")
       local ufmt = {
