@@ -1,18 +1,28 @@
 -- Quck lang plugins. maybe refactor later
 return {
-  "christoomey/vim-tmux-navigator",
+  { "christoomey/vim-tmux-navigator" },
 
-  "tpope/vim-eunuch", -- First class unix commands
-  "direnv/direnv.vim",
+  { "tpope/vim-eunuch", event = { "BufReadPost", "BufNewFile" } }, -- First class unix commands
+  { "direnv/direnv.vim" },
 
-  -- the gits
-  "tpope/vim-fugitive",
-  "tpope/vim-rhubarb",
+  { "danihodovic/vim-ansible-vault", ft = "yaml.ansible" },
+  { "LokiChaos/vim-tintin", event = "BufRead *.tin" },
+  { "dougireton/vim-chef" },
 
-  "junegunn/vim-easy-align",
+  {
+    "junegunn/vim-easy-align",
+    lazy = true,
+    keys = {
+      { "<Enter>", "<Plug>(EasyAlign)", { remap = true, desc = "EasyAlign", mode = "v" } },
+      { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = { "x", "n" } },
+    },
+  },
 
-  "danihodovic/vim-ansible-vault",
-  "LokiChaos/vim-tintin",
-  "dougireton/vim-chef",
-  "rizzatti/dash.vim",
+  {
+    "rizzatti/dash.vim",
+    lazy = true,
+    keys = {
+      { "<Leader>d", "<cmd>Dash<CR>", desc = "Search in Dash" },
+    },
+  },
 }

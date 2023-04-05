@@ -12,16 +12,8 @@ vim.keymap.set("n", "<F4>", ":cd %:p:h<CR>:pwd<CR>", { desc = "cd to curret file
 -- rename
 vim.keymap.set("n", "<F6>", vim.lsp.buf.rename)
 
--- EasyAlign settings Enter activation, and ga movement
-vim.keymap.set("v", "<Enter>", "<Plug>(EasyAlign)", { remap = true })
-vim.keymap.set({ "x", "n" }, "ga", "<Plug>(EasyAlign)")
-
--- Dash for lookups
--- TODO make it fit under Lazy shortcuts more
-vim.keymap.set("n", "<Leader>d", "<Plug>DashSearch", { silent = true, desc = "Search in Dash" })
-
 -- Quick open a bottom terminal for commands
 vim.keymap.set("n", "<Leader>o", ":botright 20split +term<CR>i", { desc = "Quick Terminal" })
 
 -- Using merge
-vim.keymap.set("n", "<Leader>gS", ":silent !smerge %:p:h", { desc = "Sublime Merge" })
+vim.keymap.set("n", "<Leader>gS", ":silent !smerge %:p:h<CR>", { desc = "Sublime Merge" })
