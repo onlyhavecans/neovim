@@ -7,7 +7,7 @@ return {
 
   { "danihodovic/vim-ansible-vault", ft = "yaml.ansible" },
   { "LokiChaos/vim-tintin", event = "BufRead *.tin" },
-  { "dougireton/vim-chef" },
+  { "dougireton/vim-chef", ft = "ruby" },
 
   {
     "junegunn/vim-easy-align",
