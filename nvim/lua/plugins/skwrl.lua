@@ -2,6 +2,8 @@
 return {
   { "christoomey/vim-tmux-navigator" },
 
+  { "jremmen/vim-ripgrep", cmd = "Rg" },
+
   { "tpope/vim-eunuch", event = { "BufReadPost", "BufNewFile" } }, -- First class unix commands
   { "direnv/direnv.vim" },
 
