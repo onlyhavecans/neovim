@@ -13,7 +13,7 @@ return {
     "junegunn/vim-easy-align",
     lazy = true,
     keys = {
-      { "<Enter>", "<Plug>(EasyAlign)", { remap = true, desc = "EasyAlign", mode = "v" } },
+      { "<Enter>", "<Plug>(EasyAlign)", { desc = "EasyAlign", mode = "v" } },
       { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = { "x", "n" } },
     },
   },
