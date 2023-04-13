@@ -22,6 +22,16 @@ return {
     },
   },
 
+  -- My python formaatter is SO SLOW
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      format = {
+        timeout_ms = 2500,
+      },
+    },
+  },
+
   -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
 
