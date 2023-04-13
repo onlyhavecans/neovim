@@ -3,8 +3,8 @@ return {
     "folke/lazy.nvim",
     opts = {
       checker = {
-        enabled = true,
-        frequency = nil,
+        enabled = false,
+        frequency = 0,
       },
     },
   },
