@@ -27,7 +27,7 @@ return {
     "neovim/nvim-lspconfig",
     opts = {
       format = {
-        timeout_ms = 2500,
+        timeout_ms = 30000,
       },
     },
   },
@@ -41,6 +41,8 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "isort",
+        "black",
         "rust-analyzer",
         "stylua",
         "shellcheck",
@@ -55,16 +57,6 @@ return {
     -- Add my ufmt for python
     opts = function()
       local nls = require("null-ls")
-      local ufmt = {
-        method = nls.methods.FORMATTING,
-        filetypes = { "python" },
-        generator = nls.formatter({
-          command = "ufmt",
-          args = { "format", "-" },
-          to_stdin = true,
-        }),
-      }
-      nls.register(ufmt)
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
         sources = {
@@ -80,6 +72,8 @@ return {
           nls.builtins.formatting.prettier.with({
             filetypes = { "json", "markdown" },
           }),
+          nls.builtins.formatting.isort,
+          nls.builtins.formatting.black,
           nls.builtins.formatting.shfmt,
           nls.builtins.formatting.stylua,
         },
