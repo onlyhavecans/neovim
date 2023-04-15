@@ -6,14 +6,13 @@ return {
   { "direnv/direnv.vim" },
 
   { "danihodovic/vim-ansible-vault", ft = "yaml.ansible" },
-  { "LokiChaos/vim-tintin", event = "BufRead *.tin" },
+  { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
   { "dougireton/vim-chef", ft = "ruby" },
 
   {
     "junegunn/vim-easy-align",
     lazy = true,
     keys = {
-      { "<Enter>", "<Plug>(EasyAlign)", { desc = "EasyAlign", mode = "v" } },
       { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = { "x", "n" } },
     },
   },
