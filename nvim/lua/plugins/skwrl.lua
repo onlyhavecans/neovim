@@ -1,13 +1,21 @@
 -- Quck lang plugins. maybe refactor later
 return {
-  { "christoomey/vim-tmux-navigator" },
-
   { "tpope/vim-eunuch", event = { "BufReadPost", "BufNewFile" } }, -- First class unix commands
-  { "direnv/direnv.vim" },
+  { "direnv/direnv.vim", event = "VeryLazy" },
 
-  { "danihodovic/vim-ansible-vault", ft = "yaml.ansible" },
+  { "arouene/vim-ansible-vault", ft = "yaml" },
   { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
   { "dougireton/vim-chef", ft = "ruby" },
+
+  {
+    "aserowy/tmux.nvim",
+    event = "VeryLazy",
+    opts = {
+      copy_sync = {
+        enable = false,
+      },
+    },
+  },
 
   {
     "junegunn/vim-easy-align",
