@@ -9,4 +9,7 @@ return {
       colorscheme = "gruvbox",
     },
   },
+
+  -- I don't care for noice
+  { "folke/noice.nvim", enabled = false },
 }
