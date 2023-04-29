@@ -8,12 +8,12 @@ return {
   { "dougireton/vim-chef", ft = "ruby" },
 
   {
-    "aserowy/tmux.nvim",
-    event = "VeryLazy",
-    opts = {
-      copy_sync = {
-        enable = false,
-      },
+    "alexghergh/nvim-tmux-navigation",
+    keys = {
+      { "<C-h>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateLeft()<cr>", desc = "Go to left window" },
+      { "<C-j>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateDown()<cr>", desc = "Go to lower window" },
+      { "<C-k>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateUp()<cr>", desc = "Go to upper window" },
+      { "<C-l>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateRight()<cr>", desc = "Go to right window" },
     },
   },
 
