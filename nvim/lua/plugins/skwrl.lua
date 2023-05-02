@@ -47,7 +47,6 @@ return {
 
   {
     "rizzatti/dash.vim",
-    lazy = true,
     keys = {
       { "gd", "<cmd>Dash<CR>", desc = "Search in Dash" },
     },
