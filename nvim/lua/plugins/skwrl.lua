@@ -3,10 +3,31 @@ return {
   { "tpope/vim-eunuch", event = "VeryLazy" }, -- First class unix commands
   { "direnv/direnv.vim", event = "VeryLazy" },
 
-  { "arouene/vim-ansible-vault", ft = "yaml" },
   { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
   { "dougireton/vim-chef", ft = "ruby" },
 
+  -- Ansible is a whole deal
+  { "pearofducks/ansible-vim", ft = "yaml" }, -- set filetypes and general support
+  {
+    "arouene/vim-ansible-vault", -- this only handles inline
+    ft = "yaml.ansible",
+    init = function()
+      -- Ansible Whole file Commands.
+      vim.api.nvim_create_user_command(
+        "AnsibleDecryptFile",
+        "!ansible-vault decrypt %",
+        { bang = true, desc = "Decrypt Ansible Vault" }
+      )
+
+      vim.api.nvim_create_user_command(
+        "AnsibleEncryptFile",
+        "!ansible-vault encrypt <args> %",
+        { bang = true, nargs = "?", desc = "Encrypt Ansible Vault" }
+      )
+    end,
+  },
+
+  -- Make tmux and nvim smooth and native navigation
   {
     "alexghergh/nvim-tmux-navigation",
     keys = {
@@ -28,7 +49,7 @@ return {
     "rizzatti/dash.vim",
     lazy = true,
     keys = {
-      { "<Leader>d", "<cmd>Dash<CR>", desc = "Search in Dash" },
+      { "gd", "<cmd>Dash<CR>", desc = "Search in Dash" },
     },
   },
 }
