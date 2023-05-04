@@ -2,6 +2,7 @@ return {
   -- add all my LSPs in one go.
   -- I try to stick to defaults
   -- rust-analyzer is added by rust tools, not configured here
+  -- gopls is added by the go plugin
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -12,22 +13,16 @@ return {
         jsonls = {},
         pyright = {},
         quick_lint_js = {},
-        gopls = {
-          gopls = {
-            staticcheck = true,
-            gofumpt = true,
-          },
-        },
       },
     },
   },
 
-  -- My python formaatter is SO SLOW
+  -- This is all for python
   {
     "neovim/nvim-lspconfig",
     opts = {
       format = {
-        timeout_ms = 10000,
+        timeout_ms = 5000,
       },
     },
   },

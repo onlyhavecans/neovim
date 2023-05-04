@@ -21,3 +21,6 @@ vim.opt.tabstop = 2
 
 -- Terminal settings
 vim.opt.shell = "zsh --login"
+
+-- Local .nvim.lua configs
+vim.opt.exrc = true
