@@ -46,7 +46,6 @@ return {
         "rust-analyzer",
         "stylua",
         "shellcheck",
-        "shfmt",
       },
     },
   },
