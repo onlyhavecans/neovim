@@ -12,7 +12,7 @@ return {
     "arouene/vim-ansible-vault", -- this only handles inline
     ft = "yaml.ansible",
     init = function()
-      -- Ansible Whole file Commands.
+      -- Set manual Ansible whole file commands
       vim.api.nvim_create_user_command(
         "AnsibleDecryptFile",
         "!ansible-vault decrypt %",
