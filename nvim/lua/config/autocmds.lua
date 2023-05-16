@@ -2,11 +2,20 @@
 -- Default autocmds that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/autocmds.lua
 -- Add any additional autocmds here
 
+local au = vim.api.nvim_create_autocmd
+
+local ft = function(pattern, command)
+  au({ "BufNewFile", "BufRead" }, { pattern = pattern, command = "setf " .. command })
+end
+
+-- direnv files
+ft(".envrc", "bash")
+
 -- My cool term
-vim.api.nvim_create_autocmd("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
+au("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
 
 -- Automatically strip trailing spaces on save
-vim.api.nvim_create_autocmd("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
+au("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
 
 -- GUI Git app
 vim.api.nvim_create_user_command("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
