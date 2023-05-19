@@ -17,6 +17,10 @@ au("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" }
 -- Automatically strip trailing spaces on save
 au("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
 
+--
+-- Sneak in all my user commands here
+--
+
 -- GUI Git app
 vim.api.nvim_create_user_command("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
 

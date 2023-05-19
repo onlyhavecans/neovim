@@ -1,8 +1,11 @@
 return {
   -- add all my LSPs in one go.
   -- I try to stick to defaults
+  --
   -- rust-analyzer is added by rust tools, not configured here
   -- gopls is added by the go plugin
+  --
+  -- Special language plugins at the bottom
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -17,17 +20,7 @@ return {
     },
   },
 
-  -- This is all for python
-  {
-    "neovim/nvim-lspconfig",
-    opts = {
-      format = {
-        timeout_ms = 5000,
-      },
-    },
-  },
-
-  -- add jsonls and schemastore ans setup treesitter for json, json5 and jsonc
+  -- add jsonls and schemastore and setup treesitter for json, json5 and jsonc
   { import = "lazyvim.plugins.extras.lang.json" },
 
   -- add any tools you want to have installed below
@@ -93,6 +86,7 @@ return {
     dependencies = { "nvim-lua/plenary.nvim" },
     opts = {},
     init = function()
+      -- turn on the UI on load
       require("crates").show()
     end,
   },
