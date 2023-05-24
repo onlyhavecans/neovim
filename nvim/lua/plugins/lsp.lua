@@ -3,9 +3,7 @@ return {
   -- I try to stick to defaults
   --
   -- rust-analyzer is added by rust tools, not configured here
-  -- gopls is added by the go plugin
-  --
-  -- Special language plugins at the bottom
+  -- gopls is added by the go extras
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -60,31 +58,6 @@ return {
           nls.builtins.formatting.stylua,
         },
       }
-    end,
-  },
-
-  -- Special rust tools
-  {
-    "simrat39/rust-tools.nvim",
-    ft = "rust",
-    dependencies = {
-      "neovim/nvim-lspconfig",
-      -- Debugging
-      "nvim-lua/plenary.nvim",
-      "mfussenegger/nvim-dap",
-    },
-    opts = {},
-  },
-
-  -- Awesome crates.toml
-  {
-    "saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    dependencies = { "nvim-lua/plenary.nvim" },
-    opts = {},
-    init = function()
-      -- turn on the UI on load
-      require("crates").show()
     end,
   },
 }

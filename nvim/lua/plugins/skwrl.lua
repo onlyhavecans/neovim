@@ -3,6 +3,35 @@ return {
   { "tpope/vim-eunuch", event = "VeryLazy" }, -- First class unix commands
   { "direnv/direnv.vim", event = "VeryLazy" },
 
+  -- Make tmux and nvim smooth and native navigation
+  {
+    "alexghergh/nvim-tmux-navigation",
+    keys = {
+      { "<C-h>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateLeft()<cr>", desc = "Go to left window" },
+      { "<C-j>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateDown()<cr>", desc = "Go to lower window" },
+      { "<C-k>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateUp()<cr>", desc = "Go to upper window" },
+      { "<C-l>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateRight()<cr>", desc = "Go to right window" },
+    },
+  },
+
+  {
+    "junegunn/vim-easy-align",
+    keys = {
+      { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = { "x", "n" } },
+    },
+  },
+
+  {
+    "rizzatti/dash.vim",
+    keys = {
+      { "gh", "<cmd>Dash<CR>", desc = "Search in Das[h]" },
+    },
+  },
+
+  --
+  -- Langs
+  --
+
   { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
   { "dougireton/vim-chef", ft = "ruby" },
 
@@ -27,28 +56,28 @@ return {
     end,
   },
 
-  -- Make tmux and nvim smooth and native navigation
+  -- Special rust tools
   {
-    "alexghergh/nvim-tmux-navigation",
-    keys = {
-      { "<C-h>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateLeft()<cr>", desc = "Go to left window" },
-      { "<C-j>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateDown()<cr>", desc = "Go to lower window" },
-      { "<C-k>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateUp()<cr>", desc = "Go to upper window" },
-      { "<C-l>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateRight()<cr>", desc = "Go to right window" },
+    "simrat39/rust-tools.nvim",
+    ft = "rust",
+    dependencies = {
+      "neovim/nvim-lspconfig",
+      -- Debugging
+      "nvim-lua/plenary.nvim",
+      "mfussenegger/nvim-dap",
     },
+    opts = {},
   },
 
+  -- Awesome crates.toml
   {
-    "junegunn/vim-easy-align",
-    keys = {
-      { "ga", "<Plug>(EasyAlign)", desc = "EasyAlign", mode = { "x", "n" } },
-    },
-  },
-
-  {
-    "rizzatti/dash.vim",
-    keys = {
-      { "gh", "<cmd>Dash<CR>", desc = "Search in Das[h]" },
-    },
+    "saecki/crates.nvim",
+    event = { "BufRead Cargo.toml" },
+    dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {},
+    init = function()
+      -- turn on the UI on load
+      require("crates").show()
+    end,
   },
 }
