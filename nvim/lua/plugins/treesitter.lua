@@ -1,40 +1,25 @@
 return {
   -- add more treesitter parsers
+  -- We extend to get all the LazyVim and Extras
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = {
-      sync_install = true,
-      ensure_installed = {
-        "bash",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "comment",
         "css",
         "diff",
         "dockerfile",
-        "gitcommit",
         "git_config",
-        "go",
-        "gomod",
-        "gosum",
+        "gitcommit",
         "graphql",
-        "javascript",
-        "json",
-        "jsonc", -- Used by neoconf
         "julia",
-        "lua",
         "make",
-        "markdown",
-        "markdown_inline",
-        "python",
-        "regex", -- used by noice
         "ruby",
         "rust",
         "sql",
         "terraform",
         "toml",
-        "vim",
-        "vimdoc",
-        "yaml",
-      },
-    },
+      })
+    end,
   },
 }
