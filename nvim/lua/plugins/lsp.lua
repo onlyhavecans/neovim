@@ -20,9 +20,6 @@ return {
     },
   },
 
-  -- add jsonls and schemastore and setup treesitter for json, json5 and jsonc
-  { import = "lazyvim.plugins.extras.lang.json" },
-
   -- add any tools you want to have installed below
   -- I install most of my tools with brew at the moment so this is short
   {
@@ -89,20 +86,5 @@ return {
       -- turn on the UI on load
       require("crates").show()
     end,
-  },
-
-  -- Golang
-  {
-    "ray-x/go.nvim",
-    dependencies = { -- optional packages
-      "ray-x/guihua.lua",
-      "neovim/nvim-lspconfig",
-      "nvim-treesitter/nvim-treesitter",
-    },
-    config = function()
-      require("go").setup()
-    end,
-    ft = { "go", "gomod" },
-    build = ':lua require("go.install").update_all_sync()', -- if you need to install/update all binaries
   },
 }
