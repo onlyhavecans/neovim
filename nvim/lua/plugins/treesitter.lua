@@ -9,6 +9,7 @@ return {
         "css",
         "diff",
         "dockerfile",
+        "erlang",
         "git_config",
         "gitcommit",
         "graphql",
