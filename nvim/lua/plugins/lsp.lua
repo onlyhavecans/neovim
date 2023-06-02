@@ -35,8 +35,21 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
-    -- Add my ufmt for python
     opts = function()
+      -- Chef cookstyle Support
+      local function is_chef_directory()
+        local utils = require("null-ls.utils").make_conditional_utils()
+        return utils.root_has_file(".chef") or utils.root_has_file("Policyfile.rb")
+      end
+
+      local function rubycop_command()
+        if is_chef_directory() then
+          return "cookstyle"
+        else
+          return "rubocop"
+        end
+      end
+
       local nls = require("null-ls")
       return {
         root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
@@ -44,7 +57,9 @@ return {
           nls.builtins.diagnostics.ansiblelint,
           nls.builtins.diagnostics.golangci_lint,
           nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.rubocop,
+          nls.builtins.diagnostics.rubocop.with({
+            command = rubycop_command(),
+          }),
           nls.builtins.diagnostics.ruff,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.sqlfluff,
