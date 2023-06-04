@@ -39,7 +39,7 @@ return {
       -- Chef cookstyle Support
       local function is_chef_directory()
         local utils = require("null-ls.utils").make_conditional_utils()
-        return utils.root_has_file(".chef") or utils.root_has_file("Policyfile.rb")
+        return utils.root_has_file("cookbooks") or utils.root_has_file("kitchen.yml")
       end
 
       local function rubycop_command()
