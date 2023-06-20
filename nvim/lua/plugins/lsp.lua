@@ -63,6 +63,7 @@ return {
           nls.builtins.diagnostics.ruff,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.sqlfluff,
+          nls.builtins.diagnostics.terraform_validate,
           nls.builtins.diagnostics.yamllint,
           nls.builtins.diagnostics.zsh,
           nls.builtins.formatting.prettier.with({
@@ -71,6 +72,7 @@ return {
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
           nls.builtins.formatting.stylua,
+          nls.builtins.formatting.terraform_fmt,
         },
       }
     end,
