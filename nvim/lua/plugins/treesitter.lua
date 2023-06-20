@@ -15,7 +15,6 @@ return {
         "graphql",
         "julia",
         "make",
-        "ruby",
         "rust",
         "sql",
         "terraform",
