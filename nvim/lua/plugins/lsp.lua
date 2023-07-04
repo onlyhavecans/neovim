@@ -2,34 +2,45 @@ return {
   -- add all my LSPs in one go.
   -- I try to stick to defaults
   --
-  -- rust-analyzer is added by rust tools, not configured here
-  -- gopls is added by the go extras
+  -- The following are added by LazyVim lang extras
+  -- gopls
+  -- jsonls
+  -- rust-analyzer
+  -- solargraph
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
     opts = {
       ---@type lspconfig.options
       servers = {
+        ansiblels = {},
         bashls = {},
-        jsonls = {},
         pyright = {},
         quick_lint_js = {},
+        terraformls = {},
       },
     },
   },
 
   -- add any tools you want to have installed below
-  -- I install most of my tools with brew at the moment so this is short
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
-        "isort",
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
+        "ansible-lint",
         "black",
+        "golangci-lint",
+        "isort",
+        "markdownlint",
+        "prettier",
+        "ruff",
         "rust-analyzer",
+        "shellcheck",
+        "sqlfluff",
         "stylua",
-      },
-    },
+        "yamllint",
+      })
+    end,
   },
 
   -- null-ls
@@ -57,13 +68,13 @@ return {
           nls.builtins.diagnostics.ansiblelint,
           nls.builtins.diagnostics.golangci_lint,
           nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.rubocop.with({
+          nls.builtins.diagnostics.rubocop.with({ -- uses local rubocop still
             command = rubycop_command(),
           }),
           nls.builtins.diagnostics.ruff,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.sqlfluff,
-          nls.builtins.diagnostics.terraform_validate,
+          nls.builtins.diagnostics.terraform_validate, -- requires full terraform install
           nls.builtins.diagnostics.yamllint,
           nls.builtins.diagnostics.zsh,
           nls.builtins.formatting.prettier.with({
@@ -72,7 +83,7 @@ return {
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
           nls.builtins.formatting.stylua,
-          nls.builtins.formatting.terraform_fmt,
+          nls.builtins.formatting.terraform_fmt, -- requires full terraform install
         },
       }
     end,
