@@ -5,8 +5,10 @@ return {
   -- The following are added by LazyVim lang extras
   -- gopls
   -- jsonls
+  -- pyright
   -- rust-analyzer
   -- solargraph
+  -- terraformls
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
@@ -15,9 +17,7 @@ return {
       servers = {
         ansiblels = {},
         bashls = {},
-        pyright = {},
         quick_lint_js = {},
-        terraformls = {},
       },
     },
   },
@@ -33,7 +33,6 @@ return {
         "isort",
         "markdownlint",
         "prettier",
-        "ruff",
         "rust-analyzer",
         "shellcheck",
         "sqlfluff",
@@ -71,10 +70,8 @@ return {
           nls.builtins.diagnostics.rubocop.with({ -- uses local rubocop still
             command = rubycop_command(),
           }),
-          nls.builtins.diagnostics.ruff,
           nls.builtins.diagnostics.shellcheck,
           nls.builtins.diagnostics.sqlfluff,
-          nls.builtins.diagnostics.terraform_validate, -- requires full terraform install
           nls.builtins.diagnostics.yamllint,
           nls.builtins.diagnostics.zsh,
           nls.builtins.formatting.prettier.with({
@@ -83,7 +80,6 @@ return {
           nls.builtins.formatting.isort,
           nls.builtins.formatting.black,
           nls.builtins.formatting.stylua,
-          nls.builtins.formatting.terraform_fmt, -- requires full terraform install
         },
       }
     end,

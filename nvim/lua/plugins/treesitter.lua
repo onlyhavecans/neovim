@@ -5,7 +5,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     opts = function(_, opts)
       vim.list_extend(opts.ensure_installed, {
-        "comment",
         "css",
         "diff",
         "dockerfile",
@@ -15,10 +14,7 @@ return {
         "graphql",
         "julia",
         "make",
-        "rust",
         "sql",
-        "terraform",
-        "toml",
       })
     end,
   },
