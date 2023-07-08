@@ -4,12 +4,24 @@
 
 local au = vim.api.nvim_create_autocmd
 
+--
+-- Set filetypes
+--
+
 local ft = function(pattern, command)
   au({ "BufNewFile", "BufRead" }, { pattern = pattern, command = "setf " .. command })
 end
 
 -- direnv files
 ft(".envrc", "bash")
+-- Omni Automation Files
+ft("*.omnijs", "javascript")
+ft("*.omnifocusjs", "javascript")
+ft("*.omnioutlinerjs", "javascript")
+
+--
+-- General Autocmds
+--
 
 -- My cool term
 au("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
