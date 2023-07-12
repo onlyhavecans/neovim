@@ -7,7 +7,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "css",
         "diff",
-        "dockerfile",
         "erlang",
         "git_config",
         "gitcommit",
