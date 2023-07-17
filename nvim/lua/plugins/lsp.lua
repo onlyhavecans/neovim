@@ -45,7 +45,7 @@ return {
   -- null-ls
   {
     "jose-elias-alvarez/null-ls.nvim",
-    opts = function()
+    opts = function(_, opts)
       -- Chef cookstyle Support
       local function is_chef_directory()
         local utils = require("null-ls.utils").make_conditional_utils()
@@ -61,27 +61,24 @@ return {
       end
 
       local nls = require("null-ls")
-      return {
-        root_dir = require("null-ls.utils").root_pattern(".null-ls-root", ".neoconf.json", "Makefile", ".git"),
-        sources = {
-          nls.builtins.diagnostics.ansiblelint,
-          nls.builtins.diagnostics.golangci_lint,
-          nls.builtins.diagnostics.markdownlint,
-          nls.builtins.diagnostics.rubocop.with({ -- uses local rubocop still
-            command = rubycop_command(),
-          }),
-          nls.builtins.diagnostics.shellcheck,
-          nls.builtins.diagnostics.sqlfluff,
-          nls.builtins.diagnostics.yamllint,
-          nls.builtins.diagnostics.zsh,
-          nls.builtins.formatting.prettier.with({
-            filetypes = { "json", "markdown" },
-          }),
-          nls.builtins.formatting.isort,
-          nls.builtins.formatting.black,
-          nls.builtins.formatting.stylua,
-        },
-      }
+      vim.list_extend(opts.sources, {
+        nls.builtins.diagnostics.ansiblelint,
+        nls.builtins.diagnostics.golangci_lint,
+        nls.builtins.diagnostics.markdownlint,
+        nls.builtins.diagnostics.rubocop.with({ -- uses local rubocop still
+          command = rubycop_command(),
+        }),
+        nls.builtins.diagnostics.shellcheck,
+        nls.builtins.diagnostics.sqlfluff,
+        nls.builtins.diagnostics.yamllint,
+        nls.builtins.diagnostics.zsh,
+        nls.builtins.formatting.prettier.with({
+          filetypes = { "json", "markdown" },
+        }),
+        nls.builtins.formatting.isort,
+        nls.builtins.formatting.black,
+        nls.builtins.formatting.stylua,
+      })
     end,
   },
 }
