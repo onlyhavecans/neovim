@@ -10,6 +10,6 @@ return {
     },
   },
 
-  -- I don't care for noice
-  { "folke/noice.nvim", enabled = false },
+  -- Disabled Defaults
+  { "folke/noice.nvim", enabled = false }, -- Noice popups are a no for me
 }
