@@ -22,6 +22,13 @@ return {
     },
   },
 
+  {
+    "neovim/nvim-lspconfig",
+    opts = {
+      format = { timeout_ms = 1000 },
+    },
+  },
+
   -- add any tools you want to have installed below
   {
     "williamboman/mason.nvim",
