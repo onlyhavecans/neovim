@@ -33,8 +33,13 @@ au("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
 -- Sneak in all my user commands here
 --
 
+local uc = vim.api.nvim_create_user_command
+
+-- Grep Auto Open
+uc("Rg", ":silent grep! <args> | copen", { nargs = "+", desc = "Grep and open matches w/o autojump" })
+
 -- GUI Git app
-vim.api.nvim_create_user_command("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
+uc("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
 
 -- My personalized Wrap
 local wrap = function()
@@ -43,4 +48,4 @@ local wrap = function()
   vim.opt.list = false
   vim.opt.showbreak = "…"
 end
-vim.api.nvim_create_user_command("Wrap", wrap, { bang = true, desc = "Enable Preferred Line Wrap" })
+uc("Wrap", wrap, { bang = true, desc = "Enable Preferred Line Wrap" })
