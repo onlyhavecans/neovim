@@ -8,19 +8,22 @@ vim.g.loaded_ruby_provider = 0
 vim.g.loaded_node_provider = 0
 vim.g.python3_host_prog = "~/.local/nvim/venv/bin/python3"
 
--- All my numbers are absolute
-vim.opt.relativenumber = false
+local opt = vim.opt
 
 -- Strict default whitespace settings
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 2
-vim.opt.smartindent = true
-vim.opt.smarttab = true
-vim.opt.softtabstop = 2
-vim.opt.tabstop = 2
+opt.expandtab = true
+opt.shiftwidth = 2
+opt.smartindent = true
+opt.smarttab = true
+opt.softtabstop = 2
+opt.tabstop = 2
 
 -- Terminal settings
-vim.opt.shell = "zsh --login"
+opt.shell = "zsh --login"
 
 -- Local .nvim.lua configs
-vim.opt.exrc = true
+opt.exrc = true
+
+-- Undo Lazyvim settings I don't care for
+opt.conceallevel = 0 -- Don't hide characters
+opt.relativenumber = false -- Absolute Numbers
