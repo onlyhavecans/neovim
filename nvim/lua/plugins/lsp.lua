@@ -1,14 +1,16 @@
 return {
+  -- All the native language plugins
+  { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.lang.docker" },
+  { import = "lazyvim.plugins.extras.lang.go" },
+  { import = "lazyvim.plugins.extras.lang.json" },
+  { import = "lazyvim.plugins.extras.lang.python" },
+  { import = "lazyvim.plugins.extras.lang.ruby" },
+  { import = "lazyvim.plugins.extras.lang.rust" },
+  { import = "lazyvim.plugins.extras.lang.terraform" },
+
   -- add all my LSPs in one go.
   -- I try to stick to defaults
-  --
-  -- The following are added by LazyVim lang extras
-  -- gopls
-  -- jsonls
-  -- pyright
-  -- rust-analyzer
-  -- solargraph
-  -- terraformls
   {
     "neovim/nvim-lspconfig",
     ---@class PluginLspOpts
