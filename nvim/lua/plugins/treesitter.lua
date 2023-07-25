@@ -14,7 +14,6 @@ return {
         "julia",
         "make",
         "sql",
-        "yaml",
       })
     end,
   },

@@ -1,6 +1,9 @@
 return {
-  -- All the native language plugins
+  -- Debugger and test runner
   { import = "lazyvim.plugins.extras.dap.core" },
+  { import = "lazyvim.plugins.extras.test.core" },
+
+  -- All the native language plugins
   { import = "lazyvim.plugins.extras.lang.docker" },
   { import = "lazyvim.plugins.extras.lang.go" },
   { import = "lazyvim.plugins.extras.lang.json" },
@@ -8,6 +11,7 @@ return {
   { import = "lazyvim.plugins.extras.lang.ruby" },
   { import = "lazyvim.plugins.extras.lang.rust" },
   { import = "lazyvim.plugins.extras.lang.terraform" },
+  { import = "lazyvim.plugins.extras.lang.yaml" },
 
   -- add all my LSPs in one go.
   -- I try to stick to defaults
@@ -46,7 +50,6 @@ return {
         "shellcheck",
         "sqlfluff",
         "stylua",
-        "yamllint",
       })
     end,
   },
@@ -75,7 +78,6 @@ return {
         }),
         nls.builtins.diagnostics.shellcheck,
         nls.builtins.diagnostics.sqlfluff,
-        nls.builtins.diagnostics.yamllint,
         nls.builtins.diagnostics.zsh,
         nls.builtins.formatting.prettier.with({
           filetypes = { "json", "markdown" },
