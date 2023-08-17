@@ -50,6 +50,7 @@ return {
         "shellcheck",
         "sqlfluff",
         "stylua",
+        "yamllint",
       })
     end,
   },
@@ -78,6 +79,7 @@ return {
         }),
         nls.builtins.diagnostics.shellcheck,
         nls.builtins.diagnostics.sqlfluff,
+        nls.builtins.diagnostics.yamllint,
         nls.builtins.diagnostics.zsh,
         nls.builtins.formatting.prettier.with({
           filetypes = { "json", "markdown" },
