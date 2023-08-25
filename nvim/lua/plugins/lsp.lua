@@ -86,6 +86,11 @@ return {
         }),
         nls.builtins.formatting.isort,
         nls.builtins.formatting.black,
+        nls.builtins.formatting.shfmt.with({
+          -- shfmt defaults to TABS?!
+          args = { "-i", "2", "-filename", "$FILENAME" },
+        }),
+
         nls.builtins.formatting.stylua,
       })
     end,

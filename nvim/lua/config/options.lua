@@ -11,12 +11,12 @@ vim.g.python3_host_prog = "~/.local/nvim/venv/bin/python3"
 local opt = vim.opt
 
 -- Strict default whitespace settings
-opt.expandtab = true
-opt.shiftwidth = 2
-opt.smartindent = true
-opt.smarttab = true
-opt.softtabstop = 2
 opt.tabstop = 2
+opt.shiftwidth = 2
+opt.softtabstop = 2
+opt.smarttab = true
+opt.expandtab = true
+opt.smartindent = true
 
 -- Terminal settings
 opt.shell = "zsh --login"
