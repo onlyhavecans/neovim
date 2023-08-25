@@ -46,7 +46,7 @@ au("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
 local uc = vim.api.nvim_create_user_command
 
 -- Grep Auto Open
-uc("Rg", ":silent grep! <args> | copen", { nargs = "+", desc = "Grep and open matches w/o autojump" })
+uc("Rg", ":silent grep <args> | copen", { nargs = "+", desc = "Grep and open matches w/o autojump" })
 
 -- GUI Git app
 uc("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
