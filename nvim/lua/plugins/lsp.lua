@@ -31,7 +31,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = {
-      format = { timeout_ms = 1000 },
+      format = { timeout_ms = 2000 },
     },
   },
 
