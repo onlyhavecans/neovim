@@ -13,6 +13,7 @@ return {
         "graphql",
         "julia",
         "make",
+        "ssh_config",
         "sql",
       })
     end,
