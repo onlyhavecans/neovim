@@ -57,7 +57,7 @@ return {
 
   -- null-ls
   {
-    "jose-elias-alvarez/null-ls.nvim",
+    "nvimtools/none-ls.nvim",
     opts = function(_, opts)
       -- Chef cookstyle Support
       local function rubycop_command()
