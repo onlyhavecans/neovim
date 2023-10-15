@@ -1,5 +1,16 @@
 return {
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "prettier",
+        "shfmt",
+        "isort",
+        "black",
+      },
+    },
+  },
+  {
     "stevearc/conform.nvim",
     formatters_by_ft = {
       markdown = { "prettier" },

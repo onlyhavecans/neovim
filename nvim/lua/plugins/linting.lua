@@ -1,5 +1,18 @@
 return {
   {
+    "williamboman/mason.nvim",
+    opts = {
+      ensure_installed = {
+        "ansible-lint",
+        "golangci-lint",
+        "shellcheck",
+        "shellcheck",
+        "sqlfluff",
+        "yamllint",
+      },
+    },
+  },
+  {
     "mfussenegger/nvim-lint",
     opts = {
       linters_by_ft = {
@@ -8,7 +21,6 @@ return {
         -- cookstyle custom rubocop
         ruby = { "rubocop" },
         sh = { "shellcheck" },
-        bash = { "shellcheck" },
         psql = { "sqlfluff" },
         yaml = { "yamllint" },
         -- zsh
