@@ -5,6 +5,7 @@ return {
       ensure_installed = {
         "ansible-lint",
         "golangci-lint",
+        "markdownlint",
         "shellcheck",
         "shellcheck",
         "sqlfluff",
