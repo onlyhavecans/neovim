@@ -3,6 +3,8 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "gofumpt",
+        "goimports",
         "prettier",
         "shfmt",
         "isort",
@@ -17,7 +19,7 @@ return {
       json = { "prettier" },
       sh = { "shfmt" },
       lua = { "stylua" },
-      python = { "isort" },
+      python = { "isort", "black" },
     },
     formatters = {
       -- shfmt use spaces adn indent switches

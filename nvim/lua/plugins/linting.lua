@@ -18,7 +18,7 @@ return {
     opts = {
       linters_by_ft = {
         ansible = { "ansible_lint" },
-        go = { "goimports", "gofumpt", "golangcilint" },
+        go = { "golangcilint" },
         -- cookstyle custom rubocop
         ruby = { "rubocop" },
         sh = { "shellcheck" },
