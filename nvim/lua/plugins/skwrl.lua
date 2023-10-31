@@ -24,7 +24,6 @@ return {
   --
   -- Langs
   --
-
   { "LokiChaos/vim-tintin",    event = "BufReadPre *.tin" },
   { "dougireton/vim-chef",     ft = "ruby" },
 
