@@ -1,15 +1,15 @@
 -- Quck lang plugins. maybe refactor later
 return {
-  { "tpope/vim-eunuch", event = "VeryLazy" }, -- First class unix commands
+  { "tpope/vim-eunuch",  event = "VeryLazy" }, -- First class unix commands
   { "direnv/direnv.vim", event = "VeryLazy" },
 
   -- Make tmux and nvim smooth and native navigation
   {
     "alexghergh/nvim-tmux-navigation",
     keys = {
-      { "<C-h>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateLeft()<cr>", desc = "Go to left window" },
-      { "<C-j>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateDown()<cr>", desc = "Go to lower window" },
-      { "<C-k>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateUp()<cr>", desc = "Go to upper window" },
+      { "<C-h>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateLeft()<cr>",  desc = "Go to left window" },
+      { "<C-j>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateDown()<cr>",  desc = "Go to lower window" },
+      { "<C-k>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateUp()<cr>",    desc = "Go to upper window" },
       { "<C-l>", "<cmd>lua require('nvim-tmux-navigation').NvimTmuxNavigateRight()<cr>", desc = "Go to right window" },
     },
   },
@@ -21,24 +21,17 @@ return {
     },
   },
 
-  {
-    "rizzatti/dash.vim",
-    keys = {
-      { "gh", "<cmd>Dash<CR>", desc = "Search in Das[h]" },
-    },
-  },
-
   --
   -- Langs
   --
 
-  { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
-  { "dougireton/vim-chef", ft = "ruby" },
+  { "LokiChaos/vim-tintin",    event = "BufReadPre *.tin" },
+  { "dougireton/vim-chef",     ft = "ruby" },
 
   -- Ansible is a whole deal
   { "pearofducks/ansible-vim", ft = "yaml" }, -- set filetypes and general support
   {
-    "arouene/vim-ansible-vault", -- this only handles inline
+    "arouene/vim-ansible-vault",              -- this only handles inline
     ft = "yaml.ansible",
     init = function()
       -- Set manual Ansible whole file commands
