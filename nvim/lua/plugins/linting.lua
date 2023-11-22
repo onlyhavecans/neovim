@@ -25,6 +25,7 @@ return {
         sh = { "shellcheck" },
         psql = { "sqlfluff" },
         yaml = { "yamllint" },
+        zsh = { "zsh" },
         -- zsh
       },
     },
