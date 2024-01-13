@@ -20,13 +20,12 @@ return {
       linters_by_ft = {
         ansible = { "ansible_lint" },
         go = { "golangcilint" },
-        -- cookstyle custom rubocop
+        -- TODO: cookstyle custom rubocop
         ruby = { "rubocop" },
         sh = { "shellcheck" },
         psql = { "sqlfluff" },
         yaml = { "yamllint" },
         zsh = { "zsh" },
-        -- zsh
       },
     },
   },

@@ -25,5 +25,5 @@ opt.shell = "zsh --login"
 opt.exrc = true
 
 -- Undo Lazyvim settings I don't care for
-opt.conceallevel = 0 -- Don't hide characters
+opt.conceallevel = 0       -- Don't hide characters
 opt.relativenumber = false -- Absolute Numbers
