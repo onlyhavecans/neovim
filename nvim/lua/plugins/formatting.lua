@@ -25,7 +25,7 @@ return {
       formatters = {
         -- shfmt use spaces adn indent switches
         shfmt = {
-          extra_args = { "-i", "2", "-ci" },
+          prepend_args = { "-i", "2", "-ci" },
         },
       },
     },
