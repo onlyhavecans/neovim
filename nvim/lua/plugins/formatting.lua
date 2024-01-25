@@ -19,7 +19,6 @@ return {
         markdown = { "prettier" },
         json = { "prettier" },
         sh = { "shfmt" },
-        lua = { "stylua" },
         python = { "isort", "black" },
       },
       formatters = {
