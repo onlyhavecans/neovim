@@ -1,8 +1,8 @@
 return {
   {
     "williamboman/mason.nvim",
-    opts = {
-      ensure_installed = {
+    opts = function(_, opts)
+      vim.list_extend(opts.ensure_installed, {
         "gofumpt",
         "goimports",
         "prettier",
@@ -10,8 +10,8 @@ return {
         "stylua",
         "isort",
         "black",
-      },
-    },
+      })
+    end,
   },
   {
     "stevearc/conform.nvim",
@@ -20,6 +20,7 @@ return {
         markdown = { "prettier" },
         json = { "prettier" },
         sh = { "shfmt" },
+        lua = { "stylua" },
         python = { "isort", "black" },
       },
       formatters = {

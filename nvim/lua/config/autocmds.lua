@@ -36,19 +36,19 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 au("BufReadPost", {
   desc = "Open file at the last position it was edited",
   pattern = "*",
-  command = 'silent! normal! g`"zv'
+  command = 'silent! normal! g`"zv',
 })
 
 au("TermOpen", {
   desc = "My cool term",
   pattern = "*",
-  command = "setlocal nonumber norelativenumber"
+  command = "setlocal nonumber norelativenumber",
 })
 
 au("BufWritePre", {
   desc = "Strip trailing whitespace on save",
   pattern = "*",
-  command = "%s/\\s\\+$//e"
+  command = "%s/\\s\\+$//e",
 })
 
 --
