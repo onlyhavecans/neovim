@@ -33,9 +33,9 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- General Autocmds
 --
 
-au('BufReadPost', {
-  desc = 'Open file at the last position it was edited earlier',
-  pattern = '*',
+au("BufReadPost", {
+  desc = "Open file at the last position it was edited",
+  pattern = "*",
   command = 'silent! normal! g`"zv'
 })
 
