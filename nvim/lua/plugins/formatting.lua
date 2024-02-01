@@ -7,6 +7,7 @@ return {
         "goimports",
         "prettier",
         "shfmt",
+        "stylua",
         "isort",
         "black",
       },
