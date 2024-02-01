@@ -33,11 +33,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 -- General Autocmds
 --
 
--- My cool term
-au("TermOpen", { pattern = "*", command = "setlocal nonumber norelativenumber" })
+au('BufReadPost', {
+  desc = 'Open file at the last position it was edited earlier',
+  pattern = '*',
+  command = 'silent! normal! g`"zv'
+})
 
--- Automatically strip trailing spaces on save
-au("BufWritePre", { pattern = "*", command = "%s/\\s\\+$//e" })
+au("TermOpen", {
+  desc = "My cool term",
+  pattern = "*",
+  command = "setlocal nonumber norelativenumber"
+})
+
+au("BufWritePre", {
+  desc = "Strip trailing whitespace on save",
+  pattern = "*",
+  command = "%s/\\s\\+$//e"
+})
 
 --
 -- Sneak in all my user commands here
