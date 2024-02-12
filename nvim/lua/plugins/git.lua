@@ -1,6 +1,6 @@
 return {
   -- inline git blame
-  { "hougesen/blame-me.nvim", event = "BufRead" },
+  { "hougesen/blame-me.nvim", event = "BufRead", opts = {} },
 
   -- Opening git blame
   {
