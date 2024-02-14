@@ -1,21 +1,10 @@
 return {
-  -- add more treesitter parsers
-  -- We extend to get all the LazyVim and Extras
+  -- I used to specify parsers manually
+  -- But why not just automatically install on use?
   {
     "nvim-treesitter/nvim-treesitter",
-    opts = function(_, opts)
-      vim.list_extend(opts.ensure_installed, {
-        "css",
-        "diff",
-        "erlang",
-        "git_config",
-        "gitcommit",
-        "graphql",
-        "julia",
-        "make",
-        "ssh_config",
-        "sql",
-      })
-    end,
+    opts = {
+      auto_install = true,
+    },
   },
 }
