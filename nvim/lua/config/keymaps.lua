@@ -7,8 +7,5 @@ local map = vim.keymap.set
 -- cd to the current file
 map("n", "<Leader>p", ":cd %:p:h<CR>:pwd<CR>", { desc = "cd to current file dir" })
 
--- Quick open a bottom terminal for commands
-map("n", "<Leader>o", ":botright 20split +term<CR>i", { desc = "Quick Terminal" })
-
 -- Using merge
 map("n", "<Leader>gS", ":silent !smerge %:p:h<CR>", { desc = "Sublime Merge" })
