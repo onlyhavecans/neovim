@@ -22,18 +22,15 @@ ft("*.omnioutlinerjs", "javascript")
 ft(".markdownlintrc", "json")
 
 --
--- Disable autoformat for files people are usually messy with
+-- General Autocmds
 --
-vim.api.nvim_create_autocmd({ "FileType" }, {
+au({ "FileType" }, {
+  desc = "Disable autoformat for certian types",
   pattern = { "markdown" },
   callback = function()
     vim.b.autoformat = false
   end,
 })
-
---
--- General Autocmds
---
 
 au("TermOpen", {
   desc = "My cool term",
