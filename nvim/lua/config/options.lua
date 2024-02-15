@@ -23,7 +23,8 @@ opt.shell = "zsh --login"
 
 -- Local .nvim.lua configs
 opt.exrc = true
+opt.editorconfig = true
 
 -- Undo Lazyvim settings I don't care for
-opt.conceallevel = 0       -- Don't hide characters
+opt.conceallevel = 0 -- Don't hide characters
 opt.relativenumber = false -- Absolute Numbers
