@@ -22,10 +22,10 @@ ft("*.omnioutlinerjs", "javascript")
 ft(".markdownlintrc", "json")
 
 --
--- Disable autoformat for yaml files
+-- Disable autoformat for files people are usually messy with
 --
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "yaml" },
+  pattern = { "markdown" },
   callback = function()
     vim.b.autoformat = false
   end,
