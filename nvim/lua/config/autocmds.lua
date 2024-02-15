@@ -18,6 +18,8 @@ ft(".envrc", "bash")
 ft("*.omnijs", "javascript")
 ft("*.omnifocusjs", "javascript")
 ft("*.omnioutlinerjs", "javascript")
+-- Markdown config
+ft(".markdownlintrc", "json")
 
 --
 -- Disable autoformat for yaml files
