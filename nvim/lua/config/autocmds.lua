@@ -25,7 +25,7 @@ ft(".markdownlintrc", "json")
 -- General Autocmds
 --
 au({ "FileType" }, {
-  desc = "Disable autoformat for certian types",
+  desc = "Disable autoformat for certain types",
   pattern = { "markdown" },
   callback = function()
     vim.b.autoformat = false
