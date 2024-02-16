@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+git ls-files . --exclude-standard --others -m | sort -u | sed 's/.*/"&"/' | xargs nvim
