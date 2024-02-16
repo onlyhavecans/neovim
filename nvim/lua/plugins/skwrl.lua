@@ -1,8 +1,5 @@
 -- Quck lang plugins. maybe refactor later
 return {
-  { "tpope/vim-eunuch", event = "VeryLazy" }, -- First class unix commands
-  { "direnv/direnv.vim", event = "VeryLazy" },
-
   -- Make tmux and nvim smooth and native navigation
   {
     "alexghergh/nvim-tmux-navigation",
