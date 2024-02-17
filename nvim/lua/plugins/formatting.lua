@@ -23,6 +23,7 @@ return {
         sh = { "shfmt" },
         lua = { "stylua" },
         python = { "isort", "black" },
+        zsh = { "shfmt" },
       },
       formatters = {
         -- shfmt use spaces adn indent switches
