@@ -8,8 +8,12 @@ return {
       close_if_last_window = true,
       filesystem = { filtered_items = { visible = true } },
       follow_current_file = { enabled = true },
-      group_empty_dirs = true,
-      window = { width = 30 },
+      window = {
+        width = 30,
+        mappings = {
+          ["<space>"] = { "toggle_node", nowait = false },
+        },
+      },
 
       -- event_handlers = {
       --   {
@@ -27,7 +31,7 @@ return {
           files = { "%1_test.go" }, -- <-- glob pattern with capture
         },
         ["gomod"] = {
-          pattern = "go.mod$",
+          pattern = "^go%.mod$",
           files = { "go.sum" },
         },
         ["docker"] = {
@@ -36,7 +40,7 @@ return {
           files = { ".dockerignore", "docker-compose.*", "dockerfile*" },
         },
         ["rustcargo"] = {
-          pattern = "Cargo.toml$",
+          pattern = "^Cargo%.toml$",
           files = { "Cargo.lock" },
         },
       },
