@@ -4,6 +4,9 @@
 
 local map = vim.keymap.set
 
+-- XX to quit all without saving
+map("n", "XX", ":qall!<CR>", { desc = "quit all no save" })
+
 -- cd to the current file
 map("n", "<Leader>p", ":cd %:p:h<CR>:pwd<CR>", { desc = "cd to current file dir" })
 
