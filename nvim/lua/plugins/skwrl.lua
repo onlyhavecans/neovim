@@ -30,8 +30,7 @@ return {
   { "LokiChaos/vim-tintin", event = "BufReadPre *.tin" },
   { "dougireton/vim-chef", ft = "ruby" },
 
-  -- Ansible is a whole deal
-  { "pearofducks/ansible-vim", ft = "yaml" }, -- set filetypes and general support
+  -- Ansible-vault support
   {
     "arouene/vim-ansible-vault", -- this only handles inline
     ft = "yaml.ansible",
