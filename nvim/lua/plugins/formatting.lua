@@ -10,6 +10,7 @@ return {
         "stylua",
         "isort",
         "black",
+        "yamlfmt",
       })
     end,
   },
@@ -19,7 +20,7 @@ return {
       formatters_by_ft = {
         markdown = { "prettier" },
         json = { "prettier" },
-        yaml = { "prettier" },
+        yaml = { "yamlfmt" },
         sh = { "shfmt" },
         lua = { "stylua" },
         python = { "isort", "black" },
