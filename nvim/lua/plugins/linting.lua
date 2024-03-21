@@ -7,7 +7,6 @@ return {
         "hadolint",
         "markdownlint",
         "shellcheck",
-        "shellcheck",
         "sqlfluff",
         "yamllint",
       })
