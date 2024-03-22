@@ -28,3 +28,6 @@ vim.g.editorconfig = true
 -- Undo Lazyvim settings I don't care for
 -- opt.conceallevel = 0 -- Don't hide characters
 opt.relativenumber = false -- Absolute Numbers
+
+-- the based choice
+vim.g.lazyvim_python_lsp = "basedpyright"
