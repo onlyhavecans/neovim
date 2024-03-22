@@ -6,10 +6,9 @@ return {
         "gofumpt",
         "goimports",
         "prettier",
+        "ruff",
         "shfmt",
         "stylua",
-        "isort",
-        "black",
         "yamlfmt",
       })
     end,
@@ -23,7 +22,7 @@ return {
         yaml = { "yamlfmt" },
         sh = { "shfmt" },
         lua = { "stylua" },
-        python = { "isort", "black" },
+        python = { "ruff" },
         zsh = { "shfmt" },
       },
       formatters = {
