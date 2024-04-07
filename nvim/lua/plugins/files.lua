@@ -24,26 +24,6 @@ return {
       --     end,
       --   },
       -- },
-
-      nesting_rules = {
-        ["go"] = {
-          pattern = "(.*)%.go$", -- <-- Lua pattern with capture
-          files = { "%1_test.go" }, -- <-- glob pattern with capture
-        },
-        ["gomod"] = {
-          pattern = "^go%.mod$",
-          files = { "go.sum" },
-        },
-        ["docker"] = {
-          pattern = "^dockerfile$",
-          ignore_case = true,
-          files = { ".dockerignore", "docker-compose.*", "dockerfile*" },
-        },
-        ["rustcargo"] = {
-          pattern = "^Cargo%.toml$",
-          files = { "Cargo.lock" },
-        },
-      },
     },
   },
 }
