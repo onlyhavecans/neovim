@@ -24,6 +24,17 @@ return {
       --     end,
       --   },
       -- },
+
+      nesting_rules = {
+        ["gomod"] = {
+          pattern = "^go%.mod$",
+          files = { "go.sum" },
+        },
+        ["rustcargo"] = {
+          pattern = "^Cargo%.toml$",
+          files = { "Cargo.lock" },
+        },
+      },
     },
   },
 }
