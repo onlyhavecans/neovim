@@ -26,6 +26,10 @@ return {
       -- },
 
       nesting_rules = {
+        ["policyfile"] = {
+          pattern = "(.*)%.rb$", -- <-- Lua pattern with capture
+          files = { "%1.lock.json" }, -- <-- glob pattern with capture
+        },
         ["gomod"] = {
           pattern = "^go%.mod$",
           files = { "go.sum" },
