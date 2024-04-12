@@ -20,6 +20,11 @@ ft("*.omnifocusjs", "javascript")
 ft("*.omnioutlinerjs", "javascript")
 -- Markdown config
 ft(".markdownlintrc", "json")
+-- Ansible
+ft("site.ya?ml", "yaml.ansible")
+ft("*/playbooks/*.ya?ml", "yaml.ansible")
+ft("*/roles/*/tasks/*.ya?ml", "yaml.ansible")
+ft("*/roles/*/handlers/*.ya?ml", "yaml.ansible")
 
 --
 -- General Autocmds
