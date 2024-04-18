@@ -8,26 +8,26 @@ local au = vim.api.nvim_create_autocmd
 -- Set filetypes
 --
 
-local ft = function(pattern, command)
-  au({ "BufNewFile", "BufRead" }, { pattern = pattern, command = "setf " .. command })
-end
-
--- direnv files
-ft(".envrc", "bash")
--- Omni Automation Files
-ft("*.omnijs", "javascript")
-ft("*.omnifocusjs", "javascript")
-ft("*.omnioutlinerjs", "javascript")
--- Markdown config
-ft(".markdownlintrc", "json")
--- Ansible
-ft("site.ya?ml", "yaml.ansible")
-ft("playbook.ya?ml", "yaml.ansible")
-ft("*/group_vars/*.ya?ml", "yaml.ansible")
-ft("*/host_vars/*.ya?ml", "yaml.ansible")
-ft("*/playbooks/*.ya?ml", "yaml.ansible")
-ft("*/roles/*/tasks/*.ya?ml", "yaml.ansible")
-ft("*/roles/*/handlers/*.ya?ml", "yaml.ansible")
+vim.filetype.add({
+  extension = {
+    ["omnijs"] = "javascript",
+    ["omnifocusjs"] = "javascript",
+    ["omnioutlinerjs"] = "javascript",
+  },
+  filename = {
+    [".envrc"] = "bash",
+    [".markdownlintrc"] = "json",
+  },
+  pattern = {
+    ["site%.ya?ml"] = "yaml.ansible",
+    ["playbook%.ya?ml"] = "yaml.ansible",
+    [".*/group_vars/.*%.ya?ml"] = "yaml.ansible",
+    [".*/host_vars/.*%.ya?ml"] = "yaml.ansible",
+    [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/tasks/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
+  },
+})
 
 --
 -- General Autocmds
