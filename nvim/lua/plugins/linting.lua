@@ -17,8 +17,6 @@ return {
     opts = {
       linters_by_ft = {
         go = { "golangcilint" },
-        -- TODO: cookstyle custom rubocop
-        ruby = { "rubocop" },
         sh = { "shellcheck" },
         psql = { "sqlfluff" },
         yaml = { "yamllint" },

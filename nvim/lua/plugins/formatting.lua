@@ -31,6 +31,19 @@ return {
         shfmt = {
           prepend_args = { "-i", "2", "-ci" },
         },
+        -- Chef uses old rubocop
+        rubocop = {
+          inherit = false,
+          command = "rubocop",
+          args = {
+            "-a",
+            "-f",
+            "quiet",
+            "--stderr",
+            "--stdin",
+            "$FILENAME",
+          },
+        },
       },
     },
   },
