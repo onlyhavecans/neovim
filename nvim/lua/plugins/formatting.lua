@@ -17,12 +17,13 @@ return {
     "stevearc/conform.nvim",
     opts = {
       formatters_by_ft = {
-        markdown = { "prettier" },
         json = { "prettier" },
-        yaml = { "yamlfmt" },
-        sh = { "shfmt" },
         lua = { "stylua" },
+        markdown = { "prettier" },
         python = { "ruff" },
+        ruby = { "rubocop" },
+        sh = { "shfmt" },
+        yaml = { "yamlfmt" },
         zsh = { "shfmt" },
       },
       formatters = {
