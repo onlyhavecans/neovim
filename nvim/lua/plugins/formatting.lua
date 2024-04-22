@@ -7,7 +7,6 @@ return {
         "goimports",
         "prettier",
         "ruff",
-        "shfmt",
         "stylua",
         "yamlfmt",
       })
@@ -22,7 +21,6 @@ return {
         markdown = { "prettier" },
         python = { "ruff" },
         ruby = { "rubocop" },
-        sh = { "shfmt" },
         yaml = { "yamlfmt" },
         zsh = { "shfmt" },
       },

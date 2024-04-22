@@ -7,7 +7,6 @@ return {
     opts = {
       ---@type lspconfig.options
       servers = {
-        bashls = {},
         quick_lint_js = {},
       },
     },
