@@ -30,6 +30,14 @@ vim.filetype.add({
 })
 
 --
+-- Tune filetypes
+--
+au("FileType", {
+  pattern = { "fish" },
+  command = "setlocal tabstop=4 shiftwidth=4 expandtab",
+})
+
+--
 -- General Autocmds
 --
 au({ "FileType" }, {
