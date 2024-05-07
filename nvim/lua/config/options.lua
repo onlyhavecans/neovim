@@ -18,9 +18,6 @@ opt.smarttab = true
 opt.expandtab = true
 opt.smartindent = true
 
--- Terminal settings
-opt.shell = "zsh --login"
-
 -- Local .nvim.lua configs
 opt.exrc = true
 vim.g.editorconfig = true
