@@ -8,6 +8,7 @@ return {
       ---@type lspconfig.options
       servers = {
         quick_lint_js = {},
+        nil_ls = {},
       },
     },
   },
