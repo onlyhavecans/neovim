@@ -19,6 +19,7 @@ return {
         json = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier" },
+        nix = { "alejandra" }, -- Needs to be installed in the system
         python = { "ruff" },
         ruby = { "rubocop" },
         yaml = { "yamlfmt" },
