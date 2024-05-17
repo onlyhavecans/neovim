@@ -15,7 +15,7 @@ vim.filetype.add({
     ["omnioutlinerjs"] = "javascript",
   },
   filename = {
-    [".envrc"] = "bash",
+    [".envrc"] = "dotenv",
     [".markdownlintrc"] = "json",
   },
   pattern = {
@@ -26,6 +26,7 @@ vim.filetype.add({
     [".*/playbooks/.*%.ya?ml"] = "yaml.ansible",
     [".*/roles/.*/tasks/.*%.ya?ml"] = "yaml.ansible",
     [".*/roles/.*/handlers/.*%.ya?ml"] = "yaml.ansible",
+    [".*/roles/.*/vars/.*%.ya?ml"] = "yaml.ansible",
   },
 })
 
