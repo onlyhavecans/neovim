@@ -15,7 +15,7 @@ vim.filetype.add({
     ["omnioutlinerjs"] = "javascript",
   },
   filename = {
-    [".envrc"] = "dotenv",
+    [".envrc"] = "bash",
     [".markdownlintrc"] = "json",
   },
   pattern = {
