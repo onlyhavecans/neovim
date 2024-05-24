@@ -6,6 +6,7 @@ return {
         "golangci-lint",
         "hadolint",
         "markdownlint",
+        "shellcheck",
         "sqlfluff",
         "yamllint",
       })
