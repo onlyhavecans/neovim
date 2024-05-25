@@ -4,6 +4,9 @@
 
 local map = vim.keymap.set
 
+-- Don't yank on paste
+map("v", "p", "P")
+
 -- XX to quit all without saving
 map("n", "XX", ":qall!<CR>", { desc = "quit all no save" })
 
