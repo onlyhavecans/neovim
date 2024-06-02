@@ -13,7 +13,7 @@ function make_or_upgrade_venv {
   fi
 
   source "$neovenv/bin/activate" || exit 2
-  "$neovenv/bin/python3" -m pip install --upgrade pynvim
+  "$neovenv/bin/python3" -m pip install --upgrade pynvim neovim
 }
 
 PS3="Select Python to use or quit: "
@@ -22,10 +22,11 @@ select python in $(which -a python3) quit; do
   case $python in
     *python3)
       make_or_upgrade_venv "$python"
-      break;;
+      break
+      ;;
     *)
       echo "Exiting without action"
-      break;;
+      break
+      ;;
   esac
 done
-
