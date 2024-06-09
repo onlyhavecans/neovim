@@ -5,6 +5,7 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "gofumpt",
         "goimports",
+        "nixpkgs-fmt",
         "prettier",
         "ruff",
         "stylua",
@@ -19,7 +20,7 @@ return {
         json = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        nix = { "alejandra" }, -- Needs to be installed in the system
+        nix = { "nixpkgs_fmt" }, -- Needs to be installed in the system
         python = { "ruff" },
         ruby = { "rubocop" },
         yaml = { "yamlfmt" },
