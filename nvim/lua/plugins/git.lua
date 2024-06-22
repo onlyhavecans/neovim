@@ -1,9 +1,10 @@
 return {
-  -- inline git blame
+  -- Git blame lines
   {
-    "hougesen/blame-me.nvim",
-    event = "BufRead",
-    opts = { signs = false },
+    "lewis6991/gitsigns.nvim",
+    opts = {
+      current_line_blame = true, -- Toggle with `:Gitsigns toggle_current_line_blame`
+    },
   },
 
   -- Opening git blame
