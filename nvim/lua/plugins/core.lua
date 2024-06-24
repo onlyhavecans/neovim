@@ -11,5 +11,5 @@ return {
   },
 
   -- Disabled Defaults
-  { "folke/noice.nvim", enabled = false }, -- Noice popups are a no for me
+  -- { "folke/noice.nvim", enabled = false }, -- Noice popups are a no for me
 }
