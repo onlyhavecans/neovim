@@ -55,11 +55,11 @@ au("TermOpen", {
   command = "setlocal nonumber norelativenumber",
 })
 
-au("BufWritePre", {
-  desc = "Strip trailing whitespace on save",
-  pattern = "*",
-  command = "%s/\\s\\+$//e",
-})
+-- au("BufWritePre", {
+--   desc = "Strip trailing whitespace on save",
+--   pattern = "*",
+--   command = "%s/\\s\\+$//e",
+-- })
 
 --
 -- Sneak in all my user commands here
