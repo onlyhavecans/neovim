@@ -5,7 +5,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "golangci-lint",
         "hadolint",
-        "markdownlint",
         "shellcheck",
         "sqlfluff",
         "yamllint",
