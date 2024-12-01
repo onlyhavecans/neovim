@@ -55,11 +55,11 @@ au("TermOpen", {
   command = "setlocal nonumber norelativenumber",
 })
 
--- au("BufWritePre", {
---   desc = "Strip trailing whitespace on save",
---   pattern = "*",
---   command = "%s/\\s\\+$//e",
--- })
+au("BufWritePre", {
+  desc = "Strip trailing whitespace on save",
+  pattern = "*",
+  command = [[%s/\s\+$//e]],
+})
 
 --
 -- Sneak in all my user commands here
@@ -69,9 +69,6 @@ local uc = vim.api.nvim_create_user_command
 
 -- Grep Auto Open
 uc("Rg", ":silent grep <args> | copen", { nargs = "+", desc = "Grep and open matches w/o autojump" })
-
--- GUI Git app
-uc("SMerge", ":silent !smerge %:p:h", { desc = "Open current file dir in sublime merge" })
 
 -- My personalized Wrap
 local wrap = function()
