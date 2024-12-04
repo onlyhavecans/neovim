@@ -1,19 +1,23 @@
 #!/usr/bin/env bash
 ## NeoVim recommends making it's own venv for the plugin host so...
 
-function make_or_upgrade_venv {
-  local neovenv="$HOME/.local/nvim/venv"
-  local python=$1
+export UV_PYTHON_PREFERENCE=system
+export UV_PYTHON_DOWNLOADS=never
 
-  if [ -d "$neovenv" ]; then
-    $python -m venv --upgrade --upgrade-deps "$neovenv" || exit 2
-  else
-    mkdir -p "${neovenv%/*}"
-    $python -m venv --upgrade-deps "$neovenv" || exit 2
+function make_or_upgrade_venv {
+  local python=$1
+  local neolocal="$HOME/.local/nvim"
+  local neovenv="venv"
+
+  mkdir -p "$neolocal"
+  pushd "$neolocal" || exit 2
+
+  if [ ! -d "$neovenv" ]; then
+    uv venv --python "$python" "$neovenv" || exit 2
   fi
 
-  source "$neovenv/bin/activate" || exit 2
-  "$neovenv/bin/python3" -m pip install --upgrade pynvim neovim
+  source "venv/bin/activate"
+  uv pip install pynvim neovim
 }
 
 PS3="Select Python to use or quit: "
