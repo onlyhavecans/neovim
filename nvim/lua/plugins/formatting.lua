@@ -6,7 +6,6 @@ return {
         "gofumpt",
         "goimports",
         "prettier",
-        "ruff",
         "stylua",
         "yamlfmt",
       })
@@ -19,7 +18,6 @@ return {
         json = { "prettier" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        python = { "ruff" },
         ruby = { "rubocop" },
         yaml = { "yamlfmt" },
         zsh = { "shfmt" },
