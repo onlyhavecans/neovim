@@ -4,6 +4,11 @@
 export UV_PYTHON_PREFERENCE=system
 export UV_PYTHON_DOWNLOADS=never
 
+if ! command -v uv >/dev/null 2>&1; then
+  echo "uv is required."
+  exit 1
+fi
+
 function make_or_upgrade_venv {
   local python=$1
   local neolocal="$HOME/.local/nvim"
@@ -16,7 +21,7 @@ function make_or_upgrade_venv {
     uv venv --python "$python" "$neovenv" || exit 2
   fi
 
-  source "venv/bin/activate"
+  source "${neovenv}/bin/activate"
   uv pip install pynvim neovim
 }
 
