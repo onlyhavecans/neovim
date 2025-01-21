@@ -1,3 +1,8 @@
 #!/usr/bin/env bash
 
-git ls-files . --exclude-standard --others -m | sort -u | sed 's/.*/"&"/' | xargs nvim
+top_level=$(git rev-parse --show-toplevel)
+
+git ls-files . --exclude-standard --others -m |
+  sort -u |
+  sed "s#.*#\"$top_level/&\"#" |
+  xargs nvim
