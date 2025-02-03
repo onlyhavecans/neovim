@@ -6,4 +6,5 @@ top_level=$(git rev-parse --show-toplevel)
 git log --name-only --pretty="" origin..HEAD |
   sort -u |
   sed "s#.*#\"$top_level/&\"#" |
+  xargs realpath -s --relative-to="$PWD" |
   xargs nvim
