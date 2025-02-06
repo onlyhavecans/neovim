@@ -1,0 +1,12 @@
+{
+  "import": {
+    "prefix": "import",
+    "body": [
+      "import {",
+      "  to = ${1:aws_foo_bar.resource_name}",
+      "  id = \"${CLIPBOARD}\"",
+      "}",
+      ""
+    ]
+  }
+}
