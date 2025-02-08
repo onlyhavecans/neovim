@@ -1,3 +1,4 @@
 # Temp for the lua migration
 *.old
 lazy-lock.json
+nvim/lazyvim.json
