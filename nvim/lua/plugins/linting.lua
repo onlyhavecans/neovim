@@ -16,8 +16,8 @@ return {
     opts = {
       linters_by_ft = {
         go = { "golangcilint" },
-        sh = { "shellcheck" },
         psql = { "sqlfluff" },
+        sh = { "shellcheck" },
         yaml = { "yamllint" },
         zsh = { "zsh" },
       },
