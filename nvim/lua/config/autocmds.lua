@@ -13,6 +13,7 @@ vim.filetype.add({
     ["omnijs"] = "javascript",
     ["omnifocusjs"] = "javascript",
     ["omnioutlinerjs"] = "javascript",
+    ["nsp"] = "json",
   },
   filename = {
     [".envrc"] = "bash",
