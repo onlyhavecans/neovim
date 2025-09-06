@@ -5,7 +5,6 @@ return {
       vim.list_extend(opts.ensure_installed, {
         "gofumpt",
         "goimports",
-        "prettier",
         "stylua",
         "yamlfmt",
       })
@@ -16,7 +15,6 @@ return {
     opts = {
       formatters_by_ft = {
         lua = { "stylua" },
-        markdown = { "prettier" },
         ruby = { "rubocop" },
         yaml = { "yamlfmt" },
         zsh = { "shfmt" },
