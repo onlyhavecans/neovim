@@ -13,7 +13,7 @@ return {
         term_bg = "#000000", -- if guibg=NONE, this will be used to calculate text color
         inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
       },
-      context = 3, -- amount of lines we will try to show around the current line
+      context = 4, -- amount of lines we will try to show around the current line
     },
   },
 
@@ -31,13 +31,13 @@ return {
         -- by default, no options are changed for the Zen window
         -- uncomment any of the options below, or add other vim.wo options you want to apply
         options = {
-          -- signcolumn = "no", -- disable signcolumn
+          signcolumn = "no", -- disable signcolumn
           number = false, -- disable number column
           relativenumber = false, -- disable relative numbers
           -- cursorline = false, -- disable cursorline
-          -- cursorcolumn = false, -- disable cursor column
-          -- foldcolumn = "0", -- disable fold column
-          -- list = false, -- disable whitespace characters
+          cursorcolumn = false, -- disable cursor column
+          foldcolumn = "0", -- disable fold column
+          list = false, -- disable whitespace characters
         },
       },
       plugins = {
@@ -57,27 +57,7 @@ return {
           -- can be either an absolute font size or the number of incremental steps
           font = "+4", -- (10% increase per step)
         },
-        -- this will change the scale factor in Neovide when in zen mode
-        -- See alse also the Plugins/Wezterm section in this projects README
-        neovide = {
-          enabled = false,
-          -- Will multiply the current scale factor by this number
-          scale = 1.2,
-          -- disable the Neovide animations while in Zen mode
-          disable_animations = {
-            neovide_animation_length = 0,
-            neovide_cursor_animate_command_line = false,
-            neovide_scroll_animation_length = 0,
-            neovide_position_animation_length = 0,
-            neovide_cursor_animation_length = 0,
-            neovide_cursor_vfx_mode = "",
-          },
-        },
       },
-      -- callback where you can add custom code when the Zen window opens
-      on_open = function(win) end,
-      -- callback where you can add custom code when the Zen window closes
-      on_close = function() end,
     },
   },
 }
