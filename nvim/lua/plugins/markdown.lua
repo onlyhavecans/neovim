@@ -1,10 +1,9 @@
 return {
-  {
-    "MeanderingProgrammer/render-markdown.nvim",
-    enable = false,
-  },
+  { "https://github.com/SidOfc/mkdx", ft = "markdown" },
+  { "MeanderingProgrammer/render-markdown.nvim", enable = false },
   {
     "folke/twilight.nvim",
+    lazy = true,
     opts = {
       dimming = {
         alpha = 0.25, -- amount of dimming
@@ -19,17 +18,15 @@ return {
 
   {
     "folke/zen-mode.nvim",
+    cmd = "ZenMode",
+    keys = {
+      { "<leader>z", "<cmd>ZenMode<cr>", desc = "Zen Mode Toggle" },
+    },
     opts = {
       window = {
-        backdrop = 0.95, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-        -- height and width can be:
-        -- * an absolute number of cells when > 1
-        -- * a percentage of the width / height of the editor when <= 1
-        -- * a function that returns the width or the height
-        width = 120, -- width of the Zen window
-        height = 1, -- height of the Zen window
-        -- by default, no options are changed for the Zen window
-        -- uncomment any of the options below, or add other vim.wo options you want to apply
+        backdrop = 0.85, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        width = 120,
+        height = 1,
         options = {
           signcolumn = "no", -- disable signcolumn
           number = false, -- disable number column
@@ -41,21 +38,17 @@ return {
         },
       },
       plugins = {
-        -- disable some global vim options (vim.o...)
-        -- comment the lines to not apply the options
         options = {
           enabled = true,
-          ruler = false, -- disables the ruler text in the cmd line area
-          showcmd = false, -- disables the command in the last line of the screen
-          -- you may turn on/off statusline in zen mode by setting 'laststatus'
-          -- statusline will be shown only if 'laststatus' == 3
-          laststatus = 0, -- turn off the statusline in zen mode
+          ruler = false,
+          showcmd = false,
+          laststatus = 0,
         },
-        tmux = { enabled = true }, -- disables the tmux statusline
+        tmux = { enabled = true },
         wezterm = {
           enabled = true,
           -- can be either an absolute font size or the number of incremental steps
-          font = "+4", -- (10% increase per step)
+          font = "+2",
         },
       },
     },
