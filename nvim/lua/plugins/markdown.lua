@@ -1,6 +1,6 @@
 return {
   { "MeanderingProgrammer/render-markdown.nvim", enable = false },
-  { "SidOfc/mkdx", ft = "markdown" },
+
   {
     "folke/twilight.nvim",
     lazy = true,
@@ -12,10 +12,9 @@ return {
         term_bg = "#000000", -- if guibg=NONE, this will be used to calculate text color
         inactive = false, -- when true, other windows will be fully dimmed (unless they contain the same buffer)
       },
-      context = 4, -- amount of lines we will try to show around the current line
+      context = 2, -- amount of lines we will try to show around the current line
     },
   },
-
   {
     "folke/zen-mode.nvim",
     cmd = "ZenMode",
