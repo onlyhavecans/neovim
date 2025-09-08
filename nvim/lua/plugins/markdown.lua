@@ -1,7 +1,6 @@
 return {
   { "MeanderingProgrammer/render-markdown.nvim", enable = false },
   { "SidOfc/mkdx", ft = "markdown" },
-  { "preservim/vim-pencil", cmd = "Pencil" },
   {
     "folke/twilight.nvim",
     lazy = true,
