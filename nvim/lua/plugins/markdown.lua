@@ -1,6 +1,7 @@
 return {
-  { "https://github.com/SidOfc/mkdx", ft = "markdown" },
   { "MeanderingProgrammer/render-markdown.nvim", enable = false },
+  { "SidOfc/mkdx", ft = "markdown" },
+  { "preservim/vim-pencil", cmd = "Pencil" },
   {
     "folke/twilight.nvim",
     lazy = true,
@@ -24,8 +25,8 @@ return {
     },
     opts = {
       window = {
-        backdrop = 0.85, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
-        width = 120,
+        backdrop = 0.75, -- shade the backdrop of the Zen window. Set to 1 to keep the same as Normal
+        width = 100,
         height = 1,
         options = {
           signcolumn = "no", -- disable signcolumn
