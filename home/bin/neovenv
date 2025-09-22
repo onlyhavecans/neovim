@@ -22,7 +22,7 @@ function make_or_upgrade_venv {
   fi
 
   source "${neovenv}/bin/activate"
-  uv pip install pynvim neovim
+  uv pip install --upgrade pynvim neovim
 }
 
 PS3="Select Python to use or quit: "
