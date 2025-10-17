@@ -9,4 +9,7 @@ return {
       colorscheme = "gruvbox",
     },
   },
+
+  -- disable pairs
+  { "nvim-mini/mini.pairs", enabled=false},
 }
