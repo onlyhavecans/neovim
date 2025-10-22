@@ -15,15 +15,15 @@ return {
         },
       },
 
-      -- event_handlers = {
-      --   {
-      --     event = "file_opened",
-      --     handler = function(file_path)
-      --       -- auto close
-      --       require("neo-tree.command").execute({ action = "close" })
-      --     end,
-      --   },
-      -- },
+      event_handlers = {
+        {
+          event = "file_opened",
+          handler = function(file_path)
+            -- auto close
+            require("neo-tree.command").execute({ action = "close" })
+          end,
+        },
+      },
 
       nesting_rules = {
         ["policyfile"] = {
@@ -37,6 +37,10 @@ return {
         ["rustcargo"] = {
           pattern = "^Cargo%.toml$",
           files = { "Cargo.lock" },
+        },
+        ["nixflake"] = {
+          pattern = "^flake%.nix$",
+          files = { "flake.lock" },
         },
       },
     },
