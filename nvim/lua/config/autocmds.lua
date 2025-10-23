@@ -10,9 +10,6 @@ local au = vim.api.nvim_create_autocmd
 
 vim.filetype.add({
   extension = {
-    ["omnijs"] = "javascript",
-    ["omnifocusjs"] = "javascript",
-    ["omnioutlinerjs"] = "javascript",
     ["nsp"] = "json",
   },
   filename = {

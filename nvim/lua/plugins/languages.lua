@@ -76,6 +76,7 @@ return {
         ruby = { "rubocop" },
         yaml = { "yamlfmt" },
         zsh = { "shfmt" },
+        go = { "golangci-lint" },
       },
       formatters = {
         -- shfmt use spaces adn indent switches
