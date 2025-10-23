@@ -48,6 +48,8 @@ return {
         quick_lint_js = {},
         nixd = {},
         tombi = {},
+        basedpyright = {},
+        ruff = {},
       },
     },
   },
