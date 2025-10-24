@@ -65,6 +65,7 @@ return {
         sh = { "shellcheck" },
         yaml = { "yamllint" },
         zsh = { "zsh" },
+        dotenv = { "dotenv_linter" },
       },
     },
   },
