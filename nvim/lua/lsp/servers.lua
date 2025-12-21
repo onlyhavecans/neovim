@@ -98,4 +98,8 @@ return {
 
   -- Markdown
   marksman = {},
+
+  -- Docker
+  dockerls = {},
+  docker_compose_language_service = {},
 }
