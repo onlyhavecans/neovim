@@ -71,3 +71,12 @@ map("n", "<leader>uw", "<cmd>Wrap<cr>", { desc = "Enable wrap mode" })
 
 -- Straighten quotes
 map("n", "<leader>cq", "<cmd>StraightenQuotes<cr>", { desc = "Straighten quotes" })
+
+-- Neovim meta commands (<leader>n)
+map("n", "<leader>nl", "<cmd>Lazy<cr>", { desc = "Lazy" })
+map("n", "<leader>nn", "<cmd>messages<cr>", { desc = "Messages" })
+map("n", "<leader>nc", "<cmd>checkhealth<cr>", { desc = "Checkhealth" })
+map("n", "<leader>ne", function()
+  require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
+end, { desc = "Edit config" })
+map("n", "<leader>np", "<cmd>Lazy profile<cr>", { desc = "Startup profile" })

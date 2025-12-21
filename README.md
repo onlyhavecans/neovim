@@ -1,4 +1,4 @@
-## Squirrel Neovim
+# Squirrel Neovim
 
 Hi! I'm a squirrel and I use Neovim all day so I have quite the setup squirreled away here.
 
@@ -39,7 +39,7 @@ Hi! I'm a squirrel and I use Neovim all day so I have quite the setup squirreled
 
 ## Structure
 
-```
+```text
 nvim/
 ├── init.lua                 # Entry point
 ├── lua/

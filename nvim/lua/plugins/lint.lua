@@ -11,6 +11,7 @@ return {
         ansible = { "ansible_lint" },
         dotenv = { "dotenv_linter" },
         go = { "golangcilint" },
+        markdown = { "markdownlint-cli2" },
         nix = { "statix", "deadnix" },
         psql = { "sqlfluff" },
         sh = { "shellcheck" },
