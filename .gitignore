@@ -1,2 +1,2 @@
-nvim/lazyvim.json
 nvim/lazy-lock.json
+*.log

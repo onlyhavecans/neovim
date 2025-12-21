@@ -1,29 +1,70 @@
-## Squirrel NeoVim
+## Squirrel Neovim
 
-## Homeshick Repo
+Hi! I'm a squirrel and I use Neovim all day so I have quite the setup squirreled away here.
 
-This repo is designed for use with [homeshick](https://github.com/andsens/homeshick) and contains all my NeoVim configurations and associated hooks.
+## Philosophy
 
-I have this separate from my general dotfiles since I don't need all this, or even all of NeoVim on all machines I touch. Sometimes a bit of vi works fine.
+- Speed is more important than features
+- UX/UI is important
+- Explicit is better than implicit, put documentation inline
+- The less configuration the better
+- Make the configuration & code easy to navigate & read
+- Use the most out of builtin before using plugins
 
-Instead of linking all the various files, I use a homeshick trick where I make homeshick link the `nvim` directory in the root of this repo to `~/.config/nvim` by creating the `./home/.config/nvim` symlink inside this repo to `../../nvim`.
+## Goals
 
-## Apps
+- Fast startup, navigation, and editing
+- All keymaps registered with Which-Key for discoverability
+- Polished UI: statusline, bufferline, dashboard, navigation tree
+- Full Treesitter & LSP coverage for languages I use
+- Complete git integration
+- Formatters and linters where needed
 
-I do have a few small apps that I use with NeoVim installed in `home/bin`.
-Highlights are:
+## Non-Goals
 
-- neovenv: a tool to build & upgrade my python venv I use for the neovim python host.
+- Supporting previous Neovim versions
+- IDE-level features (heavy refactoring tools, project managers)
+- Plugin managers that auto-update without review
+- Managing external tooling (LSPs, formatters, linters) inside Neovim
 
-## ZSH integration
+## Requirements
 
-- I use a custom zsh include to set up NeoVim as my editor. This file is in `home/.config/local/zshrc.d/`.
+- Neovim 0.11+
+- External tools (not managed by Neovim):
+  - LSP servers: lua\_ls, gopls, rust\_analyzer, basedpyright, ruff, etc.
+  - Formatters: stylua, gofmt, prettier, shfmt, etc.
+  - Linters: shellcheck, golangci-lint, yamllint, etc.
+  - Debug adapters: delve, debugpy, codelldb
+  - Utilities: ripgrep, fzf, fd
 
-## Base Configuration
+## Structure
 
-My configurations is based around [LazyVim](https://www.lazyvim.org) because I appreciate an opinionated IDE.
+```
+nvim/
+├── init.lua                 # Entry point
+├── lua/
+│   ├── core/                # Options, keymaps, autocmds, filetypes
+│   ├── lsp/                 # LSP setup and server configurations
+│   └── plugins/             # Plugin specs (lazy.nvim)
+│       └── lang/            # Language-specific plugins
+├── after/ftplugin/          # Filetype-specific settings
+└── snippets/                # Custom snippets
 
-I like batteries included and a nice preconfigured setup to kick off of so I don't need to spend weeks customizing.
-NeoVim w/ LazyVim strikes the perfect balance of modern treesitter/LSP native integration, community support, and speed/clean interface.
+home/bin/                    # Helper scripts
+```
 
-## Major Tweaks to Note
+## Helper Scripts
+
+Small utilities in `home/bin/` that complement this setup:
+
+| Script    | Purpose                                        |
+| ---       | ---                                            |
+| neovenv   | Build & upgrade Neovim's dedicated Python venv |
+| ngchanged | Open all uncommitted changed files             |
+| ngreview  | Open all changed files in current branch       |
+
+## Homeshick
+
+This repo is designed for use with [homeshick](https://github.com/andsens/homeshick).
+
+Instead of linking individual files, this repo uses a homeshick trick: the `./home/.config/nvim` symlink points to `../../nvim`, causing homeshick to link `~/.config/nvim` directly to the `nvim/` directory in this repo.
