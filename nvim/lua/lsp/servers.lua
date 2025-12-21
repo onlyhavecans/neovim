@@ -95,4 +95,7 @@ return {
 
   -- Bash
   bashls = {},
+
+  -- Markdown
+  marksman = {},
 }
