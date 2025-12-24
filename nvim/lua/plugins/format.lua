@@ -44,7 +44,7 @@ return {
         tf = { "terraform_fmt" },
         ["terraform-vars"] = { "terraform_fmt" },
         markdown = { "prettier" },
-        ["_"] = { "trim_whitespace" },
+        ["*"] = { "trim_whitespace" },
       },
 
       formatters = {
