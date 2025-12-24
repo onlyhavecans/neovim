@@ -12,7 +12,6 @@ return {
         dockerfile = { "hadolint" },
         dotenv = { "dotenv_linter" },
         go = { "golangcilint" },
-        markdown = { "markdownlint-cli2" },
         nix = { "statix", "deadnix" },
         psql = { "sqlfluff" },
         sh = { "shellcheck" },

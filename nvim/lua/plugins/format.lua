@@ -16,35 +16,31 @@ return {
       },
       {
         "<leader>uf",
-        function()
-          if vim.g.disable_autoformat then
-            vim.g.disable_autoformat = false
-            vim.notify("Autoformat enabled", vim.log.levels.INFO)
-          else
-            vim.g.disable_autoformat = true
-            vim.notify("Autoformat disabled", vim.log.levels.INFO)
-          end
-        end,
+        "<cmd>FormatToggle<cr>",
         desc = "Toggle autoformat",
       },
     },
     opts = {
       formatters_by_ft = {
-        go = { "goimports", "gofmt" },
-        lua = { "stylua" },
-        nix = { "nixfmt" },
-        ruby = { "rubocop" },
-        yaml = { "yamlfmt" },
-        zsh = { "shfmt" },
-        sh = { "shfmt" },
+        ["*"] = { "trim_whitespace", "trim_newlines" },
         bash = { "shfmt" },
-        json = { "jq" },
+        css = { "stylelint" },
+        go = { "golangci-lint" },
+        hcl = { "hcl" },
+        json = { "fixjson" },
+        just = { "just" },
+        lua = { "stylua" },
+        markdown = { "markdownlint-cli2" },
+        nix = { "nixfmt" },
+        nomad = { "nomadfmt" },
         python = { "ruff_format", "ruff_organize_imports" },
+        ruby = { "rubocop" },
+        sh = { "shfmt" },
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
-        ["terraform-vars"] = { "terraform_fmt" },
-        markdown = { "prettier" },
-        ["*"] = { "trim_whitespace" },
+        toml = { "tombi" },
+        yaml = { "yamlfmt" },
+        zsh = { "shfmt" },
       },
 
       formatters = {
@@ -72,31 +68,30 @@ return {
           return nil
         end
 
-        -- Disable with a global or buffer-local variable
-        if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
+        if vim.b[bufnr].disable_autoformat then
           return nil
         end
 
         return {
-          timeout_ms = 3000,
+          timeout_ms = 1500,
           lsp_format = "fallback",
         }
       end,
     },
     init = function()
-      -- Create commands to toggle autoformat
-      vim.api.nvim_create_user_command("FormatDisable", function(args)
-        if args.bang then
-          vim.b.disable_autoformat = true
-        else
-          vim.g.disable_autoformat = true
-        end
-      end, { desc = "Disable autoformat-on-save", bang = true })
+      vim.api.nvim_create_user_command("FormatDisable", function()
+        vim.b.disable_autoformat = true
+      end, { desc = "Disable autoformat for buffer" })
 
       vim.api.nvim_create_user_command("FormatEnable", function()
         vim.b.disable_autoformat = false
-        vim.g.disable_autoformat = false
-      end, { desc = "Re-enable autoformat-on-save" })
+      end, { desc = "Enable autoformat for buffer" })
+
+      vim.api.nvim_create_user_command("FormatToggle", function()
+        vim.b.disable_autoformat = not vim.b.disable_autoformat
+        local status = vim.b.disable_autoformat and "disabled" or "enabled"
+        vim.notify("Autoformat " .. status, vim.log.levels.INFO)
+      end, { desc = "Toggle autoformat for buffer" })
     end,
   },
 }
