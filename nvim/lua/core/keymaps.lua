@@ -15,12 +15,12 @@ map("n", "XX", ":qall!<CR>", { desc = "Quit all without saving" })
 map("n", "<Leader>.", ":cd %:p:h<CR>:pwd<CR>", { desc = "cd to current file dir" })
 
 -- Better movement on wrapped lines
-map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true, desc = "Down" })
+map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true, desc = "Up" })
 
 -- Better indenting (stay in visual mode)
-map("v", "<", "<gv")
-map("v", ">", ">gv")
+map("v", "<", "<gv", { desc = "Indent left" })
+map("v", ">", ">gv", { desc = "Indent right" })
 
 -- Clear search highlight
 map("n", "<Esc>", "<cmd>nohlsearch<CR>", { desc = "Clear search highlight" })
@@ -58,9 +58,9 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
 -- Add undo break-points
-map("i", ",", ",<c-g>u")
-map("i", ".", ".<c-g>u")
-map("i", ";", ";<c-g>u")
+map("i", ",", ",<c-g>u", { desc = "Undo break-point" })
+map("i", ".", ".<c-g>u", { desc = "Undo break-point" })
+map("i", ";", ";<c-g>u", { desc = "Undo break-point" })
 
 -- Entire buffer textobject (ag/ig)
 map({ "x", "o" }, "ag", function()
