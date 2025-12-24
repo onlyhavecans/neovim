@@ -2,10 +2,13 @@
 -- Add new servers here - they will be automatically set up
 
 return {
-  -- Python
-  basedpyright = {}, -- mature type checker (stricter)
-  ty = {}, -- Astral's fast type checker (beta)
-  ruff = {}, -- Astral's linter/formatter
+  basedpyright = {},
+  -- ty = {},
+  ruff = {
+    on_attach = function(client, _)
+      client.server_capabilities.hoverProvider = false
+    end,
+  },
 
   -- JavaScript
   quick_lint_js = {},
