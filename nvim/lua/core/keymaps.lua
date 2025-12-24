@@ -84,3 +84,16 @@ map("n", "<leader>ne", function()
   require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "Edit config" })
 map("n", "<leader>np", "<cmd>Lazy profile<cr>", { desc = "Startup profile" })
+
+-- Sort with motion
+map("n", "gS", function()
+  vim.o.operatorfunc = "v:lua._sort_motion"
+  return "g@"
+end, { expr = true, desc = "Sort with motion" })
+map("v", "gS", ":sort<cr>", { desc = "Sort selection" })
+
+function _G._sort_motion(type)
+  local start_line = vim.fn.line("'[")
+  local end_line = vim.fn.line("']")
+  vim.cmd(start_line .. "," .. end_line .. "sort")
+end
