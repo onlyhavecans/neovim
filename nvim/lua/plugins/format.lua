@@ -24,7 +24,6 @@ return {
       formatters_by_ft = {
         ["*"] = { "trim_whitespace", "trim_newlines" },
         bash = { "shfmt" },
-        css = { "stylelint" },
         go = { "golangci-lint" },
         hcl = { "hcl" },
         json = { "fixjson" },

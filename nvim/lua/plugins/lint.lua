@@ -9,9 +9,11 @@ return {
 
       lint.linters_by_ft = {
         ansible = { "ansible_lint" },
+        css = { "stylelint" },
         dockerfile = { "hadolint" },
         dotenv = { "dotenv_linter" },
         go = { "golangcilint" },
+        markdown = { "markdownlint-cli2" },
         nix = { "statix", "deadnix" },
         psql = { "sqlfluff" },
         sh = { "shellcheck" },
