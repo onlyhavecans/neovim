@@ -32,7 +32,7 @@ return {
         lua = { "stylua" },
         markdown = { "markdownlint-cli2" },
         nix = { "nixfmt" },
-        nomad = { "nomadfmt" },
+        nomad = { "nomad_fmt" },
         python = { "ruff_format", "ruff_organize_imports" },
         ruby = { "rubocop" },
         sh = { "shfmt" },
