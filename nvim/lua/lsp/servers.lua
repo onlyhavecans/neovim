@@ -3,7 +3,7 @@
 
 return {
   basedpyright = {},
-  -- ty = {},
+  ty = {},
   ruff = {
     on_attach = function(client, _)
       client.server_capabilities.hoverProvider = false
