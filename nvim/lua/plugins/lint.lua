@@ -17,6 +17,8 @@ return {
         nix = { "statix", "deadnix" },
         psql = { "sqlfluff" },
         sh = { "shellcheck" },
+        terraform = { "tflint" },
+        tf = { "tflint" },
         yaml = { "yamllint" },
         zsh = { "zsh" },
       }
