@@ -2,6 +2,7 @@
 
 vim.filetype.add({
   extension = {
+    ["jsonc"] = "json5",
     ["nsp"] = "json",
     ["tin"] = "tintin",
   },
