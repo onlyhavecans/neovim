@@ -20,7 +20,7 @@ return {
         terraform = { "tflint" },
         tf = { "tflint" },
         yaml = { "yamllint" },
-        zsh = { "zsh" },
+        fish = { "fish" },
       }
 
       -- Auto-lint on events

@@ -39,7 +39,7 @@ return {
         tf = { "terraform_fmt" },
         toml = { "tombi" },
         yaml = { "yamlfmt" },
-        zsh = { "shfmt" },
+        fish = { "fish_indent" },
       },
 
       formatters = {

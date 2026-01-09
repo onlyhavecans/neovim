@@ -99,6 +99,9 @@ return {
   -- Bash
   bashls = {},
 
+  -- Fish
+  fish_lsp = {},
+
   -- Markdown
   marksman = {},
 
