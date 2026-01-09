@@ -16,6 +16,7 @@ return {
     "lewis6991/gitsigns.nvim",
     event = { "BufReadPre", "BufNewFile" },
     opts = {
+      gh = true,
       current_line_blame = true,
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
@@ -62,6 +63,13 @@ return {
         map("n", "<leader>gb", function()
           gs.blame_line({ full = true })
         end, "Blame line popup")
+        map("n", "<leader>gB", gs.blame, "Blame buffer")
+
+        -- Hunk lists
+        map("n", "<leader>gq", function()
+          gs.setqflist("all")
+        end, "Hunks to quickfix (repo)")
+        map("n", "<leader>gl", gs.setloclist, "Hunks to loclist (buffer)")
 
         -- Text object
         map({ "o", "x" }, "ih", ":<C-U>Gitsigns select_hunk<CR>", "GitSigns select hunk")
