@@ -62,6 +62,35 @@ return {
     branch = "main",
     build = ":TSUpdate",
     lazy = false, -- treesitter does not support lazy loading
+    config = function()
+      -- Install ensure_installed parsers if missing
+      local installed = require("nvim-treesitter.config").get_installed()
+      local to_install = vim.tbl_filter(function(lang)
+        return not vim.tbl_contains(installed, lang)
+      end, ensure_installed)
+
+      if #to_install > 0 then
+        require("nvim-treesitter").install(to_install)
+      end
+
+      -- Auto-install parsers on demand when opening files
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter_auto_install", { clear = true }),
+        callback = function(ev)
+          local lang = vim.treesitter.language.get_lang(ev.match)
+          if not lang then
+            return
+          end
+
+          -- Check if parser is already installed
+          local ok = pcall(vim.treesitter.language.add, lang)
+          if not ok then
+            -- Parser not installed, install it
+            require("nvim-treesitter").install(lang)
+          end
+        end,
+      })
+    end,
   },
 
   -- Treesitter textobjects
