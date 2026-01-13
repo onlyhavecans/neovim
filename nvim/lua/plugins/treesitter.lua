@@ -26,7 +26,6 @@ local ensure_installed = {
   -- Data formats
   "json",
   "json5",
-  "jsonc",
   "yaml",
   "toml",
   "xml",
