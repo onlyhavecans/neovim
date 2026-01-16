@@ -73,6 +73,7 @@ return {
       end
 
       -- Auto-install parsers on demand when opening files
+      -- and enable treesitter highlighting (including language injections)
       vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter_auto_install", { clear = true }),
         callback = function(ev)
@@ -84,8 +85,14 @@ return {
           -- Check if parser is already installed
           local ok = pcall(vim.treesitter.language.add, lang)
           if not ok then
-            -- Parser not installed, install it
-            require("nvim-treesitter").install(lang)
+            -- Only auto-install if this is a known language (not custom filetypes)
+            local known = vim.tbl_contains(ensure_installed, lang)
+            if known then
+              require("nvim-treesitter").install(lang)
+            end
+          else
+            -- Parser available, enable treesitter highlighting
+            pcall(vim.treesitter.start, ev.buf, lang)
           end
         end,
       })
