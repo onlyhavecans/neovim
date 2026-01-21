@@ -8,6 +8,7 @@ local ensure_installed = {
   "vimdoc",
   "regex",
   "diff",
+  "fish",
 
   -- Git
   "git_config",
