@@ -73,6 +73,12 @@ end, { desc = "Entire buffer" })
 -- Toggle wrap mode
 map("n", "<leader>uw", "<cmd>Wrap<cr>", { desc = "Enable wrap mode" })
 
+-- Toggle inline diagnostics
+map("n", "<leader>ud", function()
+  local current = vim.diagnostic.config().virtual_text
+  vim.diagnostic.config({ virtual_text = not current })
+end, { desc = "Toggle inline diagnostics" })
+
 -- Straighten quotes
 map("n", "<leader>cq", "<cmd>StraightenQuotes<cr>", { desc = "Straighten quotes" })
 
