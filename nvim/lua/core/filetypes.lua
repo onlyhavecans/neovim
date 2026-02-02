@@ -4,7 +4,7 @@ vim.filetype.add({
   extension = {
     ["jsonc"] = "json",
     ["nsp"] = "json",
-    ["tin"] = "tintin",
+    ["tin"] = "tt",
   },
   filename = {
     [".envrc"] = "bash",
