@@ -10,8 +10,8 @@ return {
     end,
   },
 
-  -- JavaScript
-  quick_lint_js = {},
+  -- TypeScript / JavaScript
+  ts_ls = {},
 
   -- Nix
   nixd = {},

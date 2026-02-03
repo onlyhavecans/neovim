@@ -10,6 +10,10 @@ return {
       lint.linters_by_ft = {
         ansible = { "ansible_lint" },
         dockerfile = { "hadolint" },
+        javascript = { "eslint" },
+        javascriptreact = { "eslint" },
+        typescript = { "eslint" },
+        typescriptreact = { "eslint" },
         dotenv = { "dotenv_linter" },
         go = { "golangcilint" },
         markdown = { "markdownlint-cli2" },

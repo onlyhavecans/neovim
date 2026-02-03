@@ -24,6 +24,10 @@ return {
       formatters_by_ft = {
         ["*"] = { "trim_whitespace", "trim_newlines" },
         bash = { "shfmt" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
         go = { "golangci-lint" },
         hcl = { "hcl" },
         json = { "fixjson" },
