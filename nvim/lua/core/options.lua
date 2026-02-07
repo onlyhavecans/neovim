@@ -56,10 +56,8 @@ opt.splitkeep = "screen" -- Keep screen position when splitting
 opt.scrolloff = 8 -- Lines to keep above/below cursor
 opt.sidescrolloff = 1 -- Columns to keep left/right of cursor
 
--- Folding (treesitter-based, start with all folds open)
-opt.foldmethod = "expr" -- Use expression for folding
-opt.foldexpr = "v:lua.vim.treesitter.foldexpr()" -- Treesitter-based folds
-opt.foldlevelstart = 99 -- Start with all folds open
+-- Folding disabled
+opt.foldenable = false
 
 -- Timing
 opt.updatetime = 200 -- Faster CursorHold events (default 4000)
