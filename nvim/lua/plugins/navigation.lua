@@ -10,19 +10,33 @@ return {
     ---@type fzf-lua.Config|{}
     ---@diagnostics disable: missing-fields
     opts = {
+      -- Use profile with centered titles
+      "default-title",
       files = {
         cwd_prompt = false,
+      },
+      -- Register as vim.ui.select handler
+      ui_select = true,
+      -- Keymaps inside fzf window
+      keymap = {
+        fzf = {
+          ["ctrl-q"] = "select-all+accept", -- send all to quickfix
+          ["ctrl-u"] = "half-page-up",
+          ["ctrl-d"] = "half-page-down",
+          ["ctrl-f"] = "preview-page-down",
+          ["ctrl-b"] = "preview-page-up",
+        },
       },
     },
     ---@diagnostics enable: missing-fields
     config = function(_, opts)
-      local fzf = require("fzf-lua")
-      fzf.setup(opts)
-      fzf.register_ui_select()
+      require("fzf-lua").setup(opts)
     end,
     keys = {
+      -- Global picker (files + buffers + symbols with prefix filtering)
+      { "<leader><space>", "<cmd>FzfLua global<cr>", desc = "Global picker" },
       -- Files (f = file operations)
-      { "<leader><space>", "<cmd>FzfLua files<cr>", desc = "Find files" },
+      { "<leader>ff", "<cmd>FzfLua files<cr>", desc = "Find files" },
       { "<leader>fr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
       { "<leader>,", "<cmd>FzfLua buffers<cr>", desc = "Switch buffer" },
       -- Search (s = search in content)
