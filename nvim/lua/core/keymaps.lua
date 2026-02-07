@@ -79,6 +79,18 @@ map("n", "<leader>ud", function()
   vim.diagnostic.config({ virtual_text = not current })
 end, { desc = "Toggle inline diagnostics" })
 
+-- Toggle treesitter folding
+map("n", "<leader>uf", function()
+  if vim.wo.foldenable then
+    vim.wo.foldenable = false
+  else
+    vim.wo.foldmethod = "expr"
+    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+    vim.wo.foldenable = true
+    vim.wo.foldlevel = 99 -- start with all folds open
+  end
+end, { desc = "Toggle treesitter folding" })
+
 -- Straighten quotes
 map("n", "<leader>cq", "<cmd>StraightenQuotes<cr>", { desc = "Straighten quotes" })
 
