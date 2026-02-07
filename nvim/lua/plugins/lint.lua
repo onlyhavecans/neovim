@@ -14,7 +14,6 @@ return {
         javascriptreact = { "eslint" },
         typescript = { "eslint" },
         typescriptreact = { "eslint" },
-        dotenv = { "dotenv_linter" },
         go = { "golangcilint" },
         markdown = { "markdownlint-cli2" },
         nix = { "statix", "deadnix" },
