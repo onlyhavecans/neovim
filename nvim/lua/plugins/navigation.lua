@@ -81,16 +81,16 @@ return {
     },
     opts = {
       close_if_last_window = true,
-      popup_border_style = "rounded",
-      enable_git_status = true,
       enable_diagnostics = true,
-      sort_case_insensitive = true,
-      window = {
-        width = 30,
-      },
+      enable_git_status = true,
       filesystem = {
+        filtered_items = { visible = true },
         follow_current_file = { enabled = true },
+        group_empty_dirs = true,
       },
+      popup_border_style = "rounded",
+      sort_case_insensitive = true,
+      window = { width = 30 },
     },
   },
 
