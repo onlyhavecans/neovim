@@ -11,7 +11,49 @@ return {
   },
 
   -- TypeScript / JavaScript
-  ts_ls = {},
+  vtsls = {
+    settings = {
+      vtsls = {
+        autoUseWorkspaceTsdk = true,
+      },
+      typescript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        inlayHints = {
+          parameterNames = { enabled = "all" },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+        preferences = {
+          includePackageJsonAutoImports = "auto",
+        },
+      },
+      javascript = {
+        updateImportsOnFileMove = { enabled = "always" },
+        inlayHints = {
+          parameterNames = { enabled = "all" },
+          parameterTypes = { enabled = true },
+          variableTypes = { enabled = true },
+          propertyDeclarationTypes = { enabled = true },
+          functionLikeReturnTypes = { enabled = true },
+          enumMemberValues = { enabled = true },
+        },
+        suggest = {
+          completeFunctionCalls = true,
+        },
+      },
+    },
+    capabilities = {
+      general = {
+        positionEncodings = { "utf-16" },
+      },
+    },
+  },
 
   -- Nix
   nixd = {},
@@ -48,10 +90,35 @@ return {
     settings = {
       gopls = {
         gofumpt = true,
+        staticcheck = true,
+        usePlaceholders = true,
+        completeUnimported = true,
+        directoryFilters = { "-.git", "-node_modules", "-.idea", "-.vscode" },
+        codelenses = {
+          gc_details = false,
+          generate = true,
+          regenerate_cgo = true,
+          run_govulncheck = true,
+          test = true,
+          tidy = true,
+          upgrade_dependency = true,
+          vendor = true,
+        },
+        hints = {
+          assignVariableTypes = true,
+          compositeLiteralFields = true,
+          compositeLiteralTypes = true,
+          constantValues = true,
+          functionTypeParameters = true,
+          parameterNames = true,
+          rangeVariableTypes = true,
+        },
         analyses = {
           unusedparams = true,
+          nilness = true,
+          unusedwrite = true,
+          useany = true,
         },
-        staticcheck = true,
       },
     },
   },
@@ -62,9 +129,19 @@ return {
       ["rust-analyzer"] = {
         cargo = {
           allFeatures = true,
+          loadOutDirsFromCheck = true,
+          buildScripts = {
+            enable = true,
+          },
         },
-        checkOnSave = {
+        check = {
           command = "clippy",
+        },
+        procMacro = {
+          enable = true,
+        },
+        files = {
+          excludeDirs = { ".git", "target", "node_modules", ".direnv", ".flatpak-builder" },
         },
       },
     },
