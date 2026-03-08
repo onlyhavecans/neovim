@@ -8,7 +8,7 @@ return {
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
       -- Adapters
-      "nvim-neotest/neotest-go",
+      "fredrikaverpil/neotest-golang",
       "nvim-neotest/neotest-python",
       "rouge8/neotest-rust",
     },
@@ -84,14 +84,14 @@ return {
         desc = "Debug nearest test",
       },
       {
-        "[t",
+        "[T",
         function()
           require("neotest").jump.prev({ status = "failed" })
         end,
         desc = "Prev failed test",
       },
       {
-        "]t",
+        "]T",
         function()
           require("neotest").jump.next({ status = "failed" })
         end,
@@ -109,8 +109,7 @@ return {
     },
     config = function(_, opts)
       opts.adapters = {
-        require("neotest-go")({
-          experimental = { test_table = true },
+        require("neotest-golang")({
           args = { "-count=1", "-timeout=60s" },
         }),
         require("neotest-python")({
