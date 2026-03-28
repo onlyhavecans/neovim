@@ -4,73 +4,72 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
+    main = "nvim-treesitter.configs",
     build = ":TSUpdate",
     lazy = false,
-    config = function()
-      require("nvim-treesitter.configs").setup({
-        ensure_installed = {
-          -- Shell
-          "bash",
-          "vim",
-          "vimdoc",
-          "regex",
-          "diff",
-          "fish",
+    opts = {
+      ensure_installed = {
+        -- Shell
+        "bash",
+        "vim",
+        "vimdoc",
+        "regex",
+        "diff",
+        "fish",
 
-          -- Git
-          "git_config",
-          "git_rebase",
-          "gitattributes",
-          "gitcommit",
-          "gitignore",
+        -- Git
+        "git_config",
+        "git_rebase",
+        "gitattributes",
+        "gitcommit",
+        "gitignore",
 
-          -- Web
-          "html",
-          "css",
-          "javascript",
-          "typescript",
-          "tsx",
+        -- Web
+        "html",
+        "css",
+        "javascript",
+        "typescript",
+        "tsx",
 
-          -- Data & Config
-          "desktop",
-          "json",
-          "json5",
-          "toml",
-          "xml",
-          "yaml",
+        -- Data & Config
+        "desktop",
+        "json",
+        "json5",
+        "toml",
+        "xml",
+        "yaml",
 
-          -- Programming languages
-          "c",
-          "cpp",
-          "lua",
-          "python",
-          "go",
-          "gomod",
-          "gosum",
-          "gowork",
-          "rust",
-          "jinja",
+        -- Programming languages
+        "c",
+        "cpp",
+        "lua",
+        "python",
+        "go",
+        "gomod",
+        "gosum",
+        "gowork",
+        "rust",
+        "jinja",
 
-          -- Infrastructure
-          "hcl",
-          "terraform",
-          "nix",
-          "dockerfile",
-          "make",
-          "ssh_config",
+        -- Infrastructure
+        "hcl",
+        "terraform",
+        "nix",
+        "dockerfile",
+        "make",
+        "ssh_config",
 
-          -- Other
-          "markdown",
-          "markdown_inline",
-          "sql",
-          "just",
-          "ninja",
-          "query",
-        },
-        highlight = { enable = true },
-        indent = { enable = true },
-      })
-    end,
+        -- Other
+        "markdown",
+        "markdown_inline",
+        "sql",
+        "just",
+        "ninja",
+        "query",
+      },
+      highlight = { enable = true },
+      indent = { enable = true },
+    },
   },
 
   -- Treesitter textobjects
