@@ -1,14 +1,15 @@
--- Treesitter configuration (master branch for nvim 0.11 compat)
+-- Treesitter configuration (main branch rewrite for nvim 0.11)
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    branch = "master",
-    main = "nvim-treesitter.configs",
+    branch = "main",
     build = ":TSUpdate",
     lazy = false,
-    opts = {
-      ensure_installed = {
+    config = function()
+      require("nvim-treesitter").setup({})
+
+      require("nvim-treesitter").install({
         -- Shell
         "bash",
         "vim",
@@ -66,59 +67,52 @@ return {
         "just",
         "ninja",
         "query",
-      },
-      highlight = { enable = true },
-      indent = { enable = true },
-    },
+      })
+    end,
   },
 
   -- Treesitter textobjects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
-    branch = "master",
+    branch = "main",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
-      require("nvim-treesitter.configs").setup({
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true,
-            keymaps = {
-              ["af"] = { query = "@function.outer", desc = "outer function" },
-              ["if"] = { query = "@function.inner", desc = "inner function" },
-              ["ac"] = { query = "@class.outer", desc = "outer class" },
-              ["ic"] = { query = "@class.inner", desc = "inner class" },
-              ["aa"] = { query = "@parameter.outer", desc = "outer argument" },
-              ["ia"] = { query = "@parameter.inner", desc = "inner argument" },
-              ["ao"] = { query = "@block.outer", desc = "outer block" },
-              ["io"] = { query = "@block.inner", desc = "inner block" },
-            },
+      require("nvim-treesitter-textobjects").setup({
+        select = {
+          lookahead = true,
+          keymaps = {
+            ["af"] = { query = "@function.outer", desc = "outer function" },
+            ["if"] = { query = "@function.inner", desc = "inner function" },
+            ["ac"] = { query = "@class.outer", desc = "outer class" },
+            ["ic"] = { query = "@class.inner", desc = "inner class" },
+            ["aa"] = { query = "@parameter.outer", desc = "outer argument" },
+            ["ia"] = { query = "@parameter.inner", desc = "inner argument" },
+            ["ao"] = { query = "@block.outer", desc = "outer block" },
+            ["io"] = { query = "@block.inner", desc = "inner block" },
           },
-          move = {
-            enable = true,
-            set_jumps = true,
-            goto_next_start = {
-              ["]f"] = { query = "@function.outer", desc = "Next function" },
-            },
-            goto_next_end = {
-              ["]F"] = { query = "@function.outer", desc = "Next function end" },
-            },
-            goto_previous_start = {
-              ["[f"] = { query = "@function.outer", desc = "Prev function" },
-            },
-            goto_previous_end = {
-              ["[F"] = { query = "@function.outer", desc = "Prev function end" },
-            },
+        },
+        move = {
+          set_jumps = true,
+          goto_next_start = {
+            ["]f"] = { query = "@function.outer", desc = "Next function" },
           },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>cs"] = { query = "@parameter.inner", desc = "Swap next param" },
-            },
-            swap_previous = {
-              ["<leader>cS"] = { query = "@parameter.inner", desc = "Swap prev param" },
-            },
+          goto_next_end = {
+            ["]F"] = { query = "@function.outer", desc = "Next function end" },
+          },
+          goto_previous_start = {
+            ["[f"] = { query = "@function.outer", desc = "Prev function" },
+          },
+          goto_previous_end = {
+            ["[F"] = { query = "@function.outer", desc = "Prev function end" },
+          },
+        },
+        swap = {
+          swap_next = {
+            ["<leader>cs"] = { query = "@parameter.inner", desc = "Swap next param" },
+          },
+          swap_previous = {
+            ["<leader>cS"] = { query = "@parameter.inner", desc = "Swap prev param" },
           },
         },
       })
