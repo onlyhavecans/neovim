@@ -52,13 +52,7 @@ local function on_attach(client, bufnr)
 
   -- CodeLens
   if client:supports_method("textDocument/codeLens") then
-    vim.lsp.codelens.refresh({ bufnr = bufnr })
-    vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-      buffer = bufnr,
-      callback = function()
-        vim.lsp.codelens.refresh({ bufnr = bufnr })
-      end,
-    })
+    vim.lsp.codelens.enable(true, { bufnr = bufnr })
     map("n", "<leader>cl", vim.lsp.codelens.run, "Run CodeLens")
   end
 
