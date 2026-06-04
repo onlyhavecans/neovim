@@ -1,82 +1,78 @@
--- Treesitter configuration (main branch rewrite for nvim 0.11)
+-- Treesitter configuration (nvim 0.12, post-archive)
 
 return {
   {
-    "nvim-treesitter/nvim-treesitter",
-    branch = "main",
-    build = ":TSUpdate",
-    lazy = false,
+    "romus204/tree-sitter-manager.nvim",
+    dependencies = {},
     config = function()
-      require("nvim-treesitter").setup({})
+      require("tree-sitter-manager").setup({
+        -- Install missing parsers automatically when opening a file
+        auto_install = true,
+        highlight = true,
+        ensure_installed = {
+          -- Shell
+          "bash",
+          "vim",
+          "vimdoc",
+          "regex",
+          "diff",
+          "fish",
 
-      require("nvim-treesitter").install({
-        -- Shell
-        "bash",
-        "vim",
-        "vimdoc",
-        "regex",
-        "diff",
-        "fish",
+          -- Git
+          "git_config",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
 
-        -- Git
-        "git_config",
-        "git_rebase",
-        "gitattributes",
-        "gitcommit",
-        "gitignore",
+          -- Web
+          "html",
+          "css",
+          "javascript",
+          "typescript",
 
-        -- Web
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
+          -- Data & Config
+          "desktop",
+          "json",
+          "json5",
+          "toml",
+          "xml",
+          "yaml",
 
-        -- Data & Config
-        "desktop",
-        "json",
-        "json5",
-        "toml",
-        "xml",
-        "yaml",
+          -- Programming languages
+          "c",
+          "cpp",
+          "lua",
+          "python",
+          "go",
+          "gomod",
+          "gosum",
+          "gowork",
+          "rust",
+          "jinja",
 
-        -- Programming languages
-        "c",
-        "cpp",
-        "lua",
-        "python",
-        "go",
-        "gomod",
-        "gosum",
-        "gowork",
-        "rust",
-        "jinja",
+          -- Infrastructure
+          "hcl",
+          "terraform",
+          "nix",
+          "dockerfile",
+          "make",
+          "ssh_config",
 
-        -- Infrastructure
-        "hcl",
-        "terraform",
-        "nix",
-        "dockerfile",
-        "make",
-        "ssh_config",
-
-        -- Other
-        "markdown",
-        "markdown_inline",
-        "sql",
-        "just",
-        "ninja",
-        "query",
+          -- Other
+          "markdown",
+          "markdown_inline",
+          "sql",
+          "just",
+        },
       })
     end,
   },
 
-  -- Treesitter textobjects
   {
     "nvim-treesitter/nvim-treesitter-textobjects",
     branch = "main",
     event = { "BufReadPre", "BufNewFile" },
-    dependencies = { "nvim-treesitter/nvim-treesitter" },
     config = function()
       require("nvim-treesitter-textobjects").setup({
         select = {
