@@ -57,11 +57,6 @@ map("n", "<leader>fn", "<cmd>enew<cr>", { desc = "New file" })
 -- Terminal escape
 map("t", "<Esc><Esc>", "<C-\\><C-n>", { desc = "Exit terminal mode" })
 
--- Add undo break-points
-map("i", ",", ",<c-g>u", { desc = "Undo break-point" })
-map("i", ".", ".<c-g>u", { desc = "Undo break-point" })
-map("i", ";", ";<c-g>u", { desc = "Undo break-point" })
-
 -- Entire buffer textobject (ag/ig)
 map({ "x", "o" }, "ag", function()
   vim.cmd("normal! ggVG")
@@ -79,18 +74,6 @@ map("n", "<leader>ud", function()
   vim.diagnostic.config({ virtual_text = not current })
 end, { desc = "Toggle inline diagnostics" })
 
--- Toggle treesitter folding
-map("n", "<leader>ut", function()
-  if vim.wo.foldenable then
-    vim.wo.foldenable = false
-  else
-    vim.wo.foldmethod = "expr"
-    vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.wo.foldenable = true
-    vim.wo.foldlevel = 99 -- start with all folds open
-  end
-end, { desc = "Toggle treesitter folding" })
-
 -- Straighten quotes
 map("n", "<leader>cq", "<cmd>StraightenQuotes<cr>", { desc = "Straighten quotes" })
 
@@ -102,16 +85,3 @@ map("n", "<leader>ne", function()
   require("fzf-lua").files({ cwd = vim.fn.stdpath("config") })
 end, { desc = "Edit config" })
 map("n", "<leader>np", "<cmd>Lazy profile<cr>", { desc = "Startup profile" })
-
--- Sort with motion
-map("n", "gS", function()
-  vim.o.operatorfunc = "v:lua._sort_motion"
-  return "g@"
-end, { expr = true, desc = "Sort with motion" })
-map("v", "gS", ":sort<cr>", { desc = "Sort selection" })
-
-function _G._sort_motion(type)
-  local start_line = vim.fn.line("'[")
-  local end_line = vim.fn.line("']")
-  vim.cmd(start_line .. "," .. end_line .. "sort")
-end
