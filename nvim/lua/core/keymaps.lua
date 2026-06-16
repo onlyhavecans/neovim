@@ -80,7 +80,7 @@ map("n", "<leader>ud", function()
 end, { desc = "Toggle inline diagnostics" })
 
 -- Toggle treesitter folding
-map("n", "<leader>uf", function()
+map("n", "<leader>ut", function()
   if vim.wo.foldenable then
     vim.wo.foldenable = false
   else
