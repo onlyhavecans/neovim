@@ -27,13 +27,8 @@ return {
   -- fidget.nvim for LSP progress indicators
   {
     "j-hui/fidget.nvim",
-    event = "LspAttach",
-    opts = {
-      notification = {
-        window = {
-          winblend = 0,
-        },
-      },
-    },
+    event = { "BufReadPre", "BufNewFile" },
+    -- event = "LspAttach",
+    opts = {},
   },
 }
