@@ -8,7 +8,7 @@ vim.filetype.add({
   },
   filename = {
     [".envrc"] = "bash",
-    [".env"] = "dotenv",
+    [".env"] = "env",
     [".markdownlintrc"] = "json",
   },
   pattern = {
