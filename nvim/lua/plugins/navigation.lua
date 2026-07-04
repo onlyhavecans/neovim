@@ -16,7 +16,7 @@ return {
         cwd_prompt = false,
       },
       -- Register as vim.ui.select handler
-      ui_select = true,
+      ui_select = {},
       -- Keymaps inside fzf window
       keymap = {
         fzf = {
