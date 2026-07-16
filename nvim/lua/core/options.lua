@@ -22,6 +22,7 @@ opt.laststatus = 3 -- Global statusline (single line for all splits)
 opt.cmdheight = 1 -- Command line height
 opt.pumheight = 10 -- Max items in popup menu
 opt.smoothscroll = true -- Smooth scrolling with ctrl-d/u
+opt.shortmess:append("I") -- Suppress built-in intro screen (avoids flash before dashboard loads)
 
 -- Indentation
 opt.tabstop = 2 -- Tab character width
