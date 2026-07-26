@@ -66,7 +66,7 @@ return {
 
       format_on_save = function(bufnr)
         -- Disable autoformat for certain filetypes
-        local disable_filetypes = { markdown = true }
+        local disable_filetypes = { markdown = true, yaml = true, json = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         end
