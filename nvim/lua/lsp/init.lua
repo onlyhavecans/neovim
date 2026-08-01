@@ -70,9 +70,12 @@ local function on_attach(client, bufnr)
       callback = vim.lsp.buf.clear_references,
     })
     vim.api.nvim_create_autocmd("LspDetach", {
-      group = vim.api.nvim_create_augroup("lsp_document_highlight_detach", { clear = true }),
+      group = highlight_augroup,
+      buffer = bufnr,
       callback = function(ev)
-        vim.lsp.buf.clear_references()
+        if ev.buf == vim.api.nvim_get_current_buf() then
+          vim.lsp.buf.clear_references()
+        end
         vim.api.nvim_clear_autocmds({ group = "lsp_document_highlight", buffer = ev.buf })
       end,
     })

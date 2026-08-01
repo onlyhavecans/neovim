@@ -3,7 +3,6 @@
 
 return {
   basedpyright = {},
-  ty = {},
   ruff = {
     on_attach = function(client, _)
       client.server_capabilities.hoverProvider = false
@@ -57,7 +56,6 @@ return {
 
   -- Nix
   nixd = {},
-  nil_ls = {},
 
   -- TOML
   tombi = {},
