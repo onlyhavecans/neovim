@@ -24,12 +24,12 @@ return {
       formatters_by_ft = {
         ["*"] = { "trim_whitespace", "trim_newlines" },
         bash = { "shfmt" },
-        javascript = { "prettier" },
-        javascriptreact = { "prettier" },
-        typescript = { "prettier" },
-        typescriptreact = { "prettier" },
+        css = { "prettier" },
+        fish = { "fish_indent" },
         go = { "golangci-lint" },
         hcl = { "hcl" },
+        javascript = { "prettier" },
+        javascriptreact = { "prettier" },
         json = { "fixjson" },
         just = { "just" },
         lua = { "stylua" },
@@ -37,36 +37,24 @@ return {
         nix = { "nixfmt" },
         nomad = { "nomad_fmt" },
         python = { "ruff_format", "ruff_organize_imports" },
-        ruby = { "rubocop" },
         sh = { "shfmt" },
         terraform = { "terraform_fmt" },
         tf = { "terraform_fmt" },
         toml = { "tombi" },
+        typescript = { "prettier" },
+        typescriptreact = { "prettier" },
         yaml = { "yamlfmt" },
-        fish = { "fish_indent" },
       },
 
       formatters = {
         shfmt = {
           prepend_args = { "-i", "2", "-ci" },
         },
-        rubocop = {
-          inherit = false,
-          command = "rubocop",
-          args = {
-            "-a",
-            "-f",
-            "quiet",
-            "--stderr",
-            "--stdin",
-            "$FILENAME",
-          },
-        },
       },
 
       format_on_save = function(bufnr)
         -- Disable autoformat for certain filetypes
-        local disable_filetypes = { markdown = true, yaml = true, json = true }
+        local disable_filetypes = { markdown = true }
         if disable_filetypes[vim.bo[bufnr].filetype] then
           return nil
         end
