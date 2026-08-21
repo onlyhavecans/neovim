@@ -171,9 +171,6 @@ return {
     },
   },
 
-  --  CSS
-  cssls = {},
-
   -- Bash
   bashls = {},
 
