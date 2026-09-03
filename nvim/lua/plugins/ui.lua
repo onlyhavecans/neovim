@@ -44,7 +44,7 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "gruvbox",
+        theme = "everforest",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
