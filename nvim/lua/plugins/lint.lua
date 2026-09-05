@@ -7,6 +7,9 @@ return {
     config = function()
       local lint = require("lint")
 
+      local mdl = lint.linters["markdownlint-cli2"]
+      mdl.args = vim.list_extend({ "--config", vim.fn.expand("~/.config/markdownlint-cli2.yaml") }, mdl.args or {})
+
       lint.linters_by_ft = {
         ansible = { "ansible_lint" },
         dockerfile = { "hadolint" },

@@ -49,6 +49,9 @@ return {
         shfmt = {
           prepend_args = { "-i", "2", "-ci" },
         },
+        ["markdownlint-cli2"] = {
+          prepend_args = { "--config", vim.fn.expand("~/.config/markdownlint-cli2.yaml") },
+        },
       },
 
       format_on_save = function(bufnr)
