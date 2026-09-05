@@ -63,34 +63,19 @@ return {
     },
   },
 
-  -- neo-tree.nvim (file explorer with git integration)
+  -- yazi.nvim (file explorer with git integration)
   {
-    "nvim-neo-tree/neo-tree.nvim",
-    branch = "v3.x",
+    "mikavilpas/yazi.nvim",
+    version = "*",
+    event = "VeryLazy",
     dependencies = {
-      "nvim-lua/plenary.nvim",
-      "nvim-tree/nvim-web-devicons",
-      "MunifTanjim/nui.nvim",
+      { "nvim-lua/plenary.nvim", lazy = true },
     },
-    cmd = "Neotree",
+    cmd = "Yazi",
     keys = {
-      { "<leader>e", "<cmd>Neotree toggle<cr>", desc = "File explorer" },
-      { "<leader>E", "<cmd>Neotree reveal<cr>", desc = "Reveal file in explorer" },
-      { "<leader>ge", "<cmd>Neotree git_status<cr>", desc = "Git explorer" },
-      { "<leader>be", "<cmd>Neotree buffers<cr>", desc = "Buffer explorer" },
-    },
-    opts = {
-      close_if_last_window = true,
-      enable_diagnostics = true,
-      enable_git_status = true,
-      filesystem = {
-        filtered_items = { visible = true },
-        follow_current_file = { enabled = true },
-        group_empty_dirs = true,
-      },
-      popup_border_style = "rounded",
-      sort_case_insensitive = true,
-      window = { width = 30 },
+      { "<leader>e", "<cmd>Yazi cwd<cr>", desc = "Open Yazi in CWD" },
+      { "<leader>E", mode = { "n", "v" }, "<cmd>Yazi<cr>", desc = "Reveal in Yazi" },
+      { "<c-up>", "<cmd>Yazi toggle<cr>", desc = "Resume last yazi session" },
     },
   },
 

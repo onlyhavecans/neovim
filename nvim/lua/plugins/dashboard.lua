@@ -25,7 +25,7 @@ return {
           { desc = "󰋚 Recent", group = "DiagnosticHint", action = "FzfLua oldfiles", key = "r" },
           { desc = "󰱼 Files", group = "DiagnosticInfo", action = "FzfLua files", key = "f" },
           { desc = "󰈬 Search", group = "DiagnosticWarn", action = "FzfLua live_grep", key = "s" },
-          { desc = "󰙅 Tree", group = "String", action = "Neotree", key = "t" },
+          { desc = "󰙅 Tree", group = "String", action = "Yazi cwd", key = "t" },
           { desc = "󰒲 Lazy", group = "Number", action = "Lazy", key = "l" },
           { desc = "󰩈 Quit", group = "DiagnosticError", action = "qa", key = "q" },
         },
