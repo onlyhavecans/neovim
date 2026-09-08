@@ -73,8 +73,8 @@ return {
     },
     cmd = "Yazi",
     keys = {
-      { "<leader>e", "<cmd>Yazi cwd<cr>", desc = "Open Yazi in CWD" },
-      { "<leader>E", mode = { "n", "v" }, "<cmd>Yazi<cr>", desc = "Reveal in Yazi" },
+      { "<leader>E", "<cmd>Yazi cwd<cr>", desc = "Open Yazi in CWD" },
+      { "<leader>e", mode = { "n", "v" }, "<cmd>Yazi<cr>", desc = "Reveal in Yazi" },
       { "<c-up>", "<cmd>Yazi toggle<cr>", desc = "Resume last yazi session" },
     },
   },
