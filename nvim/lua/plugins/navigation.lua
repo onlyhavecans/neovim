@@ -53,6 +53,20 @@ return {
       { "<leader>sR", "<cmd>FzfLua resume<cr>", desc = "Resume last search" },
       { "<leader>sc", "<cmd>FzfLua commands<cr>", desc = "Commands" },
       { "<leader>:", "<cmd>FzfLua command_history<cr>", desc = "Command history" },
+      -- Jump (j = pickers over lists of locations)
+      { "<leader>jj", "<cmd>FzfLua git_status<cr>", desc = "Modified & untracked files" },
+      { "<leader>jf", "<cmd>FzfLua files<cr>", desc = "Files" },
+      { "<leader>jg", "<cmd>FzfLua git_files<cr>", desc = "Git tracked files" },
+      { "<leader>jr", "<cmd>FzfLua oldfiles<cr>", desc = "Recent files" },
+      { "<leader>jb", "<cmd>FzfLua buffers<cr>", desc = "Buffers" },
+      { "<leader>jt", "<cmd>FzfLua tabs<cr>", desc = "Tabs" },
+      { "<leader>jq", "<cmd>FzfLua quickfix<cr>", desc = "Quickfix list" },
+      { "<leader>jl", "<cmd>FzfLua loclist<cr>", desc = "Location list" },
+      { "<leader>jm", "<cmd>FzfLua marks<cr>", desc = "Marks" },
+      { "<leader>ju", "<cmd>FzfLua jumps<cr>", desc = "Jumplist" },
+      { "<leader>jc", "<cmd>FzfLua changes<cr>", desc = "Changelist" },
+      { "<leader>jB", "<cmd>FzfLua git_branches<cr>", desc = "Git branches" },
+      { "<leader>jL", "<cmd>FzfLua lines<cr>", desc = "Lines in open buffers" },
       -- Git
       { "<leader>gc", "<cmd>FzfLua git_commits<cr>", desc = "Git commits" },
       -- LSP go-to

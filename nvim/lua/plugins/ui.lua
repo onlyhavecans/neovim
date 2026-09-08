@@ -86,6 +86,7 @@ return {
         { "<leader>f", group = "file" },
         { "<leader>g", group = "git" },
         { "<leader>gh", group = "hunks" },
+        { "<leader>j", group = "jump" },
         { "<leader>n", group = "neovim" },
         { "<leader>s", group = "search" },
         { "<leader>t", group = "test" },
