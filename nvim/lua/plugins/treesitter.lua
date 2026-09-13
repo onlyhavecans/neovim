@@ -43,6 +43,7 @@ return {
           "c",
           "cpp",
           "lua",
+          "luau",
           "python",
           "go",
           "gomod",

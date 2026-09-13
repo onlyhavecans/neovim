@@ -31,7 +31,7 @@ Hi! I'm a squirrel and I use Neovim all day so I have quite the setup squirreled
 
 - Neovim 0.11+
 - External tools (not managed by Neovim):
-  - LSP servers: lua\_ls, gopls, rust\_analyzer, basedpyright, ruff, etc.
+  - LSP servers: lua\_ls, luau\_lsp, gopls, rust\_analyzer, basedpyright, ruff, etc.
   - Formatters: stylua, gofmt, prettier, shfmt, etc.
   - Linters: shellcheck, golangci-lint, yamllint, etc.
   - Debug adapters: delve, debugpy, codelldb
@@ -48,6 +48,7 @@ nvim/
 │   └── plugins/             # Plugin specs (lazy.nvim)
 │       └── lang/            # Language-specific plugins
 ├── after/ftplugin/          # Filetype-specific settings
+├── luau/                    # Luau type definitions (Noctalia plugin API)
 └── snippets/                # Custom snippets
 
 home/bin/                    # Helper scripts

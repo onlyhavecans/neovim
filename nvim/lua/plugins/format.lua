@@ -32,6 +32,7 @@ return {
         json = { "fixjson" },
         just = { "just" },
         lua = { "stylua" },
+        luau = { "stylua" },
         markdown = { "markdownlint-cli2" },
         nix = { "nixfmt" },
         nomad = { "nomad_fmt" },

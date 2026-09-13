@@ -83,6 +83,20 @@ return {
     },
   },
 
+  -- Luau
+  -- Uses the nearest noctalia.d.luau above the project root
+  luau_lsp = {
+    root_markers = { "plugin.toml", ".luaurc", ".git" },
+    settings = {
+      ["luau-lsp"] = {
+        platform = { type = "standard" },
+        sourcemap = { enabled = false },
+        ignoreGlobs = { "**/*.d.luau" },
+        completion = { imports = { enabled = true } },
+      },
+    },
+  },
+
   -- Go
   gopls = {
     settings = {
