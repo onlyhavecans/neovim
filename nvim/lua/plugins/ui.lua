@@ -13,14 +13,6 @@ return {
         diagnostics = "nvim_lsp",
         always_show_bufferline = false,
         separator_style = "slant",
-        offsets = {
-          {
-            filetype = "neo-tree",
-            text = "File Explorer",
-            highlight = "Directory",
-            text_align = "left",
-          },
-        },
       },
     },
     keys = {
@@ -44,7 +36,6 @@ return {
     event = "VeryLazy",
     opts = {
       options = {
-        theme = "gruvbox",
         globalstatus = true,
         disabled_filetypes = { statusline = { "dashboard", "alpha", "starter" } },
       },
@@ -68,7 +59,7 @@ return {
           { "encoding" },
         },
       },
-      extensions = { "lazy", "quickfix", "neo-tree" },
+      extensions = { "lazy", "quickfix" },
     },
   },
 
