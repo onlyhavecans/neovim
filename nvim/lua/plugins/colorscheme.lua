@@ -1,11 +1,13 @@
--- Colorscheme configuration
+-- Colorscheme: Everforest Light Hard (see the dotfiles castle, docs/everforest.md)
 return {
   {
-    "RRethy/base16-nvim",
+    "sainnhe/everforest",
     lazy = false,
     priority = 1000,
     config = function()
-      vim.cmd.colorscheme("matugen")
+      vim.g.everforest_background = "hard"
+      vim.o.background = "light"
+      vim.cmd.colorscheme("everforest")
     end,
   },
 }
